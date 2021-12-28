@@ -7,3 +7,4 @@ copyright = "2019-2021 stdlib contributors"
 
 [dependencies]
 stdlib_kinds = {git = "https://github.com/degawa/stdlib_modules", branch="stdlib_kinds-fpm"}
+stdlib_specialfunctions = {git = "https://github.com/degawa/stdlib_modules", branch="stdlib_specialfunctions-fpm"}
