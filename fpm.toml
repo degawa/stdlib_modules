@@ -1,5 +1,5 @@
 name = "stdlib_version"
-version = "VERSION"
+version = "0.1.0"
 license = "MIT"
 author = "stdlib contributors"
 maintainer = "@fortran-lang/stdlib"
