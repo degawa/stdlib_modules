@@ -1,0 +1,9 @@
+name = "stdlib_optval"
+version = "0.1.0"
+license = "MIT"
+author = "stdlib contributors"
+maintainer = "@fortran-lang/stdlib"
+copyright = "2019-2021 stdlib contributors"
+
+[dependencies]
+stdlib_kinds = {git = "https://github.com/degawa/stdlib_modules", branch="stdlib_kinds-fpm"}
