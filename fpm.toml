@@ -1,0 +1,12 @@
+name = "stdlib_string_type"
+version = "0.1.0"
+license = "MIT"
+author = "stdlib contributors"
+maintainer = "@fortran-lang/stdlib"
+copyright = "2019-2021 stdlib contributors"
+
+[dependencies]
+stdlib_kinds = {git = "https://github.com/degawa/stdlib_modules", branch="stdlib_kinds-fpm"}
+stdlib_optval = {git = "https://github.com/degawa/stdlib_modules", branch="stdlib_optval-fpm"}
+stdlib_ascii = {git = "https://github.com/degawa/stdlib_modules", branch="stdlib_ascii-fpm"}
+stdlib_strings = {git = "https://github.com/degawa/stdlib_modules", branch="stdlib_strings-fpm"}
