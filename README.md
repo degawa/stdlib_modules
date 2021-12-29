@@ -1,7 +1,9 @@
 # stdlib_modules
+[日本語](#動機)/[English](#Motivation)
+
 ## Motivation
-This repository aims to provide each module of the Fortran standard library (abbreviated to stdlib) as an individual fpm project.
-When the stdlib is added as a dependent project of the fpm (stands for Fortran package manager) projects, even if the project size is small, the whole projects' build time will increase due to the stdlib build. As a solution to this very personal frustration, I separate each module of stdlib as an individual fpm project.
+This repository aims to provide each module of [the Fortran standard library](https://github.com/fortran-lang/stdlib) (abbreviated to stdlib) as an individual fpm (stands for [Fortran package manager](https://github.com/fortran-lang/fpm)) project.
+When the stdlib is added as a dependent project of the fpm projects, even if the project size is small, the whole projects' build time will increase due to the stdlib build. As a solution to this very personal frustration, I separate each module of stdlib as an individual fpm project.
 
 The fpm is a game-changer for Fortran. It is convenient to use fpm for handling small-scale stand-alone applications, but fpm shows its actual value when collaborating with other fpm projects.
 The stdlib provides many essential features lacking in Fortran and significantly improves Fortran's convenience.
