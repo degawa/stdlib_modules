@@ -14,9 +14,17 @@ fpmを用いると，設定を一行追加するだけで，依存プロジェ�
 - このリポジトリは，fortran-langの公式とは関係ありません．
 - ブランチに個別のモジュールを含むfpmプロジェクトを作成しており，masterリポジトリの内容に特に意味はありません．
 - このリポジトリは試行目的で作成しており，stdlibのバージョンアップに追従するとは限りません．
+- `stdlib_strings`と`stdlib_string_type`はお互いを参照しており，循環参照が生じていますが，fpmは問題なくビルドします．
 
 ## 内容
 stdlibの各モジュールを個別に含むfpmプロジェクトを作成し，対応するブランチに置いている．
+各プロジェクトには，cmakeを用いてビルドする際に生成されたソースを利用している．生成に用いた環境は下記の通りである．
+
+- OS: Windows 10
+- コンパイラ: grfortran(tdm64) 10.3.0
+- プリプロセッサ: fypp 3.1
+- ビルドコマンド: `cmake -B build -G "Unix Makefiles" -DCMAKE_Fortran_COMPILER=gfortran`
+    - `-DCMAKE_MAXIMUM_RANK`は指定していないので，標準値の`4`
 
 ### array
 - モジュール: `stdlib_array`
