@@ -27,6 +27,7 @@ Each project uses the sources generated during the build process using cmake. Th
 - OS: Windows 10
 - compiler: grfortran(tdm64) 10.3.0
 - preprocessor: fypp 3.1
+- stdlib version: 0.1.0, commit hash 2bb6539fada37fe47039e5f3555b4047b0b45fbd
 - build command: `cmake -B build -G "Unix Makefiles" -DCMAKE_Fortran_COMPILER=gfortran`
     - `-DCMAKE_MAXIMUM_RANK`is not specified. Default value `4` is chosen.
 
@@ -53,6 +54,7 @@ stdlibの各モジュールを個別に含むfpmプロジェクトを作成し�
 - OS: Windows 10
 - コンパイラ: grfortran(tdm64) 10.3.0
 - プリプロセッサ: fypp 3.1
+- stdlibのバージョン: 0.1.0, コミットハッシュ2bb6539fada37fe47039e5f3555b4047b0b45fbd
 - ビルドコマンド: `cmake -B build -G "Unix Makefiles" -DCMAKE_Fortran_COMPILER=gfortran`
     - `-DCMAKE_MAXIMUM_RANK`は指定していないので，標準値の`4`
 
