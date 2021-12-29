@@ -238,7 +238,7 @@ stdlib_stringlist_type = {git = "https://github.com/degawa/stdlib_modules", bran
 stdlib_strings = {git = "https://github.com/degawa/stdlib_modules", branch="stdlib_strings-fpm"}
 ```
 
-### strings
+### system
 - ブランチ: stdlib_system-fpm
 - 依存ブランチ: stdlib_version-fpm
 - 参照方法: `fpm.toml`に下記を追記する．
