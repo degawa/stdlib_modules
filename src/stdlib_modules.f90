@@ -1,0 +1,26 @@
+module stdlib_modules
+    use :: stdlib_array
+    use :: stdlib_ascii
+    use :: stdlib_bitsets
+    use :: stdlib_error
+    use :: stdlib_hash
+    use :: stdlib_io
+    use :: stdlib_kinds
+    use :: stdlib_linalg
+    use :: stdlib_logger
+    use :: stdlib_math
+    use :: stdlib_optval
+    use :: stdlib_quadrature
+    use :: stdlib_random
+    use :: stdlib_selection
+    use :: stdlib_sorting
+    use :: stdlib_specialfunctions
+    use :: stdlib_stats
+    use :: stdlib_stats_distribution_normal
+    use :: stdlib_stats_distribution_uniform
+    use :: stdlib_string_type
+    use :: stdlib_stringlist_type
+    use :: stdlib_strings
+    use :: stdlib_system
+    use :: stdlib_version
+end module stdlib_modules

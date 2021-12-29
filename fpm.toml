@@ -1,0 +1,32 @@
+name = "stdlib_modules"
+version = "0.1.0"
+license = "MIT"
+author = "Tomohiro Degawa"
+maintainer = "@degawa/stdlib_modules"
+copyright = "2021 Tomohiro Degawa"
+
+[dependencies]
+stdlib_array = {git = "https://github.com/degawa/stdlib_modules", branch="stdlib_array-fpm"}
+stdlib_ascii = {git = "https://github.com/degawa/stdlib_modules", branch="stdlib_ascii-fpm"}
+stdlib_bitsets = {git = "https://github.com/degawa/stdlib_modules", branch="stdlib_bitsets-fpm"}
+stdlib_error = {git = "https://github.com/degawa/stdlib_modules", branch="stdlib_error-fpm"}
+stdlib_hash = {git = "https://github.com/degawa/stdlib_modules", branch="stdlib_hash-fpm"}
+stdlib_io = {git = "https://github.com/degawa/stdlib_modules", branch="stdlib_io-fpm"}
+stdlib_kinds = {git = "https://github.com/degawa/stdlib_modules", branch="stdlib_kinds-fpm"}
+stdlib_linalg = {git = "https://github.com/degawa/stdlib_modules", branch="stdlib_linalg-fpm"}
+stdlib_logger = {git = "https://github.com/degawa/stdlib_modules", branch="stdlib_logger-fpm"}
+stdlib_math = {git = "https://github.com/degawa/stdlib_modules", branch="stdlib_math-fpm"}
+stdlib_optval = {git = "https://github.com/degawa/stdlib_modules", branch="stdlib_optval-fpm"}
+stdlib_quadrature = {git = "https://github.com/degawa/stdlib_modules", branch="stdlib_quadrature-fpm"}
+stdlib_random = {git = "https://github.com/degawa/stdlib_modules", branch="stdlib_random-fpm"}
+stdlib_selection = {git = "https://github.com/degawa/stdlib_modules", branch="stdlib_selection-fpm"}
+stdlib_sorting = {git = "https://github.com/degawa/stdlib_modules", branch="stdlib_sorting-fpm"}
+stdlib_specialfunctions = {git = "https://github.com/degawa/stdlib_modules", branch="stdlib_specialfunctions-fpm"}
+stdlib_stats = {git = "https://github.com/degawa/stdlib_modules", branch="stdlib_stats-fpm"}
+stdlib_stats_distribution_normal = {git = "https://github.com/degawa/stdlib_modules", branch="stdlib_stats_distribution_normal-fpm"}
+stdlib_stats_distribution_uniform = {git = "https://github.com/degawa/stdlib_modules", branch="stdlib_stats_distribution_uniform-fpm"}
+stdlib_string_type = {git = "https://github.com/degawa/stdlib_modules", branch="stdlib_string_type-fpm"}
+stdlib_stringlist_type = {git = "https://github.com/degawa/stdlib_modules", branch="stdlib_stringlist_type-fpm"}
+stdlib_strings = {git = "https://github.com/degawa/stdlib_modules", branch="stdlib_strings-fpm"}
+stdlib_system = {git = "https://github.com/degawa/stdlib_modules", branch="stdlib_system-fpm"}
+stdlib_version = {git = "https://github.com/degawa/stdlib_modules", branch="stdlib_version-fpm"}
