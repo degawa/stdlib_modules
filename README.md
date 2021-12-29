@@ -1,4 +1,32 @@
 # stdlib_modules
+## Motivation
+This repository aims to provide each module of the Fortran standard library (abbreviated to stdlib) as an individual fpm project.
+When the stdlib is added as a dependent project of the fpm (stands for Fortran package manager) projects, even if the project size is small, the whole projects' build time will increase due to the stdlib build. As a solution to this very personal frustration, I separate each module of stdlib as an individual fpm project.
+
+The fpm is a game-changer for Fortran. It is convenient to use fpm for handling small-scale stand-alone applications, but fpm shows its actual value when collaborating with other fpm projects.
+The stdlib provides many essential features lacking in Fortran and significantly improves Fortran's convenience.
+
+We can get dependent fpm projects from online git repositories such as GitHub by adding one line to fpm configuration files.
+I love this advantage and always get stdlib from GitHub. However, due to building stdlib, I frustrate the long building time of projects that are even small-scale but require a lot of trial and error.
+
+Although it is possible to install stdlib locally and link to it from fpm projects, it is easier to get the library online than requiring installation locally. In addition, stdlib does not support building with older compilers due to the features used in some modules. There are some demands from some Japanese industries continuing to use old compilers of a specific version to build stdlib with older compilers.
+
+This repository may provide a solution for using some modules of stdlib.
+
+## Caution
+- This repository is not related to the fortran-lang community.
+- The contents of the master repository are not particularly meaningful. See branches.
+- This repository aims for trial use and does not follow the version up of stdlib.
+
+## Contents
+This repository has an individual fpm project that contains each module of stdlib and is committed in the corresponding branch.
+Each project uses the sources generated during the build process using cmake. The build environment is as follows:
+
+- OS: Windows 10
+- compiler: grfortran(tdm64) 10.3.0
+- preprocessor: fypp 3.1
+- build command: `cmake -B build -G "Unix Makefiles" -DCMAKE_Fortran_COMPILER=gfortran`
+    - `-DCMAKE_MAXIMUM_RANK`is not specified. Default value `4` is chosen.
 
 ## 動機
 このリポジトリでは，Fortran stdlibの各モジュールを，独立したfpmプロジェクトとして提供することを目的としています．
