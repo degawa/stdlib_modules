@@ -19,6 +19,7 @@ fpmを用いると，設定を一行追加するだけで，依存プロジェ�
 stdlibの各モジュールを個別に含むfpmプロジェクトを作成し，対応するブランチに置いている．
 
 ### array
+- モジュール: `stdlib_array`
 - ブランチ: stdlib_array-fpm
 - 依存ブランチ: stdlib_version-fpm
 - 参照方法: `fpm.toml`に下記を追記する．
@@ -29,6 +30,7 @@ stdlib_array = {git = "https://github.com/degawa/stdlib_modules", branch="stdlib
 ```
 
 ### ascii
+- モジュール: `stdlib_ascii`
 - ブランチ: stdlib_ascii-fpm
 - 依存ブランチ: stdlib_version-fpm, stdlib_kinds-fpm
 - 参照方法: `fpm.toml`に下記を追記する．
@@ -39,6 +41,7 @@ stdlib_ascii = {git = "https://github.com/degawa/stdlib_modules", branch="stdlib
 ```
 
 ### bitsets
+- モジュール: `stdlib_bitsets`
 - ブランチ: stdlib_bitsets-fpm
 - 依存ブランチ: stdlib_version-fpm, stdlib_kinds-fpm, stdlib_optval-fpm
 - 参照方法: `fpm.toml`に下記を追記する．
@@ -49,6 +52,7 @@ stdlib_bitsets = {git = "https://github.com/degawa/stdlib_modules", branch="stdl
 ```
 
 ### error
+- モジュール: `stdlib_error`
 - ブランチ: stdlib_error-fpm
 - 依存ブランチ: stdlib_version-fpm, stdlib_optval-fpm
 - 参照方法: `fpm.toml`に下記を追記する．
@@ -59,6 +63,7 @@ stdlib_error = {git = "https://github.com/degawa/stdlib_modules", branch="stdlib
 ```
 
 ### hash
+- モジュール: `stdlib_hash_32bit`, `stdlib_hash_64bit`
 - ブランチ: stdlib_hash-fpm
 - 依存ブランチ: stdlib_version-fpm, stdlib_kinds-fpm
 - 参照方法: `fpm.toml`に下記を追記する．
@@ -69,6 +74,7 @@ stdlib_hash = {git = "https://github.com/degawa/stdlib_modules", branch="stdlib_
 ```
 
 ### io
+- モジュール: `stdlib_io`, `stdlib_io_npy`
 - ブランチ: stdlib_io-fpm
 - 依存ブランチ: stdlib_version-fpm, stdlib_kinds-fpm, stdlib_optval-fpm, stdlib_ascii, stdlib_error, stdlib_string_type
 - 参照方法: `fpm.toml`に下記を追記する．
@@ -79,6 +85,7 @@ stdlib_io = {git = "https://github.com/degawa/stdlib_modules", branch="stdlib_io
 ```
 
 ### kinds
+- モジュール: `stdlib_kinds`
 - ブランチ: stdlib_kinds-fpm
 - 依存ブランチ: stdlib_version-fpm
 - 参照方法: `fpm.toml`に下記を追記する．
@@ -89,6 +96,7 @@ stdlib_kinds = {git = "https://github.com/degawa/stdlib_modules", branch="stdlib
 ```
 
 ### linalg
+- モジュール: `stdlib_linalg`
 - ブランチ: stdlib_linalg-fpm
 - 依存ブランチ: stdlib_version-fpm, stdlib_kinds-fpm, stdlib_optval-fpm
 - 参照方法: `fpm.toml`に下記を追記する．
@@ -99,6 +107,7 @@ stdlib_linalg = {git = "https://github.com/degawa/stdlib_modules", branch="stdli
 ```
 
 ### logger
+- モジュール: `stdlib_logger`
 - ブランチ: stdlib_logger-fpm
 - 依存ブランチ: stdlib_version-fpm, stdlib_ascii-fpm, stdlib_optval-fpm
 - 参照方法: `fpm.toml`に下記を追記する．
@@ -109,6 +118,7 @@ stdlib_logger = {git = "https://github.com/degawa/stdlib_modules", branch="stdli
 ```
 
 ### math
+- モジュール: `stdlib_math`
 - ブランチ: stdlib_math-fpm
 - 依存ブランチ: stdlib_version-fpm, stdlib_kinds-fpm, stdlib_optval-fpm
 - 参照方法: `fpm.toml`に下記を追記する．
@@ -119,6 +129,7 @@ stdlib_math = {git = "https://github.com/degawa/stdlib_modules", branch="stdlib_
 ```
 
 ### optval
+- モジュール: `stdlib_optval`
 - ブランチ: stdlib_optval-fpm
 - 依存ブランチ: stdlib_version-fpm, stdlib_kinds-fpm
 - 参照方法: `fpm.toml`に下記を追記する．
@@ -129,6 +140,7 @@ stdlib_optval = {git = "https://github.com/degawa/stdlib_modules", branch="stdli
 ```
 
 ### quadrature
+- モジュール: `stdlib_quadrature`
 - ブランチ: stdlib_quadrature-fpm
 - 依存ブランチ: stdlib_version-fpm, stdlib_kinds-fpm, stdlib_specialfunctions-fpm, stdlib_error-fpm
 - 参照方法: `fpm.toml`に下記を追記する．
@@ -139,6 +151,7 @@ stdlib_quadrature = {git = "https://github.com/degawa/stdlib_modules", branch="s
 ```
 
 ### random
+- モジュール: `stdlib_random`
 - ブランチ: stdlib_random-fpm
 - 依存ブランチ: stdlib_version-fpm, stdlib_kinds-fpm, stdlib_optval-fpm, stdlib_error-fpm
 - 参照方法: `fpm.toml`に下記を追記する．
@@ -149,6 +162,7 @@ stdlib_random = {git = "https://github.com/degawa/stdlib_modules", branch="stdli
 ```
 
 ### selection
+- モジュール: `stdlib_selection`
 - ブランチ: stdlib_selection-fpm
 - 依存ブランチ: stdlib_version-fpm, stdlib_kinds-fpm
 - 参照方法: `fpm.toml`に下記を追記する．
@@ -159,6 +173,7 @@ stdlib_selection = {git = "https://github.com/degawa/stdlib_modules", branch="st
 ```
 
 ### sorting
+- モジュール: `stdlib_sorting`
 - ブランチ: stdlib_sorting-fpm
 - 依存ブランチ: stdlib_version-fpm, stdlib_kinds-fpm, stdlib_optval-fpm, stdlib_string_type-fpm
 - 参照方法: `fpm.toml`に下記を追記する．
@@ -169,6 +184,7 @@ stdlib_sorting = {git = "https://github.com/degawa/stdlib_modules", branch="stdl
 ```
 
 ### specialfunctions
+- モジュール: `stdlib_specialfunctions`
 - ブランチ: stdlib_specialfunctions-fpm
 - 依存ブランチ: stdlib_version-fpm, stdlib_kinds-fpm
 - 参照方法: `fpm.toml`に下記を追記する．
@@ -179,6 +195,7 @@ stdlib_specialfunctions = {git = "https://github.com/degawa/stdlib_modules", bra
 ```
 
 ### stats
+- モジュール: `stdlib_stats`
 - ブランチ: stdlib_stats-fpm
 - 依存ブランチ: stdlib_version-fpm, stdlib_kinds-fpm, stdlib_optval-fpm, stdlib_error-fpm, stdlib_linalg-fpm, stdlib_selection-fpm
 - 参照方法: `fpm.toml`に下記を追記する．
@@ -189,6 +206,7 @@ stdlib_stats = {git = "https://github.com/degawa/stdlib_modules", branch="stdlib
 ```
 
 ### stats_distribution_normal
+- モジュール: `stdlib_stats_distribution_normal`
 - ブランチ: stdlib_stats_distribution_normal-fpm
 - 依存ブランチ: stdlib_version-fpm, stdlib_kinds-fpm, stdlib_error-fpm, stdlib_random-fpm, stdlib_stats_distribution_uniform-fpm
 - 参照方法: `fpm.toml`に下記を追記する．
@@ -199,6 +217,7 @@ stdlib_stats_distribution_normal = {git = "https://github.com/degawa/stdlib_modu
 ```
 
 ### stats_distribution_uniform
+- モジュール: `stdlib_stats_distribution_uniform`
 - ブランチ: stdlib_stats_distribution_uniform-fpm
 - 依存ブランチ: stdlib_version-fpm, stdlib_kinds-fpm, stdlib_error-fpm, stdlib_random-fpm
 - 参照方法: `fpm.toml`に下記を追記する．
@@ -209,6 +228,7 @@ stdlib_stats_distribution_uniform = {git = "https://github.com/degawa/stdlib_mod
 ```
 
 ### string_type
+- モジュール: `stdlib_string_type`
 - ブランチ: stdlib_string_type-fpm
 - 依存ブランチ: stdlib_version-fpm, stdlib_kinds-fpm, stdlib_optval-fpm, stdlib_ascii-fpm, stdlib_strings-fpm
 - 参照方法: `fpm.toml`に下記を追記する．
@@ -219,6 +239,7 @@ stdlib_string_type = {git = "https://github.com/degawa/stdlib_modules", branch="
 ```
 
 ### stringlist_type
+- モジュール: `stdlib_stringlist_type`
 - ブランチ: stdlib_stringlist_type-fpm
 - 依存ブランチ: stdlib_version-fpm, stdlib_math-fpm, stdlib_string_type-fpm
 - 参照方法: `fpm.toml`に下記を追記する．
@@ -229,6 +250,7 @@ stdlib_stringlist_type = {git = "https://github.com/degawa/stdlib_modules", bran
 ```
 
 ### strings
+- モジュール: `stdlib_strings`
 - ブランチ: stdlib_strings-fpm
 - 依存ブランチ: stdlib_version-fpm, stdlib_kinds-fpm, stdlib_optval-fpm, stdlib_ascii-fpm, stdlib_string_type-fpm
 - 参照方法: `fpm.toml`に下記を追記する．
@@ -239,6 +261,7 @@ stdlib_strings = {git = "https://github.com/degawa/stdlib_modules", branch="stdl
 ```
 
 ### system
+- モジュール: `stdlib_system`
 - ブランチ: stdlib_system-fpm
 - 依存ブランチ: stdlib_version-fpm
 - 参照方法: `fpm.toml`に下記を追記する．
@@ -249,6 +272,7 @@ stdlib_system = {git = "https://github.com/degawa/stdlib_modules", branch="stdli
 ```
 
 ### version
+- モジュール: `stdlib_version`
 - ブランチ: stdlib_version-fpm
 - 依存ブランチ:
 - 参照方法: `fpm.toml`に下記を追記する．
