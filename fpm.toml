@@ -6,6 +6,7 @@ maintainer = "@fortran-lang/stdlib"
 copyright = "2019-2021 stdlib contributors"
 
 [dependencies]
+stdlib_version = {git = "https://github.com/degawa/stdlib_modules", branch="stdlib_version-fpm"}
 stdlib_kinds = {git = "https://github.com/degawa/stdlib_modules", branch="stdlib_kinds-fpm"}
 stdlib_optval = {git = "https://github.com/degawa/stdlib_modules", branch="stdlib_optval-fpm"}
 stdlib_error = {git = "https://github.com/degawa/stdlib_modules", branch="stdlib_error-fpm"}
