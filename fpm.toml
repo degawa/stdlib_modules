@@ -1,9 +1,9 @@
 name = "stdlib_stringlist_type"
 version = "0.1.0"
 license = "MIT"
-author = "stdlib contributors"
-maintainer = "@fortran-lang/stdlib"
-copyright = "2019-2021 stdlib contributors"
+author = "Tomohiro Degawa"
+maintainer = "@degawa/stdlib_modules"
+copyright = "2021 Tomohiro Degawa"
 
 [dependencies]
 stdlib_version = {git = "https://github.com/degawa/stdlib_modules", branch="stdlib_version-fpm"}
