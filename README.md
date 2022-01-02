@@ -1,7 +1,7 @@
 # stdlib_modules
 ## linalg
 - module name: `stdlib_linalg`
-- dependent branches: stdlib_version-fpm, stdlib_kinds-fpm, stdlib_optval-fpm
+- dependent branches: stdlib_version-fpm, stdlib_kinds-fpm, stdlib_optval-fpm, stdlib_error
 - reference: add following to your `fpm.toml`.
 
 ```toml
