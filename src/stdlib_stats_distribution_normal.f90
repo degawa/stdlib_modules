@@ -29,20 +29,16 @@ module stdlib_stats_distribution_normal
 
         module procedure rvs_norm_rsp        !2 dummy variables
         module procedure rvs_norm_rdp        !2 dummy variables
-        module procedure rvs_norm_rxdp        !2 dummy variables
         module procedure rvs_norm_rqp        !2 dummy variables
         module procedure rvs_norm_csp        !2 dummy variables
         module procedure rvs_norm_cdp        !2 dummy variables
-        module procedure rvs_norm_cxdp        !2 dummy variables
         module procedure rvs_norm_cqp        !2 dummy variables
 
         module procedure rvs_norm_array_rsp  !3 dummy variables
         module procedure rvs_norm_array_rdp  !3 dummy variables
-        module procedure rvs_norm_array_rxdp  !3 dummy variables
         module procedure rvs_norm_array_rqp  !3 dummy variables
         module procedure rvs_norm_array_csp  !3 dummy variables
         module procedure rvs_norm_array_cdp  !3 dummy variables
-        module procedure rvs_norm_array_cxdp  !3 dummy variables
         module procedure rvs_norm_array_cqp  !3 dummy variables
     end interface rvs_normal
 
@@ -57,11 +53,9 @@ module stdlib_stats_distribution_normal
     !!
         module procedure pdf_norm_rsp
         module procedure pdf_norm_rdp
-        module procedure pdf_norm_rxdp
         module procedure pdf_norm_rqp
         module procedure pdf_norm_csp
         module procedure pdf_norm_cdp
-        module procedure pdf_norm_cxdp
         module procedure pdf_norm_cqp
     end interface pdf_normal
 
@@ -76,11 +70,9 @@ module stdlib_stats_distribution_normal
     !!
         module procedure cdf_norm_rsp
         module procedure cdf_norm_rdp
-        module procedure cdf_norm_rxdp
         module procedure cdf_norm_rqp
         module procedure cdf_norm_csp
         module procedure cdf_norm_cdp
-        module procedure cdf_norm_cxdp
         module procedure cdf_norm_cqp
     end interface cdf_normal
 
@@ -215,49 +207,6 @@ contains
         end if
     end function rvs_norm_0_rdp
 
-    function rvs_norm_0_rxdp( ) result(res)
-    !
-    ! Standard normal random vairate (0,1)
-    !
-        real(xdp) :: res
-        real(xdp), parameter  ::  r = 3.442619855899_xdp, rr = 1.0_xdp / r
-        real(xdp) ::  x, y
-        integer :: hz, iz
-
-        if(.not. zig_norm_initialized) call zigset
-        iz = 0
-        hz = dist_rand(1_int32)          !32bit random integer
-        iz = iand( hz, 127 )             !random integer in [0, 127]
-        if( abs( hz ) < kn(iz) ) then
-            res = hz * wn(iz)
-        else
-            L1: do
-                L2: if( iz == 0 ) then
-                    do
-                        x = -log( uni(1.0_xdp) ) * rr
-                        y = -log( uni(1.0_xdp) )
-                        if( y + y >= x * x ) exit
-                    end do
-                    res = r + x
-                    if( hz <= 0 ) res = -res
-                    exit L1
-                end if L2
-                x = hz * wn(iz)
-                if( fn(iz) + uni(1.0_xdp) * (fn(iz-1) - fn(iz)) <            &
-                    exp(-HALF * x * x) ) then
-                    res = x
-                    exit L1
-                end if
-                hz = dist_rand(1_int32)
-                iz = iand( hz, 127 )
-                if( abs( hz ) < kn(iz) ) then
-                    res = hz * wn(iz)
-                    exit L1
-                end if
-            end do L1
-        end if
-    end function rvs_norm_0_rxdp
-
     function rvs_norm_0_rqp( ) result(res)
     !
     ! Standard normal random vairate (0,1)
@@ -330,19 +279,6 @@ contains
         res = res * scale + loc
     end function rvs_norm_rdp
 
-    function rvs_norm_rxdp(loc, scale) result(res)
-    !
-    ! Normal random variate (loc, scale)
-    !
-        real(xdp), intent(in) :: loc, scale
-        real(xdp) :: res
-
-        if(scale == 0._xdp) call error_stop("Error(rvs_norm): Normal"       &
-            //" distribution scale parameter must be non-zero")
-        res = rvs_norm_0_rxdp(  )
-        res = res * scale + loc
-    end function rvs_norm_rxdp
-
     function rvs_norm_rqp(loc, scale) result(res)
     !
     ! Normal random variate (loc, scale)
@@ -386,20 +322,6 @@ contains
         ti = rvs_norm_rdp(loc % im, scale % im)
         res = cmplx(tr, ti, kind=dp)
     end function rvs_norm_cdp
-
-    function rvs_norm_cxdp(loc, scale) result(res)
-    !
-    ! Normally distributed complex. The real part and imaginary part are       &
-    ! independent of each other.
-    !
-        complex(xdp), intent(in) :: loc, scale
-        complex(xdp) :: res
-        real(xdp) :: tr, ti
-
-        tr = rvs_norm_rxdp(loc % re, scale % re)
-        ti = rvs_norm_rxdp(loc % im, scale % im)
-        res = cmplx(tr, ti, kind=xdp)
-    end function rvs_norm_cxdp
 
     function rvs_norm_cqp(loc, scale) result(res)
     !
@@ -514,54 +436,6 @@ contains
         end do
     end function rvs_norm_array_rdp
 
-    function rvs_norm_array_rxdp(loc, scale, array_size) result(res)
-        real(xdp), intent(in) :: loc, scale
-        integer, intent(in) :: array_size
-        real(xdp) :: res(array_size)
-        real(xdp), parameter  ::  r = 3.442619855899_xdp, rr = 1.0_xdp / r
-        real(xdp) ::  x, y, re
-        integer :: hz, iz, i
-
-        if(scale == 0._xdp) call error_stop("Error(rvs_norm_array): Normal" &
-            //"distribution scale parameter must be non-zero")
-        if(.not. zig_norm_initialized) call zigset
-        do i = 1, array_size
-            iz = 0
-            hz = dist_rand(1_int32)
-            iz = iand( hz, 127 )
-            if( abs( hz ) < kn(iz) ) then
-                re = hz * wn(iz)
-            else
-                L1: do
-                    L2: if( iz == 0 ) then
-                        do
-                            x = -log( uni(1.0_xdp) ) * rr
-                            y = -log( uni(1.0_xdp) )
-                            if( y + y >= x * x ) exit
-                        end do
-                        re = r + x
-                        if( hz <= 0 ) re = -re
-                        exit L1
-                    end if L2
-                    x = hz * wn(iz)
-                    if( fn(iz) + uni(1.0_xdp) * (fn(iz-1) - fn(iz)) <        &
-                        exp(-HALF * x * x) ) then
-                        re = x
-                        exit L1
-                    end if
-
-                    hz = dist_rand(1_int32)
-                    iz = iand( hz, 127 )
-                    if( abs( hz ) < kn(iz) ) then
-                        re = hz * wn(iz)
-                        exit L1
-                    end if
-                end do L1
-            end if
-            res(i) = re * scale + loc
-        end do
-    end function rvs_norm_array_rxdp
-
     function rvs_norm_array_rqp(loc, scale, array_size) result(res)
         real(qp), intent(in) :: loc, scale
         integer, intent(in) :: array_size
@@ -641,20 +515,6 @@ contains
         end do
     end function rvs_norm_array_cdp
 
-    function rvs_norm_array_cxdp(loc, scale, array_size) result(res)
-        complex(xdp), intent(in) :: loc, scale
-        integer, intent(in) :: array_size
-        integer :: i
-        complex(xdp) :: res(array_size)
-        real(xdp) :: tr, ti
-
-        do i = 1, array_size
-            tr = rvs_norm_rxdp(loc % re, scale % re)
-            ti = rvs_norm_rxdp(loc % im, scale % im)
-            res(i) = cmplx(tr, ti, kind=xdp)
-        end do
-    end function rvs_norm_array_cxdp
-
     function rvs_norm_array_cqp(loc, scale, array_size) result(res)
         complex(qp), intent(in) :: loc, scale
         integer, intent(in) :: array_size
@@ -700,20 +560,6 @@ contains
               (sqrt_2_Pi * scale)
     end function pdf_norm_rdp
 
-    impure elemental function pdf_norm_rxdp(x, loc, scale) result(res)
-    !
-    ! Normal distribution probability density function
-    !
-        real(xdp), intent(in) :: x, loc, scale
-        real(xdp) :: res
-        real(xdp), parameter :: sqrt_2_pi = sqrt(2.0_xdp * acos(-1.0_xdp))
-
-        if(scale == 0._xdp) call error_stop("Error(pdf_norm): Normal"       &
-            //"distribution scale parameter must be non-zero")
-        res = exp(- 0.5_xdp * ((x - loc) / scale) * (x - loc) / scale) /    &
-              (sqrt_2_Pi * scale)
-    end function pdf_norm_rxdp
-
     impure elemental function pdf_norm_rqp(x, loc, scale) result(res)
     !
     ! Normal distribution probability density function
@@ -746,14 +592,6 @@ contains
         res = pdf_norm_rdp(x % re, loc % re, scale % re)
         res = res * pdf_norm_rdp(x % im, loc % im, scale % im)
     end function pdf_norm_cdp
-
-    impure elemental function pdf_norm_cxdp(x, loc, scale) result(res)
-        complex(xdp), intent(in) :: x, loc, scale
-        real(xdp) :: res
-
-        res = pdf_norm_rxdp(x % re, loc % re, scale % re)
-        res = res * pdf_norm_rxdp(x % im, loc % im, scale % im)
-    end function pdf_norm_cxdp
 
     impure elemental function pdf_norm_cqp(x, loc, scale) result(res)
         complex(qp), intent(in) :: x, loc, scale
@@ -792,19 +630,6 @@ contains
         res = erfc(- (x - loc) / (scale * sqrt_2)) / 2.0_dp
     end function cdf_norm_rdp
 
-    impure elemental function cdf_norm_rxdp(x, loc, scale) result(res)
-    !
-    ! Normal distribution cumulative distribution function
-    !
-        real(xdp), intent(in) :: x, loc, scale
-        real(xdp) :: res
-        real(xdp), parameter :: sqrt_2 = sqrt(2.0_xdp)
-
-        if(scale == 0._xdp) call error_stop("Error(cdf_norm): Normal"       &
-            //"distribution scale parameter must be non-zero")
-        res = erfc(- (x - loc) / (scale * sqrt_2)) / 2.0_xdp
-    end function cdf_norm_rxdp
-
     impure elemental function cdf_norm_rqp(x, loc, scale) result(res)
     !
     ! Normal distribution cumulative distribution function
@@ -836,14 +661,6 @@ contains
         res = cdf_norm_rdp(x % re, loc % re, scale % re)
         res = res * cdf_norm_rdp(x % im, loc % im, scale % im)
     end function cdf_norm_cdp
-
-    impure elemental function cdf_norm_cxdp(x, loc, scale) result(res)
-        complex(xdp), intent(in) :: x, loc, scale
-        real(xdp) :: res
-
-        res = cdf_norm_rxdp(x % re, loc % re, scale % re)
-        res = res * cdf_norm_rxdp(x % im, loc % im, scale % im)
-    end function cdf_norm_cxdp
 
     impure elemental function cdf_norm_cqp(x, loc, scale) result(res)
         complex(qp), intent(in) :: x, loc, scale
