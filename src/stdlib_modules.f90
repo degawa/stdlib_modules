@@ -16,6 +16,7 @@ module stdlib_modules
     use :: stdlib_sorting
     use :: stdlib_specialfunctions
     use :: stdlib_stats
+    use :: stdlib_stats_distribution_exponential
     use :: stdlib_stats_distribution_normal
     use :: stdlib_stats_distribution_uniform
     use :: stdlib_string_type
