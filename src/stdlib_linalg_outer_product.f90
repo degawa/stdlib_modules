@@ -20,14 +20,6 @@ contains
         res(:,col) = v(col) * u
       end do
     end function outer_product_rdp
-    pure module function outer_product_rxdp(u, v) result(res)
-      real(xdp), intent(in) :: u(:), v(:)
-      real(xdp) :: res(size(u),size(v))
-      integer :: col
-      do col = 1, size(v)
-        res(:,col) = v(col) * u
-      end do
-    end function outer_product_rxdp
     pure module function outer_product_rqp(u, v) result(res)
       real(qp), intent(in) :: u(:), v(:)
       real(qp) :: res(size(u),size(v))
@@ -52,14 +44,6 @@ contains
         res(:,col) = v(col) * u
       end do
     end function outer_product_cdp
-    pure module function outer_product_cxdp(u, v) result(res)
-      complex(xdp), intent(in) :: u(:), v(:)
-      complex(xdp) :: res(size(u),size(v))
-      integer :: col
-      do col = 1, size(v)
-        res(:,col) = v(col) * u
-      end do
-    end function outer_product_cxdp
     pure module function outer_product_cqp(u, v) result(res)
       complex(qp), intent(in) :: u(:), v(:)
       complex(qp) :: res(size(u),size(v))
