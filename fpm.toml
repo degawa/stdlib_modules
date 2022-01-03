@@ -3,7 +3,7 @@ version = "0.1.0"
 license = "MIT"
 author = "Tomohiro Degawa"
 maintainer = "@degawa/stdlib_modules"
-copyright = "2021 Tomohiro Degawa"
+copyright = "2021-2022 Tomohiro Degawa"
 
 [dependencies]
 stdlib_array = {git = "https://github.com/degawa/stdlib_modules", branch="stdlib_array-fpm"}
@@ -23,6 +23,7 @@ stdlib_selection = {git = "https://github.com/degawa/stdlib_modules", branch="st
 stdlib_sorting = {git = "https://github.com/degawa/stdlib_modules", branch="stdlib_sorting-fpm"}
 stdlib_specialfunctions = {git = "https://github.com/degawa/stdlib_modules", branch="stdlib_specialfunctions-fpm"}
 stdlib_stats = {git = "https://github.com/degawa/stdlib_modules", branch="stdlib_stats-fpm"}
+stdlib_stats_distribution_exponential = {git = "https://github.com/degawa/stdlib_modules", branch="stdlib_stats_distribution_exponential-fpm"}
 stdlib_stats_distribution_normal = {git = "https://github.com/degawa/stdlib_modules", branch="stdlib_stats_distribution_normal-fpm"}
 stdlib_stats_distribution_uniform = {git = "https://github.com/degawa/stdlib_modules", branch="stdlib_stats_distribution_uniform-fpm"}
 stdlib_string_type = {git = "https://github.com/degawa/stdlib_modules", branch="stdlib_string_type-fpm"}
