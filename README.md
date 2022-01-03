@@ -245,6 +245,17 @@ stdlib_specialfunctions = {git = "https://github.com/degawa/stdlib_modules", bra
 stdlib_stats = {git = "https://github.com/degawa/stdlib_modules", branch="stdlib_stats-fpm"}
 ```
 
+### stats_distribution_exponential
+- モジュール: `stdlib_stats_distribution_exponential`
+- ブランチ: stdlib_stats_distribution_exponential-fpm
+- 依存ブランチ: stdlib_version-fpm, stdlib_kinds-fpm, stdlib_error-fpm, stdlib_random-fpm, stdlib_stats_distribution_uniform-fpm
+- 参照方法: `fpm.toml`に下記を追記する．
+
+```toml
+[dependencies]
+stdlib_stats_distribution_exponential = {git = "https://github.com/degawa/stdlib_modules", branch="stdlib_stats_distribution_exponential-fpm"}
+```
+
 ### stats_distribution_normal
 - モジュール: `stdlib_stats_distribution_normal`
 - ブランチ: stdlib_stats_distribution_normal-fpm
