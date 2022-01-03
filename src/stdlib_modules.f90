@@ -6,6 +6,7 @@ module stdlib_modules
     use :: stdlib_hash_32bit
     use :: stdlib_hash_64bit
     use :: stdlib_io
+    use :: stdlib_io_npy
     use :: stdlib_kinds
     use :: stdlib_linalg
     use :: stdlib_logger
