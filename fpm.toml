@@ -1,0 +1,13 @@
+name = "stdlib_stats_distribution_exponential"
+version = "0.1.0"
+license = "MIT"
+author = "Tomohiro Degawa"
+maintainer = "@degawa/stdlib_modules"
+copyright = "2021 Tomohiro Degawa"
+
+[dependencies]
+stdlib_version = {git = "https://github.com/degawa/stdlib_modules", branch="stdlib_version-fpm"}
+stdlib_kinds = {git = "https://github.com/degawa/stdlib_modules", branch="stdlib_kinds-fpm"}
+stdlib_error = {git = "https://github.com/degawa/stdlib_modules", branch="stdlib_error-fpm"}
+stdlib_random = {git = "https://github.com/degawa/stdlib_modules", branch="stdlib_random-fpm"}
+stdlib_stats_distribution_uniform = {git = "https://github.com/degawa/stdlib_modules", branch="stdlib_stats_distribution_uniform-fpm"}
