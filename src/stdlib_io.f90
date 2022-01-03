@@ -48,7 +48,6 @@ module stdlib_io
     !! ([Specification](../page/specs/stdlib_io.html#description))
       module procedure loadtxt_rsp
       module procedure loadtxt_rdp
-      module procedure loadtxt_rxdp
       module procedure loadtxt_rqp
       module procedure loadtxt_iint8
       module procedure loadtxt_iint16
@@ -56,7 +55,6 @@ module stdlib_io
       module procedure loadtxt_iint64
       module procedure loadtxt_csp
       module procedure loadtxt_cdp
-      module procedure loadtxt_cxdp
       module procedure loadtxt_cqp
   end interface loadtxt
 
@@ -67,7 +65,6 @@ module stdlib_io
     !! ([Specification](../page/specs/stdlib_io.html#description_2))
       module procedure savetxt_rsp
       module procedure savetxt_rdp
-      module procedure savetxt_rxdp
       module procedure savetxt_rqp
       module procedure savetxt_iint8
       module procedure savetxt_iint16
@@ -75,7 +72,6 @@ module stdlib_io
       module procedure savetxt_iint64
       module procedure savetxt_csp
       module procedure savetxt_cdp
-      module procedure savetxt_cxdp
       module procedure savetxt_cqp
   end interface
 
@@ -175,53 +171,6 @@ contains
       close(s)
 
     end subroutine loadtxt_rdp
-    subroutine  loadtxt_rxdp(filename, d)
-      !! version: experimental
-      !!
-      !! Loads a 2D array from a text file.
-      !!
-      !! Arguments
-      !! ---------
-      !!
-      !! Filename to load the array from
-      character(len=*), intent(in) :: filename
-      !! The array 'd' will be automatically allocated with the correct dimensions
-      real(xdp), allocatable, intent(out) :: d(:,:)
-      !!
-      !! Example
-      !! -------
-      !!
-      !!```fortran
-      !! real(xdp), allocatable :: data(:, :)
-      !! call loadtxt("log.txt", data)  ! 'data' will be automatically allocated
-      !!```
-      !!
-      !! Where 'log.txt' contains for example::
-      !!
-      !!     1 2 3
-      !!     2 4 6
-      !!     8 9 10
-      !!     11 12 13
-      !!     ...
-      !!
-      integer :: s
-      integer :: nrow, ncol, i
-
-      s = open(filename)
-
-      ! determine number of columns
-      ncol = number_of_columns(s)
-
-      ! determine number or rows
-      nrow = number_of_rows(s)
-
-      allocate(d(nrow, ncol))
-      do i = 1, nrow
-          read(s, FMT_REAL_xdp) d(i, :)
-      end do
-      close(s)
-
-    end subroutine loadtxt_rxdp
     subroutine  loadtxt_rqp(filename, d)
       !! version: experimental
       !!
@@ -553,54 +502,6 @@ contains
       close(s)
 
     end subroutine loadtxt_cdp
-    subroutine  loadtxt_cxdp(filename, d)
-      !! version: experimental
-      !!
-      !! Loads a 2D array from a text file.
-      !!
-      !! Arguments
-      !! ---------
-      !!
-      !! Filename to load the array from
-      character(len=*), intent(in) :: filename
-      !! The array 'd' will be automatically allocated with the correct dimensions
-      complex(xdp), allocatable, intent(out) :: d(:,:)
-      !!
-      !! Example
-      !! -------
-      !!
-      !!```fortran
-      !! complex(xdp), allocatable :: data(:, :)
-      !! call loadtxt("log.txt", data)  ! 'data' will be automatically allocated
-      !!```
-      !!
-      !! Where 'log.txt' contains for example::
-      !!
-      !!     1 2 3
-      !!     2 4 6
-      !!     8 9 10
-      !!     11 12 13
-      !!     ...
-      !!
-      integer :: s
-      integer :: nrow, ncol, i
-
-      s = open(filename)
-
-      ! determine number of columns
-      ncol = number_of_columns(s)
-      ncol = ncol / 2
-
-      ! determine number or rows
-      nrow = number_of_rows(s)
-
-      allocate(d(nrow, ncol))
-      do i = 1, nrow
-          read(s, FMT_COMPLEX_xdp) d(i, :)
-      end do
-      close(s)
-
-    end subroutine loadtxt_cxdp
     subroutine  loadtxt_cqp(filename, d)
       !! version: experimental
       !!
@@ -705,33 +606,6 @@ contains
       end do
       close(s)
     end subroutine savetxt_rdp
-    subroutine savetxt_rxdp(filename, d)
-      !! version: experimental
-      !!
-      !! Saves a 2D array into a text file.
-      !!
-      !! Arguments
-      !! ---------
-      !!
-      character(len=*), intent(in) :: filename  ! File to save the array to
-      real(xdp), intent(in) :: d(:,:)           ! The 2D array to save
-      !!
-      !! Example
-      !! -------
-      !!
-      !!```fortran
-      !! real(xdp) :: data(3, 2)
-      !! call savetxt("log.txt", data)
-      !!```
-      !!
-
-      integer :: s, i
-      s = open(filename, "w")
-      do i = 1, size(d, 1)
-          write(s, FMT_REAL_xdp) d(i, :)
-      end do
-      close(s)
-    end subroutine savetxt_rxdp
     subroutine savetxt_rqp(filename, d)
       !! version: experimental
       !!
@@ -921,33 +795,6 @@ contains
       end do
       close(s)
     end subroutine savetxt_cdp
-    subroutine savetxt_cxdp(filename, d)
-      !! version: experimental
-      !!
-      !! Saves a 2D array into a text file.
-      !!
-      !! Arguments
-      !! ---------
-      !!
-      character(len=*), intent(in) :: filename  ! File to save the array to
-      complex(xdp), intent(in) :: d(:,:)           ! The 2D array to save
-      !!
-      !! Example
-      !! -------
-      !!
-      !!```fortran
-      !! complex(xdp) :: data(3, 2)
-      !! call savetxt("log.txt", data)
-      !!```
-      !!
-
-      integer :: s, i
-      s = open(filename, "w")
-      do i = 1, size(d, 1)
-          write(s, FMT_COMPLEX_xdp) d(i, :)
-      end do
-      close(s)
-    end subroutine savetxt_cxdp
     subroutine savetxt_cqp(filename, d)
       !! version: experimental
       !!

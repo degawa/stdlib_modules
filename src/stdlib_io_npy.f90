@@ -126,30 +126,6 @@ module stdlib_io_npy
             integer, intent(out), optional :: iostat
             character(len=:), allocatable, intent(out), optional :: iomsg
         end subroutine save_npy_rdp_4
-        module subroutine save_npy_rxdp_1(filename, array, iostat, iomsg)
-            character(len=*), intent(in) :: filename
-            real(xdp), intent(in) :: array(:)
-            integer, intent(out), optional :: iostat
-            character(len=:), allocatable, intent(out), optional :: iomsg
-        end subroutine save_npy_rxdp_1
-        module subroutine save_npy_rxdp_2(filename, array, iostat, iomsg)
-            character(len=*), intent(in) :: filename
-            real(xdp), intent(in) :: array(:,:)
-            integer, intent(out), optional :: iostat
-            character(len=:), allocatable, intent(out), optional :: iomsg
-        end subroutine save_npy_rxdp_2
-        module subroutine save_npy_rxdp_3(filename, array, iostat, iomsg)
-            character(len=*), intent(in) :: filename
-            real(xdp), intent(in) :: array(:,:,:)
-            integer, intent(out), optional :: iostat
-            character(len=:), allocatable, intent(out), optional :: iomsg
-        end subroutine save_npy_rxdp_3
-        module subroutine save_npy_rxdp_4(filename, array, iostat, iomsg)
-            character(len=*), intent(in) :: filename
-            real(xdp), intent(in) :: array(:,:,:,:)
-            integer, intent(out), optional :: iostat
-            character(len=:), allocatable, intent(out), optional :: iomsg
-        end subroutine save_npy_rxdp_4
         module subroutine save_npy_rqp_1(filename, array, iostat, iomsg)
             character(len=*), intent(in) :: filename
             real(qp), intent(in) :: array(:)
@@ -318,30 +294,6 @@ module stdlib_io_npy
             integer, intent(out), optional :: iostat
             character(len=:), allocatable, intent(out), optional :: iomsg
         end subroutine save_npy_cdp_4
-        module subroutine save_npy_cxdp_1(filename, array, iostat, iomsg)
-            character(len=*), intent(in) :: filename
-            complex(xdp), intent(in) :: array(:)
-            integer, intent(out), optional :: iostat
-            character(len=:), allocatable, intent(out), optional :: iomsg
-        end subroutine save_npy_cxdp_1
-        module subroutine save_npy_cxdp_2(filename, array, iostat, iomsg)
-            character(len=*), intent(in) :: filename
-            complex(xdp), intent(in) :: array(:,:)
-            integer, intent(out), optional :: iostat
-            character(len=:), allocatable, intent(out), optional :: iomsg
-        end subroutine save_npy_cxdp_2
-        module subroutine save_npy_cxdp_3(filename, array, iostat, iomsg)
-            character(len=*), intent(in) :: filename
-            complex(xdp), intent(in) :: array(:,:,:)
-            integer, intent(out), optional :: iostat
-            character(len=:), allocatable, intent(out), optional :: iomsg
-        end subroutine save_npy_cxdp_3
-        module subroutine save_npy_cxdp_4(filename, array, iostat, iomsg)
-            character(len=*), intent(in) :: filename
-            complex(xdp), intent(in) :: array(:,:,:,:)
-            integer, intent(out), optional :: iostat
-            character(len=:), allocatable, intent(out), optional :: iomsg
-        end subroutine save_npy_cxdp_4
         module subroutine save_npy_cqp_1(filename, array, iostat, iomsg)
             character(len=*), intent(in) :: filename
             complex(qp), intent(in) :: array(:)
@@ -421,30 +373,6 @@ module stdlib_io_npy
             integer, intent(out), optional :: iostat
             character(len=:), allocatable, intent(out), optional :: iomsg
         end subroutine load_npy_rdp_4
-        module subroutine load_npy_rxdp_1(filename, array, iostat, iomsg)
-            character(len=*), intent(in) :: filename
-            real(xdp), allocatable, intent(out) :: array(:)
-            integer, intent(out), optional :: iostat
-            character(len=:), allocatable, intent(out), optional :: iomsg
-        end subroutine load_npy_rxdp_1
-        module subroutine load_npy_rxdp_2(filename, array, iostat, iomsg)
-            character(len=*), intent(in) :: filename
-            real(xdp), allocatable, intent(out) :: array(:,:)
-            integer, intent(out), optional :: iostat
-            character(len=:), allocatable, intent(out), optional :: iomsg
-        end subroutine load_npy_rxdp_2
-        module subroutine load_npy_rxdp_3(filename, array, iostat, iomsg)
-            character(len=*), intent(in) :: filename
-            real(xdp), allocatable, intent(out) :: array(:,:,:)
-            integer, intent(out), optional :: iostat
-            character(len=:), allocatable, intent(out), optional :: iomsg
-        end subroutine load_npy_rxdp_3
-        module subroutine load_npy_rxdp_4(filename, array, iostat, iomsg)
-            character(len=*), intent(in) :: filename
-            real(xdp), allocatable, intent(out) :: array(:,:,:,:)
-            integer, intent(out), optional :: iostat
-            character(len=:), allocatable, intent(out), optional :: iomsg
-        end subroutine load_npy_rxdp_4
         module subroutine load_npy_rqp_1(filename, array, iostat, iomsg)
             character(len=*), intent(in) :: filename
             real(qp), allocatable, intent(out) :: array(:)
@@ -613,30 +541,6 @@ module stdlib_io_npy
             integer, intent(out), optional :: iostat
             character(len=:), allocatable, intent(out), optional :: iomsg
         end subroutine load_npy_cdp_4
-        module subroutine load_npy_cxdp_1(filename, array, iostat, iomsg)
-            character(len=*), intent(in) :: filename
-            complex(xdp), allocatable, intent(out) :: array(:)
-            integer, intent(out), optional :: iostat
-            character(len=:), allocatable, intent(out), optional :: iomsg
-        end subroutine load_npy_cxdp_1
-        module subroutine load_npy_cxdp_2(filename, array, iostat, iomsg)
-            character(len=*), intent(in) :: filename
-            complex(xdp), allocatable, intent(out) :: array(:,:)
-            integer, intent(out), optional :: iostat
-            character(len=:), allocatable, intent(out), optional :: iomsg
-        end subroutine load_npy_cxdp_2
-        module subroutine load_npy_cxdp_3(filename, array, iostat, iomsg)
-            character(len=*), intent(in) :: filename
-            complex(xdp), allocatable, intent(out) :: array(:,:,:)
-            integer, intent(out), optional :: iostat
-            character(len=:), allocatable, intent(out), optional :: iomsg
-        end subroutine load_npy_cxdp_3
-        module subroutine load_npy_cxdp_4(filename, array, iostat, iomsg)
-            character(len=*), intent(in) :: filename
-            complex(xdp), allocatable, intent(out) :: array(:,:,:,:)
-            integer, intent(out), optional :: iostat
-            character(len=:), allocatable, intent(out), optional :: iomsg
-        end subroutine load_npy_cxdp_4
         module subroutine load_npy_cqp_1(filename, array, iostat, iomsg)
             character(len=*), intent(in) :: filename
             complex(qp), allocatable, intent(out) :: array(:)
