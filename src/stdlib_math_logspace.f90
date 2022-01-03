@@ -11,9 +11,6 @@ contains
     module procedure logspace_1_rdp_default
       res = logspace(start, end, DEFAULT_LOGSPACE_LENGTH, real(DEFAULT_LOGSPACE_BASE, dp))
     end procedure
-    module procedure logspace_1_rxdp_default
-      res = logspace(start, end, DEFAULT_LOGSPACE_LENGTH, real(DEFAULT_LOGSPACE_BASE, xdp))
-    end procedure
     module procedure logspace_1_rqp_default
       res = logspace(start, end, DEFAULT_LOGSPACE_LENGTH, real(DEFAULT_LOGSPACE_BASE, qp))
     end procedure
@@ -22,9 +19,6 @@ contains
     end procedure
     module procedure logspace_1_cdp_default
       res = logspace(start, end, DEFAULT_LOGSPACE_LENGTH, real(DEFAULT_LOGSPACE_BASE, dp))
-    end procedure
-    module procedure logspace_1_cxdp_default
-      res = logspace(start, end, DEFAULT_LOGSPACE_LENGTH, real(DEFAULT_LOGSPACE_BASE, xdp))
     end procedure
     module procedure logspace_1_cqp_default
       res = logspace(start, end, DEFAULT_LOGSPACE_LENGTH, real(DEFAULT_LOGSPACE_BASE, qp))
@@ -39,9 +33,6 @@ contains
     module procedure logspace_1_rdp_n
       res = logspace(start, end, n, real(DEFAULT_LOGSPACE_BASE, dp))
     end procedure
-    module procedure logspace_1_rxdp_n
-      res = logspace(start, end, n, real(DEFAULT_LOGSPACE_BASE, xdp))
-    end procedure
     module procedure logspace_1_rqp_n
       res = logspace(start, end, n, real(DEFAULT_LOGSPACE_BASE, qp))
     end procedure
@@ -50,9 +41,6 @@ contains
     end procedure
     module procedure logspace_1_cdp_n
       res = logspace(start, end, n, real(DEFAULT_LOGSPACE_BASE, dp))
-    end procedure
-    module procedure logspace_1_cxdp_n
-      res = logspace(start, end, n, real(DEFAULT_LOGSPACE_BASE, xdp))
     end procedure
     module procedure logspace_1_cqp_n
       res = logspace(start, end, n, real(DEFAULT_LOGSPACE_BASE, qp))
@@ -92,23 +80,6 @@ contains
 
     module procedure logspace_1_rdp_n_ibase
       real(dp) :: exponents(max(n, 0))
-      exponents = linspace(start, end, n)
-      res = base ** exponents
-    end procedure
-    module procedure logspace_1_rxdp_n_rbase
-      real(xdp) :: exponents(max(n, 0))
-      exponents = linspace(start, end, n)
-      res = base ** exponents
-    end procedure
-
-    module procedure logspace_1_rxdp_n_cbase
-      real(xdp) :: exponents(max(n, 0))
-      exponents = linspace(start, end, n)
-      res = base ** exponents
-    end procedure
-
-    module procedure logspace_1_rxdp_n_ibase
-      real(xdp) :: exponents(max(n, 0))
       exponents = linspace(start, end, n)
       res = base ** exponents
     end procedure
@@ -163,23 +134,6 @@ contains
       exponents = linspace(start, end, n)
       res = base ** exponents
     end procedure
-    module procedure logspace_1_cxdp_n_rbase
-      complex(xdp) :: exponents(max(n, 0))
-      exponents = linspace(start, end, n)
-      res = base ** exponents
-    end procedure
-
-    module procedure logspace_1_cxdp_n_cbase
-      complex(xdp) :: exponents(max(n, 0))
-      exponents = linspace(start, end, n)
-      res = base ** exponents
-    end procedure
-
-    module procedure logspace_1_cxdp_n_ibase
-      complex(xdp) :: exponents(max(n, 0))
-      exponents = linspace(start, end, n)
-      res = base ** exponents
-    end procedure
     module procedure logspace_1_cqp_n_rbase
       complex(qp) :: exponents(max(n, 0))
       exponents = linspace(start, end, n)
@@ -218,17 +172,6 @@ contains
     end procedure
 
     module procedure logspace_1_iint32_n_cdpbase
-      integer :: exponents(max(n, 0))
-      exponents = linspace(start, end, n)
-      res = base ** exponents
-    end procedure
-    module procedure logspace_1_iint32_n_rxdpbase
-      integer :: exponents(max(n, 0))
-      exponents = linspace(start, end, n)
-      res = base ** exponents
-    end procedure
-
-    module procedure logspace_1_iint32_n_cxdpbase
       integer :: exponents(max(n, 0))
       exponents = linspace(start, end, n)
       res = base ** exponents

@@ -77,42 +77,6 @@ contains
         close = all(is_close(a, b, rel_tol, abs_tol, equal_nan))
 
     end function all_close_4_rdp
-    logical pure module function all_close_1_rxdp(a, b, rel_tol, abs_tol, equal_nan) result(close)
-
-        real(xdp), intent(in) :: a(:), b(:)
-        real(xdp), intent(in), optional :: rel_tol, abs_tol
-        logical, intent(in), optional :: equal_nan
-
-        close = all(is_close(a, b, rel_tol, abs_tol, equal_nan))
-
-    end function all_close_1_rxdp
-    logical pure module function all_close_2_rxdp(a, b, rel_tol, abs_tol, equal_nan) result(close)
-
-        real(xdp), intent(in) :: a(:,:), b(:,:)
-        real(xdp), intent(in), optional :: rel_tol, abs_tol
-        logical, intent(in), optional :: equal_nan
-
-        close = all(is_close(a, b, rel_tol, abs_tol, equal_nan))
-
-    end function all_close_2_rxdp
-    logical pure module function all_close_3_rxdp(a, b, rel_tol, abs_tol, equal_nan) result(close)
-
-        real(xdp), intent(in) :: a(:,:,:), b(:,:,:)
-        real(xdp), intent(in), optional :: rel_tol, abs_tol
-        logical, intent(in), optional :: equal_nan
-
-        close = all(is_close(a, b, rel_tol, abs_tol, equal_nan))
-
-    end function all_close_3_rxdp
-    logical pure module function all_close_4_rxdp(a, b, rel_tol, abs_tol, equal_nan) result(close)
-
-        real(xdp), intent(in) :: a(:,:,:,:), b(:,:,:,:)
-        real(xdp), intent(in), optional :: rel_tol, abs_tol
-        logical, intent(in), optional :: equal_nan
-
-        close = all(is_close(a, b, rel_tol, abs_tol, equal_nan))
-
-    end function all_close_4_rxdp
     logical pure module function all_close_1_rqp(a, b, rel_tol, abs_tol, equal_nan) result(close)
 
         real(qp), intent(in) :: a(:), b(:)
@@ -221,42 +185,6 @@ contains
         close = all(is_close(a, b, rel_tol, abs_tol, equal_nan))
 
     end function all_close_4_cdp
-    logical pure module function all_close_1_cxdp(a, b, rel_tol, abs_tol, equal_nan) result(close)
-
-        complex(xdp), intent(in) :: a(:), b(:)
-        real(xdp), intent(in), optional :: rel_tol, abs_tol
-        logical, intent(in), optional :: equal_nan
-
-        close = all(is_close(a, b, rel_tol, abs_tol, equal_nan))
-
-    end function all_close_1_cxdp
-    logical pure module function all_close_2_cxdp(a, b, rel_tol, abs_tol, equal_nan) result(close)
-
-        complex(xdp), intent(in) :: a(:,:), b(:,:)
-        real(xdp), intent(in), optional :: rel_tol, abs_tol
-        logical, intent(in), optional :: equal_nan
-
-        close = all(is_close(a, b, rel_tol, abs_tol, equal_nan))
-
-    end function all_close_2_cxdp
-    logical pure module function all_close_3_cxdp(a, b, rel_tol, abs_tol, equal_nan) result(close)
-
-        complex(xdp), intent(in) :: a(:,:,:), b(:,:,:)
-        real(xdp), intent(in), optional :: rel_tol, abs_tol
-        logical, intent(in), optional :: equal_nan
-
-        close = all(is_close(a, b, rel_tol, abs_tol, equal_nan))
-
-    end function all_close_3_cxdp
-    logical pure module function all_close_4_cxdp(a, b, rel_tol, abs_tol, equal_nan) result(close)
-
-        complex(xdp), intent(in) :: a(:,:,:,:), b(:,:,:,:)
-        real(xdp), intent(in), optional :: rel_tol, abs_tol
-        logical, intent(in), optional :: equal_nan
-
-        close = all(is_close(a, b, rel_tol, abs_tol, equal_nan))
-
-    end function all_close_4_cxdp
     logical pure module function all_close_1_cqp(a, b, rel_tol, abs_tol, equal_nan) result(close)
 
         complex(qp), intent(in) :: a(:), b(:)

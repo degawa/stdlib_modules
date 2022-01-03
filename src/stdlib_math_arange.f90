@@ -44,27 +44,6 @@ contains
         result = [(start_ + (i - 1)*step_, i=1, size(result), 1)]
 
     end function arange_r_dp
-    !> `arange` creates a vector of the `real(xdp)` type 
-    !>  with evenly spaced values within a given interval.
-    pure module function arange_r_xdp(start, end, step) result(result)
-
-        real(xdp), intent(in) :: start
-        real(xdp), intent(in), optional :: end, step
-        real(xdp), allocatable :: result(:)
-        
-        real(xdp) :: start_, end_, step_
-        integer :: i
-
-        start_ = merge(start, 1.0_xdp, present(end))
-        end_   = optval(end, start)
-        step_  = optval(step, 1.0_xdp)
-        step_  = sign(merge(step_, 1.0_xdp, step_ /= 0.0_xdp), end_ - start_)
-
-        allocate(result(floor((end_ - start_)/step_) + 1))
-
-        result = [(start_ + (i - 1)*step_, i=1, size(result), 1)]
-
-    end function arange_r_xdp
     !> `arange` creates a vector of the `real(qp)` type 
     !>  with evenly spaced values within a given interval.
     pure module function arange_r_qp(start, end, step) result(result)
