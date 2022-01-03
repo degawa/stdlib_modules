@@ -27,12 +27,6 @@ module stdlib_stats
         logical, intent(in), optional :: mask
         real(dp) :: res
       end function corr_1_rdp_rdp
-      module function corr_1_rxdp_rxdp(x, dim, mask) result(res)
-        real(xdp), intent(in) :: x(:)
-        integer, intent(in) :: dim
-        logical, intent(in), optional :: mask
-        real(xdp) :: res
-      end function corr_1_rxdp_rxdp
       module function corr_1_rqp_rqp(x, dim, mask) result(res)
         real(qp), intent(in) :: x(:)
         integer, intent(in) :: dim
@@ -51,12 +45,6 @@ module stdlib_stats
         logical, intent(in), optional :: mask
         real(dp) :: res
       end function corr_1_cdp_cdp
-      module function corr_1_cxdp_cxdp(x, dim, mask) result(res)
-        complex(xdp), intent(in) :: x(:)
-        integer, intent(in) :: dim
-        logical, intent(in), optional :: mask
-        real(xdp) :: res
-      end function corr_1_cxdp_cxdp
       module function corr_1_cqp_cqp(x, dim, mask) result(res)
         complex(qp), intent(in) :: x(:)
         integer, intent(in) :: dim
@@ -101,12 +89,6 @@ module stdlib_stats
         logical, intent(in) :: mask(:)
         real(dp) :: res
       end function corr_mask_1_rdp_rdp
-      module function corr_mask_1_rxdp_rxdp(x, dim, mask) result(res)
-        real(xdp), intent(in) :: x(:)
-        integer, intent(in) :: dim
-        logical, intent(in) :: mask(:)
-        real(xdp) :: res
-      end function corr_mask_1_rxdp_rxdp
       module function corr_mask_1_rqp_rqp(x, dim, mask) result(res)
         real(qp), intent(in) :: x(:)
         integer, intent(in) :: dim
@@ -125,12 +107,6 @@ module stdlib_stats
         logical, intent(in) :: mask(:)
         real(dp) :: res
       end function corr_mask_1_cdp_cdp
-      module function corr_mask_1_cxdp_cxdp(x, dim, mask) result(res)
-        complex(xdp), intent(in) :: x(:)
-        integer, intent(in) :: dim
-        logical, intent(in) :: mask(:)
-        real(xdp) :: res
-      end function corr_mask_1_cxdp_cxdp
       module function corr_mask_1_cqp_cqp(x, dim, mask) result(res)
         complex(qp), intent(in) :: x(:)
         integer, intent(in) :: dim
@@ -177,13 +153,6 @@ module stdlib_stats
         real(dp) :: res(merge(size(x, 1), size(x, 2), mask = 1<dim)&
                             , merge(size(x, 1), size(x, 2), mask = 1<dim))
       end function corr_2_rdp_rdp
-      module function corr_2_rxdp_rxdp(x, dim, mask) result(res)
-        real(xdp), intent(in) :: x(:, :)
-        integer, intent(in) :: dim
-        logical, intent(in), optional :: mask
-        real(xdp) :: res(merge(size(x, 1), size(x, 2), mask = 1<dim)&
-                            , merge(size(x, 1), size(x, 2), mask = 1<dim))
-      end function corr_2_rxdp_rxdp
       module function corr_2_rqp_rqp(x, dim, mask) result(res)
         real(qp), intent(in) :: x(:, :)
         integer, intent(in) :: dim
@@ -205,13 +174,6 @@ module stdlib_stats
         complex(dp) :: res(merge(size(x, 1), size(x, 2), mask = 1<dim)&
                             , merge(size(x, 1), size(x, 2), mask = 1<dim))
       end function corr_2_cdp_cdp
-      module function corr_2_cxdp_cxdp(x, dim, mask) result(res)
-        complex(xdp), intent(in) :: x(:, :)
-        integer, intent(in) :: dim
-        logical, intent(in), optional :: mask
-        complex(xdp) :: res(merge(size(x, 1), size(x, 2), mask = 1<dim)&
-                            , merge(size(x, 1), size(x, 2), mask = 1<dim))
-      end function corr_2_cxdp_cxdp
       module function corr_2_cqp_cqp(x, dim, mask) result(res)
         complex(qp), intent(in) :: x(:, :)
         integer, intent(in) :: dim
@@ -263,13 +225,6 @@ module stdlib_stats
         real(dp) :: res(merge(size(x, 1), size(x, 2), mask = 1<dim)&
                             , merge(size(x, 1), size(x, 2), mask = 1<dim))
       end function corr_mask_2_rdp_rdp
-      module function corr_mask_2_rxdp_rxdp(x, dim, mask) result(res)
-        real(xdp), intent(in) :: x(:, :)
-        integer, intent(in) :: dim
-        logical, intent(in) :: mask(:,:)
-        real(xdp) :: res(merge(size(x, 1), size(x, 2), mask = 1<dim)&
-                            , merge(size(x, 1), size(x, 2), mask = 1<dim))
-      end function corr_mask_2_rxdp_rxdp
       module function corr_mask_2_rqp_rqp(x, dim, mask) result(res)
         real(qp), intent(in) :: x(:, :)
         integer, intent(in) :: dim
@@ -291,13 +246,6 @@ module stdlib_stats
         complex(dp) :: res(merge(size(x, 1), size(x, 2), mask = 1<dim)&
                             , merge(size(x, 1), size(x, 2), mask = 1<dim))
       end function corr_mask_2_cdp_cdp
-      module function corr_mask_2_cxdp_cxdp(x, dim, mask) result(res)
-        complex(xdp), intent(in) :: x(:, :)
-        integer, intent(in) :: dim
-        logical, intent(in) :: mask(:,:)
-        complex(xdp) :: res(merge(size(x, 1), size(x, 2), mask = 1<dim)&
-                            , merge(size(x, 1), size(x, 2), mask = 1<dim))
-      end function corr_mask_2_cxdp_cxdp
       module function corr_mask_2_cqp_cqp(x, dim, mask) result(res)
         complex(qp), intent(in) :: x(:, :)
         integer, intent(in) :: dim
@@ -357,13 +305,6 @@ module stdlib_stats
         logical, intent(in), optional :: corrected
         real(dp) :: res
       end function cov_1_rdp_rdp
-      module function cov_1_rxdp_rxdp(x, dim, mask, corrected) result(res)
-        real(xdp), intent(in) :: x(:)
-        integer, intent(in) :: dim
-        logical, intent(in), optional :: mask
-        logical, intent(in), optional :: corrected
-        real(xdp) :: res
-      end function cov_1_rxdp_rxdp
       module function cov_1_rqp_rqp(x, dim, mask, corrected) result(res)
         real(qp), intent(in) :: x(:)
         integer, intent(in) :: dim
@@ -385,13 +326,6 @@ module stdlib_stats
         logical, intent(in), optional :: corrected
         real(dp) :: res
       end function cov_1_cdp_cdp
-      module function cov_1_cxdp_cxdp(x, dim, mask, corrected) result(res)
-        complex(xdp), intent(in) :: x(:)
-        integer, intent(in) :: dim
-        logical, intent(in), optional :: mask
-        logical, intent(in), optional :: corrected
-        real(xdp) :: res
-      end function cov_1_cxdp_cxdp
       module function cov_1_cqp_cqp(x, dim, mask, corrected) result(res)
         complex(qp), intent(in) :: x(:)
         integer, intent(in) :: dim
@@ -443,13 +377,6 @@ module stdlib_stats
         logical, intent(in), optional :: corrected
         real(dp) :: res
       end function cov_mask_1_rdp_rdp
-      module function cov_mask_1_rxdp_rxdp(x, dim, mask, corrected) result(res)
-        real(xdp), intent(in) :: x(:)
-        integer, intent(in) :: dim
-        logical, intent(in) :: mask(:)
-        logical, intent(in), optional :: corrected
-        real(xdp) :: res
-      end function cov_mask_1_rxdp_rxdp
       module function cov_mask_1_rqp_rqp(x, dim, mask, corrected) result(res)
         real(qp), intent(in) :: x(:)
         integer, intent(in) :: dim
@@ -471,13 +398,6 @@ module stdlib_stats
         logical, intent(in), optional :: corrected
         real(dp) :: res
       end function cov_mask_1_cdp_cdp
-      module function cov_mask_1_cxdp_cxdp(x, dim, mask, corrected) result(res)
-        complex(xdp), intent(in) :: x(:)
-        integer, intent(in) :: dim
-        logical, intent(in) :: mask(:)
-        logical, intent(in), optional :: corrected
-        real(xdp) :: res
-      end function cov_mask_1_cxdp_cxdp
       module function cov_mask_1_cqp_cqp(x, dim, mask, corrected) result(res)
         complex(qp), intent(in) :: x(:)
         integer, intent(in) :: dim
@@ -531,14 +451,6 @@ module stdlib_stats
         real(dp) :: res(merge(size(x, 1), size(x, 2), mask = 1<dim)&
                             , merge(size(x, 1), size(x, 2), mask = 1<dim))
       end function cov_2_rdp_rdp
-      module function cov_2_rxdp_rxdp(x, dim, mask, corrected) result(res)
-        real(xdp), intent(in) :: x(:, :)
-        integer, intent(in) :: dim
-        logical, intent(in), optional :: mask
-        logical, intent(in), optional :: corrected
-        real(xdp) :: res(merge(size(x, 1), size(x, 2), mask = 1<dim)&
-                            , merge(size(x, 1), size(x, 2), mask = 1<dim))
-      end function cov_2_rxdp_rxdp
       module function cov_2_rqp_rqp(x, dim, mask, corrected) result(res)
         real(qp), intent(in) :: x(:, :)
         integer, intent(in) :: dim
@@ -563,14 +475,6 @@ module stdlib_stats
         complex(dp) :: res(merge(size(x, 1), size(x, 2), mask = 1<dim)&
                             , merge(size(x, 1), size(x, 2), mask = 1<dim))
       end function cov_2_cdp_cdp
-      module function cov_2_cxdp_cxdp(x, dim, mask, corrected) result(res)
-        complex(xdp), intent(in) :: x(:, :)
-        integer, intent(in) :: dim
-        logical, intent(in), optional :: mask
-        logical, intent(in), optional :: corrected
-        complex(xdp) :: res(merge(size(x, 1), size(x, 2), mask = 1<dim)&
-                            , merge(size(x, 1), size(x, 2), mask = 1<dim))
-      end function cov_2_cxdp_cxdp
       module function cov_2_cqp_cqp(x, dim, mask, corrected) result(res)
         complex(qp), intent(in) :: x(:, :)
         integer, intent(in) :: dim
@@ -629,14 +533,6 @@ module stdlib_stats
         real(dp) :: res(merge(size(x, 1), size(x, 2), mask = 1<dim)&
                             , merge(size(x, 1), size(x, 2), mask = 1<dim))
       end function cov_mask_2_rdp_rdp
-      module function cov_mask_2_rxdp_rxdp(x, dim, mask, corrected) result(res)
-        real(xdp), intent(in) :: x(:, :)
-        integer, intent(in) :: dim
-        logical, intent(in) :: mask(:,:)
-        logical, intent(in), optional :: corrected
-        real(xdp) :: res(merge(size(x, 1), size(x, 2), mask = 1<dim)&
-                            , merge(size(x, 1), size(x, 2), mask = 1<dim))
-      end function cov_mask_2_rxdp_rxdp
       module function cov_mask_2_rqp_rqp(x, dim, mask, corrected) result(res)
         real(qp), intent(in) :: x(:, :)
         integer, intent(in) :: dim
@@ -661,14 +557,6 @@ module stdlib_stats
         complex(dp) :: res(merge(size(x, 1), size(x, 2), mask = 1<dim)&
                             , merge(size(x, 1), size(x, 2), mask = 1<dim))
       end function cov_mask_2_cdp_cdp
-      module function cov_mask_2_cxdp_cxdp(x, dim, mask, corrected) result(res)
-        complex(xdp), intent(in) :: x(:, :)
-        integer, intent(in) :: dim
-        logical, intent(in) :: mask(:,:)
-        logical, intent(in), optional :: corrected
-        complex(xdp) :: res(merge(size(x, 1), size(x, 2), mask = 1<dim)&
-                            , merge(size(x, 1), size(x, 2), mask = 1<dim))
-      end function cov_mask_2_cxdp_cxdp
       module function cov_mask_2_cqp_cqp(x, dim, mask, corrected) result(res)
         complex(qp), intent(in) :: x(:, :)
         integer, intent(in) :: dim
@@ -758,26 +646,6 @@ module stdlib_stats
           logical, intent(in), optional :: mask
           real(dp) :: res
         end function mean_all_4_rdp_rdp
-        module function mean_all_1_rxdp_rxdp (x, mask) result(res)
-          real(xdp), intent(in) :: x(:)
-          logical, intent(in), optional :: mask
-          real(xdp) :: res
-        end function mean_all_1_rxdp_rxdp
-        module function mean_all_2_rxdp_rxdp (x, mask) result(res)
-          real(xdp), intent(in) :: x(:,:)
-          logical, intent(in), optional :: mask
-          real(xdp) :: res
-        end function mean_all_2_rxdp_rxdp
-        module function mean_all_3_rxdp_rxdp (x, mask) result(res)
-          real(xdp), intent(in) :: x(:,:,:)
-          logical, intent(in), optional :: mask
-          real(xdp) :: res
-        end function mean_all_3_rxdp_rxdp
-        module function mean_all_4_rxdp_rxdp (x, mask) result(res)
-          real(xdp), intent(in) :: x(:,:,:,:)
-          logical, intent(in), optional :: mask
-          real(xdp) :: res
-        end function mean_all_4_rxdp_rxdp
         module function mean_all_1_rqp_rqp (x, mask) result(res)
           real(qp), intent(in) :: x(:)
           logical, intent(in), optional :: mask
@@ -838,26 +706,6 @@ module stdlib_stats
           logical, intent(in), optional :: mask
           complex(dp) :: res
         end function mean_all_4_cdp_cdp
-        module function mean_all_1_cxdp_cxdp (x, mask) result(res)
-          complex(xdp), intent(in) :: x(:)
-          logical, intent(in), optional :: mask
-          complex(xdp) :: res
-        end function mean_all_1_cxdp_cxdp
-        module function mean_all_2_cxdp_cxdp (x, mask) result(res)
-          complex(xdp), intent(in) :: x(:,:)
-          logical, intent(in), optional :: mask
-          complex(xdp) :: res
-        end function mean_all_2_cxdp_cxdp
-        module function mean_all_3_cxdp_cxdp (x, mask) result(res)
-          complex(xdp), intent(in) :: x(:,:,:)
-          logical, intent(in), optional :: mask
-          complex(xdp) :: res
-        end function mean_all_3_cxdp_cxdp
-        module function mean_all_4_cxdp_cxdp (x, mask) result(res)
-          complex(xdp), intent(in) :: x(:,:,:,:)
-          logical, intent(in), optional :: mask
-          complex(xdp) :: res
-        end function mean_all_4_cxdp_cxdp
         module function mean_all_1_cqp_cqp (x, mask) result(res)
           complex(qp), intent(in) :: x(:)
           logical, intent(in), optional :: mask
@@ -1010,31 +858,6 @@ module stdlib_stats
           real(dp) :: res(merge(size(x, 1), size(x, 2), mask=1<dim), merge(size(x, 2), size(x, 3), mask=2<dim), merge(size(x, 3),&
               & size(x, 4), mask=3<dim))
         end function mean_4_rdp_rdp
-        module function mean_1_rxdp_rxdp(x, dim, mask) result(res)
-          real(xdp), intent(in) :: x(:)
-          integer, intent(in) :: dim
-          logical, intent(in), optional :: mask
-          real(xdp) :: res
-        end function mean_1_rxdp_rxdp
-        module function mean_2_rxdp_rxdp(x, dim, mask) result(res)
-          real(xdp), intent(in) :: x(:,:)
-          integer, intent(in) :: dim
-          logical, intent(in), optional :: mask
-          real(xdp) :: res(merge(size(x, 1), size(x, 2), mask=1<dim))
-        end function mean_2_rxdp_rxdp
-        module function mean_3_rxdp_rxdp(x, dim, mask) result(res)
-          real(xdp), intent(in) :: x(:,:,:)
-          integer, intent(in) :: dim
-          logical, intent(in), optional :: mask
-          real(xdp) :: res(merge(size(x, 1), size(x, 2), mask=1<dim), merge(size(x, 2), size(x, 3), mask=2<dim))
-        end function mean_3_rxdp_rxdp
-        module function mean_4_rxdp_rxdp(x, dim, mask) result(res)
-          real(xdp), intent(in) :: x(:,:,:,:)
-          integer, intent(in) :: dim
-          logical, intent(in), optional :: mask
-          real(xdp) :: res(merge(size(x, 1), size(x, 2), mask=1<dim), merge(size(x, 2), size(x, 3), mask=2<dim), merge(size(x, 3),&
-              & size(x, 4), mask=3<dim))
-        end function mean_4_rxdp_rxdp
         module function mean_1_rqp_rqp(x, dim, mask) result(res)
           real(qp), intent(in) :: x(:)
           integer, intent(in) :: dim
@@ -1110,31 +933,6 @@ module stdlib_stats
           complex(dp) :: res(merge(size(x, 1), size(x, 2), mask=1<dim), merge(size(x, 2), size(x, 3), mask=2<dim), merge(size(x,&
               & 3), size(x, 4), mask=3<dim))
         end function mean_4_cdp_cdp
-        module function mean_1_cxdp_cxdp(x, dim, mask) result(res)
-          complex(xdp), intent(in) :: x(:)
-          integer, intent(in) :: dim
-          logical, intent(in), optional :: mask
-          complex(xdp) :: res
-        end function mean_1_cxdp_cxdp
-        module function mean_2_cxdp_cxdp(x, dim, mask) result(res)
-          complex(xdp), intent(in) :: x(:,:)
-          integer, intent(in) :: dim
-          logical, intent(in), optional :: mask
-          complex(xdp) :: res(merge(size(x, 1), size(x, 2), mask=1<dim))
-        end function mean_2_cxdp_cxdp
-        module function mean_3_cxdp_cxdp(x, dim, mask) result(res)
-          complex(xdp), intent(in) :: x(:,:,:)
-          integer, intent(in) :: dim
-          logical, intent(in), optional :: mask
-          complex(xdp) :: res(merge(size(x, 1), size(x, 2), mask=1<dim), merge(size(x, 2), size(x, 3), mask=2<dim))
-        end function mean_3_cxdp_cxdp
-        module function mean_4_cxdp_cxdp(x, dim, mask) result(res)
-          complex(xdp), intent(in) :: x(:,:,:,:)
-          integer, intent(in) :: dim
-          logical, intent(in), optional :: mask
-          complex(xdp) :: res(merge(size(x, 1), size(x, 2), mask=1<dim), merge(size(x, 2), size(x, 3), mask=2<dim), merge(size(x,&
-              & 3), size(x, 4), mask=3<dim))
-        end function mean_4_cxdp_cxdp
         module function mean_1_cqp_cqp(x, dim, mask) result(res)
           complex(qp), intent(in) :: x(:)
           integer, intent(in) :: dim
@@ -1302,26 +1100,6 @@ module stdlib_stats
           logical, intent(in) :: mask(:,:,:,:)
           real(dp) :: res
           end function mean_mask_all_4_rdp_rdp
-        module function mean_mask_all_1_rxdp_rxdp(x, mask) result(res)
-          real(xdp), intent(in) :: x(:)
-          logical, intent(in) :: mask(:)
-          real(xdp) :: res
-          end function mean_mask_all_1_rxdp_rxdp
-        module function mean_mask_all_2_rxdp_rxdp(x, mask) result(res)
-          real(xdp), intent(in) :: x(:,:)
-          logical, intent(in) :: mask(:,:)
-          real(xdp) :: res
-          end function mean_mask_all_2_rxdp_rxdp
-        module function mean_mask_all_3_rxdp_rxdp(x, mask) result(res)
-          real(xdp), intent(in) :: x(:,:,:)
-          logical, intent(in) :: mask(:,:,:)
-          real(xdp) :: res
-          end function mean_mask_all_3_rxdp_rxdp
-        module function mean_mask_all_4_rxdp_rxdp(x, mask) result(res)
-          real(xdp), intent(in) :: x(:,:,:,:)
-          logical, intent(in) :: mask(:,:,:,:)
-          real(xdp) :: res
-          end function mean_mask_all_4_rxdp_rxdp
         module function mean_mask_all_1_rqp_rqp(x, mask) result(res)
           real(qp), intent(in) :: x(:)
           logical, intent(in) :: mask(:)
@@ -1382,26 +1160,6 @@ module stdlib_stats
           logical, intent(in) :: mask(:,:,:,:)
           complex(dp) :: res
           end function mean_mask_all_4_cdp_cdp
-        module function mean_mask_all_1_cxdp_cxdp(x, mask) result(res)
-          complex(xdp), intent(in) :: x(:)
-          logical, intent(in) :: mask(:)
-          complex(xdp) :: res
-          end function mean_mask_all_1_cxdp_cxdp
-        module function mean_mask_all_2_cxdp_cxdp(x, mask) result(res)
-          complex(xdp), intent(in) :: x(:,:)
-          logical, intent(in) :: mask(:,:)
-          complex(xdp) :: res
-          end function mean_mask_all_2_cxdp_cxdp
-        module function mean_mask_all_3_cxdp_cxdp(x, mask) result(res)
-          complex(xdp), intent(in) :: x(:,:,:)
-          logical, intent(in) :: mask(:,:,:)
-          complex(xdp) :: res
-          end function mean_mask_all_3_cxdp_cxdp
-        module function mean_mask_all_4_cxdp_cxdp(x, mask) result(res)
-          complex(xdp), intent(in) :: x(:,:,:,:)
-          logical, intent(in) :: mask(:,:,:,:)
-          complex(xdp) :: res
-          end function mean_mask_all_4_cxdp_cxdp
         module function mean_mask_all_1_cqp_cqp(x, mask) result(res)
           complex(qp), intent(in) :: x(:)
           logical, intent(in) :: mask(:)
@@ -1554,31 +1312,6 @@ module stdlib_stats
           real(dp) :: res(merge(size(x, 1), size(x, 2), mask=1<dim), merge(size(x, 2), size(x, 3), mask=2<dim), merge(size(x, 3),&
               & size(x, 4), mask=3<dim))
         end function mean_mask_4_rdp_rdp
-        module function mean_mask_1_rxdp_rxdp(x, dim, mask) result(res)
-          real(xdp), intent(in) :: x(:)
-          integer, intent(in) :: dim
-          logical, intent(in) :: mask(:)
-          real(xdp) :: res
-        end function mean_mask_1_rxdp_rxdp
-        module function mean_mask_2_rxdp_rxdp(x, dim, mask) result(res)
-          real(xdp), intent(in) :: x(:,:)
-          integer, intent(in) :: dim
-          logical, intent(in) :: mask(:,:)
-          real(xdp) :: res(merge(size(x, 1), size(x, 2), mask=1<dim))
-        end function mean_mask_2_rxdp_rxdp
-        module function mean_mask_3_rxdp_rxdp(x, dim, mask) result(res)
-          real(xdp), intent(in) :: x(:,:,:)
-          integer, intent(in) :: dim
-          logical, intent(in) :: mask(:,:,:)
-          real(xdp) :: res(merge(size(x, 1), size(x, 2), mask=1<dim), merge(size(x, 2), size(x, 3), mask=2<dim))
-        end function mean_mask_3_rxdp_rxdp
-        module function mean_mask_4_rxdp_rxdp(x, dim, mask) result(res)
-          real(xdp), intent(in) :: x(:,:,:,:)
-          integer, intent(in) :: dim
-          logical, intent(in) :: mask(:,:,:,:)
-          real(xdp) :: res(merge(size(x, 1), size(x, 2), mask=1<dim), merge(size(x, 2), size(x, 3), mask=2<dim), merge(size(x, 3),&
-              & size(x, 4), mask=3<dim))
-        end function mean_mask_4_rxdp_rxdp
         module function mean_mask_1_rqp_rqp(x, dim, mask) result(res)
           real(qp), intent(in) :: x(:)
           integer, intent(in) :: dim
@@ -1654,31 +1387,6 @@ module stdlib_stats
           complex(dp) :: res(merge(size(x, 1), size(x, 2), mask=1<dim), merge(size(x, 2), size(x, 3), mask=2<dim), merge(size(x,&
               & 3), size(x, 4), mask=3<dim))
         end function mean_mask_4_cdp_cdp
-        module function mean_mask_1_cxdp_cxdp(x, dim, mask) result(res)
-          complex(xdp), intent(in) :: x(:)
-          integer, intent(in) :: dim
-          logical, intent(in) :: mask(:)
-          complex(xdp) :: res
-        end function mean_mask_1_cxdp_cxdp
-        module function mean_mask_2_cxdp_cxdp(x, dim, mask) result(res)
-          complex(xdp), intent(in) :: x(:,:)
-          integer, intent(in) :: dim
-          logical, intent(in) :: mask(:,:)
-          complex(xdp) :: res(merge(size(x, 1), size(x, 2), mask=1<dim))
-        end function mean_mask_2_cxdp_cxdp
-        module function mean_mask_3_cxdp_cxdp(x, dim, mask) result(res)
-          complex(xdp), intent(in) :: x(:,:,:)
-          integer, intent(in) :: dim
-          logical, intent(in) :: mask(:,:,:)
-          complex(xdp) :: res(merge(size(x, 1), size(x, 2), mask=1<dim), merge(size(x, 2), size(x, 3), mask=2<dim))
-        end function mean_mask_3_cxdp_cxdp
-        module function mean_mask_4_cxdp_cxdp(x, dim, mask) result(res)
-          complex(xdp), intent(in) :: x(:,:,:,:)
-          integer, intent(in) :: dim
-          logical, intent(in) :: mask(:,:,:,:)
-          complex(xdp) :: res(merge(size(x, 1), size(x, 2), mask=1<dim), merge(size(x, 2), size(x, 3), mask=2<dim), merge(size(x,&
-              & 3), size(x, 4), mask=3<dim))
-        end function mean_mask_4_cxdp_cxdp
         module function mean_mask_1_cqp_cqp(x, dim, mask) result(res)
           complex(qp), intent(in) :: x(:)
           integer, intent(in) :: dim
@@ -1934,26 +1642,6 @@ module stdlib_stats
           logical, intent(in), optional :: mask
           real(dp) :: res
         end function median_all_4_rdp_dp
-        module function median_all_1_rxdp_xdp (x, mask) result(res)
-          real(xdp), intent(in) :: x(:)
-          logical, intent(in), optional :: mask
-          real(xdp) :: res
-        end function median_all_1_rxdp_xdp
-        module function median_all_2_rxdp_xdp (x, mask) result(res)
-          real(xdp), intent(in) :: x(:,:)
-          logical, intent(in), optional :: mask
-          real(xdp) :: res
-        end function median_all_2_rxdp_xdp
-        module function median_all_3_rxdp_xdp (x, mask) result(res)
-          real(xdp), intent(in) :: x(:,:,:)
-          logical, intent(in), optional :: mask
-          real(xdp) :: res
-        end function median_all_3_rxdp_xdp
-        module function median_all_4_rxdp_xdp (x, mask) result(res)
-          real(xdp), intent(in) :: x(:,:,:,:)
-          logical, intent(in), optional :: mask
-          real(xdp) :: res
-        end function median_all_4_rxdp_xdp
         module function median_all_1_rqp_qp (x, mask) result(res)
           real(qp), intent(in) :: x(:)
           logical, intent(in), optional :: mask
@@ -2125,31 +1813,6 @@ module stdlib_stats
           real(dp) :: res(merge(size(x, 1), size(x, 2), mask=1<dim), merge(size(x, 2), size(x, 3), mask=2<dim), merge(size(x, 3),&
               & size(x, 4), mask=3<dim))
         end function median_4_rdp_dp
-        module function median_1_rxdp_xdp(x, dim, mask) result(res)
-          real(xdp), intent(in) :: x(:)
-          integer, intent(in) :: dim
-          logical, intent(in), optional :: mask
-          real(xdp) :: res
-        end function median_1_rxdp_xdp
-        module function median_2_rxdp_xdp(x, dim, mask) result(res)
-          real(xdp), intent(in) :: x(:,:)
-          integer, intent(in) :: dim
-          logical, intent(in), optional :: mask
-          real(xdp) :: res(merge(size(x, 1), size(x, 2), mask=1<dim))
-        end function median_2_rxdp_xdp
-        module function median_3_rxdp_xdp(x, dim, mask) result(res)
-          real(xdp), intent(in) :: x(:,:,:)
-          integer, intent(in) :: dim
-          logical, intent(in), optional :: mask
-          real(xdp) :: res(merge(size(x, 1), size(x, 2), mask=1<dim), merge(size(x, 2), size(x, 3), mask=2<dim))
-        end function median_3_rxdp_xdp
-        module function median_4_rxdp_xdp(x, dim, mask) result(res)
-          real(xdp), intent(in) :: x(:,:,:,:)
-          integer, intent(in) :: dim
-          logical, intent(in), optional :: mask
-          real(xdp) :: res(merge(size(x, 1), size(x, 2), mask=1<dim), merge(size(x, 2), size(x, 3), mask=2<dim), merge(size(x, 3),&
-              & size(x, 4), mask=3<dim))
-        end function median_4_rxdp_xdp
         module function median_1_rqp_qp(x, dim, mask) result(res)
           real(qp), intent(in) :: x(:)
           integer, intent(in) :: dim
@@ -2296,26 +1959,6 @@ module stdlib_stats
           logical, intent(in) :: mask(:,:,:,:)
           real(dp) :: res
         end function median_all_mask_4_rdp_dp
-        module function median_all_mask_1_rxdp_xdp(x, mask) result(res)
-          real(xdp), intent(in) :: x(:)
-          logical, intent(in) :: mask(:)
-          real(xdp) :: res
-        end function median_all_mask_1_rxdp_xdp
-        module function median_all_mask_2_rxdp_xdp(x, mask) result(res)
-          real(xdp), intent(in) :: x(:,:)
-          logical, intent(in) :: mask(:,:)
-          real(xdp) :: res
-        end function median_all_mask_2_rxdp_xdp
-        module function median_all_mask_3_rxdp_xdp(x, mask) result(res)
-          real(xdp), intent(in) :: x(:,:,:)
-          logical, intent(in) :: mask(:,:,:)
-          real(xdp) :: res
-        end function median_all_mask_3_rxdp_xdp
-        module function median_all_mask_4_rxdp_xdp(x, mask) result(res)
-          real(xdp), intent(in) :: x(:,:,:,:)
-          logical, intent(in) :: mask(:,:,:,:)
-          real(xdp) :: res
-        end function median_all_mask_4_rxdp_xdp
         module function median_all_mask_1_rqp_qp(x, mask) result(res)
           real(qp), intent(in) :: x(:)
           logical, intent(in) :: mask(:)
@@ -2487,31 +2130,6 @@ module stdlib_stats
           real(dp) :: res(merge(size(x, 1), size(x, 2), mask=1<dim), merge(size(x, 2), size(x, 3), mask=2<dim), merge(size(x, 3),&
               & size(x, 4), mask=3<dim))
         end function median_mask_4_rdp_dp
-        module function  median_mask_1_rxdp_xdp(x, dim, mask) result(res)
-          real(xdp), intent(in) :: x(:)
-          integer, intent(in) :: dim
-          logical, intent(in) :: mask(:)
-          real(xdp) :: res
-        end function median_mask_1_rxdp_xdp
-        module function  median_mask_2_rxdp_xdp(x, dim, mask) result(res)
-          real(xdp), intent(in) :: x(:,:)
-          integer, intent(in) :: dim
-          logical, intent(in) :: mask(:,:)
-          real(xdp) :: res(merge(size(x, 1), size(x, 2), mask=1<dim))
-        end function median_mask_2_rxdp_xdp
-        module function  median_mask_3_rxdp_xdp(x, dim, mask) result(res)
-          real(xdp), intent(in) :: x(:,:,:)
-          integer, intent(in) :: dim
-          logical, intent(in) :: mask(:,:,:)
-          real(xdp) :: res(merge(size(x, 1), size(x, 2), mask=1<dim), merge(size(x, 2), size(x, 3), mask=2<dim))
-        end function median_mask_3_rxdp_xdp
-        module function  median_mask_4_rxdp_xdp(x, dim, mask) result(res)
-          real(xdp), intent(in) :: x(:,:,:,:)
-          integer, intent(in) :: dim
-          logical, intent(in) :: mask(:,:,:,:)
-          real(xdp) :: res(merge(size(x, 1), size(x, 2), mask=1<dim), merge(size(x, 2), size(x, 3), mask=2<dim), merge(size(x, 3),&
-              & size(x, 4), mask=3<dim))
-        end function median_mask_4_rxdp_xdp
         module function  median_mask_1_rqp_qp(x, dim, mask) result(res)
           real(qp), intent(in) :: x(:)
           integer, intent(in) :: dim
@@ -2595,30 +2213,6 @@ module stdlib_stats
           logical, intent(in), optional :: corrected
           real(dp) :: res
         end function var_all_4_rdp_rdp
-        module function var_all_1_rxdp_rxdp(x, mask, corrected) result(res)
-          real(xdp), intent(in) :: x(:)
-          logical, intent(in), optional :: mask
-          logical, intent(in), optional :: corrected
-          real(xdp) :: res
-        end function var_all_1_rxdp_rxdp
-        module function var_all_2_rxdp_rxdp(x, mask, corrected) result(res)
-          real(xdp), intent(in) :: x(:,:)
-          logical, intent(in), optional :: mask
-          logical, intent(in), optional :: corrected
-          real(xdp) :: res
-        end function var_all_2_rxdp_rxdp
-        module function var_all_3_rxdp_rxdp(x, mask, corrected) result(res)
-          real(xdp), intent(in) :: x(:,:,:)
-          logical, intent(in), optional :: mask
-          logical, intent(in), optional :: corrected
-          real(xdp) :: res
-        end function var_all_3_rxdp_rxdp
-        module function var_all_4_rxdp_rxdp(x, mask, corrected) result(res)
-          real(xdp), intent(in) :: x(:,:,:,:)
-          logical, intent(in), optional :: mask
-          logical, intent(in), optional :: corrected
-          real(xdp) :: res
-        end function var_all_4_rxdp_rxdp
         module function var_all_1_rqp_rqp(x, mask, corrected) result(res)
           real(qp), intent(in) :: x(:)
           logical, intent(in), optional :: mask
@@ -2691,30 +2285,6 @@ module stdlib_stats
           logical, intent(in), optional :: corrected
           real(dp) :: res
         end function var_all_4_cdp_cdp
-        module function var_all_1_cxdp_cxdp(x, mask, corrected) result(res)
-          complex(xdp), intent(in) :: x(:)
-          logical, intent(in), optional :: mask
-          logical, intent(in), optional :: corrected
-          real(xdp) :: res
-        end function var_all_1_cxdp_cxdp
-        module function var_all_2_cxdp_cxdp(x, mask, corrected) result(res)
-          complex(xdp), intent(in) :: x(:,:)
-          logical, intent(in), optional :: mask
-          logical, intent(in), optional :: corrected
-          real(xdp) :: res
-        end function var_all_2_cxdp_cxdp
-        module function var_all_3_cxdp_cxdp(x, mask, corrected) result(res)
-          complex(xdp), intent(in) :: x(:,:,:)
-          logical, intent(in), optional :: mask
-          logical, intent(in), optional :: corrected
-          real(xdp) :: res
-        end function var_all_3_cxdp_cxdp
-        module function var_all_4_cxdp_cxdp(x, mask, corrected) result(res)
-          complex(xdp), intent(in) :: x(:,:,:,:)
-          logical, intent(in), optional :: mask
-          logical, intent(in), optional :: corrected
-          real(xdp) :: res
-        end function var_all_4_cxdp_cxdp
         module function var_all_1_cqp_cqp(x, mask, corrected) result(res)
           complex(qp), intent(in) :: x(:)
           logical, intent(in), optional :: mask
@@ -2895,35 +2465,6 @@ module stdlib_stats
           real(dp) :: res(merge(size(x, 1), size(x, 2), mask=1<dim), merge(size(x, 2), size(x, 3), mask=2<dim), merge(size(x, 3),&
               & size(x, 4), mask=3<dim))
         end function var_4_rdp_rdp
-        module function var_1_rxdp_rxdp(x, dim, mask, corrected) result(res)
-          real(xdp), intent(in) :: x(:)
-          integer, intent(in) :: dim
-          logical, intent(in), optional :: mask
-          logical, intent(in), optional :: corrected
-          real(xdp) :: res
-        end function var_1_rxdp_rxdp
-        module function var_2_rxdp_rxdp(x, dim, mask, corrected) result(res)
-          real(xdp), intent(in) :: x(:,:)
-          integer, intent(in) :: dim
-          logical, intent(in), optional :: mask
-          logical, intent(in), optional :: corrected
-          real(xdp) :: res(merge(size(x, 1), size(x, 2), mask=1<dim))
-        end function var_2_rxdp_rxdp
-        module function var_3_rxdp_rxdp(x, dim, mask, corrected) result(res)
-          real(xdp), intent(in) :: x(:,:,:)
-          integer, intent(in) :: dim
-          logical, intent(in), optional :: mask
-          logical, intent(in), optional :: corrected
-          real(xdp) :: res(merge(size(x, 1), size(x, 2), mask=1<dim), merge(size(x, 2), size(x, 3), mask=2<dim))
-        end function var_3_rxdp_rxdp
-        module function var_4_rxdp_rxdp(x, dim, mask, corrected) result(res)
-          real(xdp), intent(in) :: x(:,:,:,:)
-          integer, intent(in) :: dim
-          logical, intent(in), optional :: mask
-          logical, intent(in), optional :: corrected
-          real(xdp) :: res(merge(size(x, 1), size(x, 2), mask=1<dim), merge(size(x, 2), size(x, 3), mask=2<dim), merge(size(x, 3),&
-              & size(x, 4), mask=3<dim))
-        end function var_4_rxdp_rxdp
         module function var_1_rqp_rqp(x, dim, mask, corrected) result(res)
           real(qp), intent(in) :: x(:)
           integer, intent(in) :: dim
@@ -3011,35 +2552,6 @@ module stdlib_stats
           real(dp) :: res(merge(size(x, 1), size(x, 2), mask=1<dim), merge(size(x, 2), size(x, 3), mask=2<dim), merge(size(x, 3),&
               & size(x, 4), mask=3<dim))
         end function var_4_cdp_cdp
-        module function var_1_cxdp_cxdp(x, dim, mask, corrected) result(res)
-          complex(xdp), intent(in) :: x(:)
-          integer, intent(in) :: dim
-          logical, intent(in), optional :: mask
-          logical, intent(in), optional :: corrected
-          real(xdp) :: res
-        end function var_1_cxdp_cxdp
-        module function var_2_cxdp_cxdp(x, dim, mask, corrected) result(res)
-          complex(xdp), intent(in) :: x(:,:)
-          integer, intent(in) :: dim
-          logical, intent(in), optional :: mask
-          logical, intent(in), optional :: corrected
-          real(xdp) :: res(merge(size(x, 1), size(x, 2), mask=1<dim))
-        end function var_2_cxdp_cxdp
-        module function var_3_cxdp_cxdp(x, dim, mask, corrected) result(res)
-          complex(xdp), intent(in) :: x(:,:,:)
-          integer, intent(in) :: dim
-          logical, intent(in), optional :: mask
-          logical, intent(in), optional :: corrected
-          real(xdp) :: res(merge(size(x, 1), size(x, 2), mask=1<dim), merge(size(x, 2), size(x, 3), mask=2<dim))
-        end function var_3_cxdp_cxdp
-        module function var_4_cxdp_cxdp(x, dim, mask, corrected) result(res)
-          complex(xdp), intent(in) :: x(:,:,:,:)
-          integer, intent(in) :: dim
-          logical, intent(in), optional :: mask
-          logical, intent(in), optional :: corrected
-          real(xdp) :: res(merge(size(x, 1), size(x, 2), mask=1<dim), merge(size(x, 2), size(x, 3), mask=2<dim), merge(size(x, 3),&
-              & size(x, 4), mask=3<dim))
-        end function var_4_cxdp_cxdp
         module function var_1_cqp_cqp(x, dim, mask, corrected) result(res)
           complex(qp), intent(in) :: x(:)
           integer, intent(in) :: dim
@@ -3235,30 +2747,6 @@ module stdlib_stats
           logical, intent(in), optional :: corrected
           real(dp) :: res
         end function var_mask_all_4_rdp_rdp
-        module function var_mask_all_1_rxdp_rxdp(x, mask, corrected) result(res)
-          real(xdp), intent(in) :: x(:)
-          logical, intent(in) :: mask(:)
-          logical, intent(in), optional :: corrected
-          real(xdp) :: res
-        end function var_mask_all_1_rxdp_rxdp
-        module function var_mask_all_2_rxdp_rxdp(x, mask, corrected) result(res)
-          real(xdp), intent(in) :: x(:,:)
-          logical, intent(in) :: mask(:,:)
-          logical, intent(in), optional :: corrected
-          real(xdp) :: res
-        end function var_mask_all_2_rxdp_rxdp
-        module function var_mask_all_3_rxdp_rxdp(x, mask, corrected) result(res)
-          real(xdp), intent(in) :: x(:,:,:)
-          logical, intent(in) :: mask(:,:,:)
-          logical, intent(in), optional :: corrected
-          real(xdp) :: res
-        end function var_mask_all_3_rxdp_rxdp
-        module function var_mask_all_4_rxdp_rxdp(x, mask, corrected) result(res)
-          real(xdp), intent(in) :: x(:,:,:,:)
-          logical, intent(in) :: mask(:,:,:,:)
-          logical, intent(in), optional :: corrected
-          real(xdp) :: res
-        end function var_mask_all_4_rxdp_rxdp
         module function var_mask_all_1_rqp_rqp(x, mask, corrected) result(res)
           real(qp), intent(in) :: x(:)
           logical, intent(in) :: mask(:)
@@ -3331,30 +2819,6 @@ module stdlib_stats
           logical, intent(in), optional :: corrected
           real(dp) :: res
         end function var_mask_all_4_cdp_cdp
-        module function var_mask_all_1_cxdp_cxdp(x, mask, corrected) result(res)
-          complex(xdp), intent(in) :: x(:)
-          logical, intent(in) :: mask(:)
-          logical, intent(in), optional :: corrected
-          real(xdp) :: res
-        end function var_mask_all_1_cxdp_cxdp
-        module function var_mask_all_2_cxdp_cxdp(x, mask, corrected) result(res)
-          complex(xdp), intent(in) :: x(:,:)
-          logical, intent(in) :: mask(:,:)
-          logical, intent(in), optional :: corrected
-          real(xdp) :: res
-        end function var_mask_all_2_cxdp_cxdp
-        module function var_mask_all_3_cxdp_cxdp(x, mask, corrected) result(res)
-          complex(xdp), intent(in) :: x(:,:,:)
-          logical, intent(in) :: mask(:,:,:)
-          logical, intent(in), optional :: corrected
-          real(xdp) :: res
-        end function var_mask_all_3_cxdp_cxdp
-        module function var_mask_all_4_cxdp_cxdp(x, mask, corrected) result(res)
-          complex(xdp), intent(in) :: x(:,:,:,:)
-          logical, intent(in) :: mask(:,:,:,:)
-          logical, intent(in), optional :: corrected
-          real(xdp) :: res
-        end function var_mask_all_4_cxdp_cxdp
         module function var_mask_all_1_cqp_cqp(x, mask, corrected) result(res)
           complex(qp), intent(in) :: x(:)
           logical, intent(in) :: mask(:)
@@ -3535,35 +2999,6 @@ module stdlib_stats
           real(dp) :: res(merge(size(x, 1), size(x, 2), mask=1<dim), merge(size(x, 2), size(x, 3), mask=2<dim), merge(size(x, 3),&
               & size(x, 4), mask=3<dim))
         end function var_mask_4_rdp_rdp
-        module function var_mask_1_rxdp_rxdp(x, dim, mask, corrected) result(res)
-          real(xdp), intent(in) :: x(:)
-          integer, intent(in) :: dim
-          logical, intent(in) :: mask(:)
-          logical, intent(in), optional :: corrected
-          real(xdp) :: res
-        end function var_mask_1_rxdp_rxdp
-        module function var_mask_2_rxdp_rxdp(x, dim, mask, corrected) result(res)
-          real(xdp), intent(in) :: x(:,:)
-          integer, intent(in) :: dim
-          logical, intent(in) :: mask(:,:)
-          logical, intent(in), optional :: corrected
-          real(xdp) :: res(merge(size(x, 1), size(x, 2), mask=1<dim))
-        end function var_mask_2_rxdp_rxdp
-        module function var_mask_3_rxdp_rxdp(x, dim, mask, corrected) result(res)
-          real(xdp), intent(in) :: x(:,:,:)
-          integer, intent(in) :: dim
-          logical, intent(in) :: mask(:,:,:)
-          logical, intent(in), optional :: corrected
-          real(xdp) :: res(merge(size(x, 1), size(x, 2), mask=1<dim), merge(size(x, 2), size(x, 3), mask=2<dim))
-        end function var_mask_3_rxdp_rxdp
-        module function var_mask_4_rxdp_rxdp(x, dim, mask, corrected) result(res)
-          real(xdp), intent(in) :: x(:,:,:,:)
-          integer, intent(in) :: dim
-          logical, intent(in) :: mask(:,:,:,:)
-          logical, intent(in), optional :: corrected
-          real(xdp) :: res(merge(size(x, 1), size(x, 2), mask=1<dim), merge(size(x, 2), size(x, 3), mask=2<dim), merge(size(x, 3),&
-              & size(x, 4), mask=3<dim))
-        end function var_mask_4_rxdp_rxdp
         module function var_mask_1_rqp_rqp(x, dim, mask, corrected) result(res)
           real(qp), intent(in) :: x(:)
           integer, intent(in) :: dim
@@ -3651,35 +3086,6 @@ module stdlib_stats
           real(dp) :: res(merge(size(x, 1), size(x, 2), mask=1<dim), merge(size(x, 2), size(x, 3), mask=2<dim), merge(size(x, 3),&
               & size(x, 4), mask=3<dim))
         end function var_mask_4_cdp_cdp
-        module function var_mask_1_cxdp_cxdp(x, dim, mask, corrected) result(res)
-          complex(xdp), intent(in) :: x(:)
-          integer, intent(in) :: dim
-          logical, intent(in) :: mask(:)
-          logical, intent(in), optional :: corrected
-          real(xdp) :: res
-        end function var_mask_1_cxdp_cxdp
-        module function var_mask_2_cxdp_cxdp(x, dim, mask, corrected) result(res)
-          complex(xdp), intent(in) :: x(:,:)
-          integer, intent(in) :: dim
-          logical, intent(in) :: mask(:,:)
-          logical, intent(in), optional :: corrected
-          real(xdp) :: res(merge(size(x, 1), size(x, 2), mask=1<dim))
-        end function var_mask_2_cxdp_cxdp
-        module function var_mask_3_cxdp_cxdp(x, dim, mask, corrected) result(res)
-          complex(xdp), intent(in) :: x(:,:,:)
-          integer, intent(in) :: dim
-          logical, intent(in) :: mask(:,:,:)
-          logical, intent(in), optional :: corrected
-          real(xdp) :: res(merge(size(x, 1), size(x, 2), mask=1<dim), merge(size(x, 2), size(x, 3), mask=2<dim))
-        end function var_mask_3_cxdp_cxdp
-        module function var_mask_4_cxdp_cxdp(x, dim, mask, corrected) result(res)
-          complex(xdp), intent(in) :: x(:,:,:,:)
-          integer, intent(in) :: dim
-          logical, intent(in) :: mask(:,:,:,:)
-          logical, intent(in), optional :: corrected
-          real(xdp) :: res(merge(size(x, 1), size(x, 2), mask=1<dim), merge(size(x, 2), size(x, 3), mask=2<dim), merge(size(x, 3),&
-              & size(x, 4), mask=3<dim))
-        end function var_mask_4_cxdp_cxdp
         module function var_mask_1_cqp_cqp(x, dim, mask, corrected) result(res)
           complex(qp), intent(in) :: x(:)
           integer, intent(in) :: dim
@@ -3891,34 +3297,6 @@ module stdlib_stats
           logical, intent(in), optional :: mask
           real(dp) :: res
         end function moment_all_4_rdp_rdp
-        module function moment_all_1_rxdp_rxdp(x, order, center, mask) result(res)
-          real(xdp), intent(in) :: x(:)
-          integer, intent(in) :: order
-          real(xdp), intent(in), optional :: center
-          logical, intent(in), optional :: mask
-          real(xdp) :: res
-        end function moment_all_1_rxdp_rxdp
-        module function moment_all_2_rxdp_rxdp(x, order, center, mask) result(res)
-          real(xdp), intent(in) :: x(:,:)
-          integer, intent(in) :: order
-          real(xdp), intent(in), optional :: center
-          logical, intent(in), optional :: mask
-          real(xdp) :: res
-        end function moment_all_2_rxdp_rxdp
-        module function moment_all_3_rxdp_rxdp(x, order, center, mask) result(res)
-          real(xdp), intent(in) :: x(:,:,:)
-          integer, intent(in) :: order
-          real(xdp), intent(in), optional :: center
-          logical, intent(in), optional :: mask
-          real(xdp) :: res
-        end function moment_all_3_rxdp_rxdp
-        module function moment_all_4_rxdp_rxdp(x, order, center, mask) result(res)
-          real(xdp), intent(in) :: x(:,:,:,:)
-          integer, intent(in) :: order
-          real(xdp), intent(in), optional :: center
-          logical, intent(in), optional :: mask
-          real(xdp) :: res
-        end function moment_all_4_rxdp_rxdp
         module function moment_all_1_rqp_rqp(x, order, center, mask) result(res)
           real(qp), intent(in) :: x(:)
           integer, intent(in) :: order
@@ -4003,34 +3381,6 @@ module stdlib_stats
           logical, intent(in), optional :: mask
           complex(dp) :: res
         end function moment_all_4_cdp_cdp
-        module function moment_all_1_cxdp_cxdp(x, order, center, mask) result(res)
-          complex(xdp), intent(in) :: x(:)
-          integer, intent(in) :: order
-          complex(xdp), intent(in), optional :: center
-          logical, intent(in), optional :: mask
-          complex(xdp) :: res
-        end function moment_all_1_cxdp_cxdp
-        module function moment_all_2_cxdp_cxdp(x, order, center, mask) result(res)
-          complex(xdp), intent(in) :: x(:,:)
-          integer, intent(in) :: order
-          complex(xdp), intent(in), optional :: center
-          logical, intent(in), optional :: mask
-          complex(xdp) :: res
-        end function moment_all_2_cxdp_cxdp
-        module function moment_all_3_cxdp_cxdp(x, order, center, mask) result(res)
-          complex(xdp), intent(in) :: x(:,:,:)
-          integer, intent(in) :: order
-          complex(xdp), intent(in), optional :: center
-          logical, intent(in), optional :: mask
-          complex(xdp) :: res
-        end function moment_all_3_cxdp_cxdp
-        module function moment_all_4_cxdp_cxdp(x, order, center, mask) result(res)
-          complex(xdp), intent(in) :: x(:,:,:,:)
-          integer, intent(in) :: order
-          complex(xdp), intent(in), optional :: center
-          logical, intent(in), optional :: mask
-          complex(xdp) :: res
-        end function moment_all_4_cxdp_cxdp
         module function moment_all_1_cqp_cqp(x, order, center, mask) result(res)
           complex(qp), intent(in) :: x(:)
           integer, intent(in) :: order
@@ -4223,31 +3573,6 @@ module stdlib_stats
           real(dp) :: res(merge(size(x, 1), size(x, 2), mask=1<dim), merge(size(x, 2), size(x, 3), mask=2<dim), merge(size(x, 3),&
               & size(x, 4), mask=3<dim))
         end function moment_scalar_4_rdp_rdp
-        module function moment_scalar_2_rxdp_rxdp(x, order, dim, center, mask) result(res)
-          real(xdp), intent(in) :: x(:,:)
-          integer, intent(in) :: order
-          integer, intent(in) :: dim
-          real(xdp), intent(in) :: center
-          logical, intent(in), optional :: mask
-          real(xdp) :: res(merge(size(x, 1), size(x, 2), mask=1<dim))
-        end function moment_scalar_2_rxdp_rxdp
-        module function moment_scalar_3_rxdp_rxdp(x, order, dim, center, mask) result(res)
-          real(xdp), intent(in) :: x(:,:,:)
-          integer, intent(in) :: order
-          integer, intent(in) :: dim
-          real(xdp), intent(in) :: center
-          logical, intent(in), optional :: mask
-          real(xdp) :: res(merge(size(x, 1), size(x, 2), mask=1<dim), merge(size(x, 2), size(x, 3), mask=2<dim))
-        end function moment_scalar_3_rxdp_rxdp
-        module function moment_scalar_4_rxdp_rxdp(x, order, dim, center, mask) result(res)
-          real(xdp), intent(in) :: x(:,:,:,:)
-          integer, intent(in) :: order
-          integer, intent(in) :: dim
-          real(xdp), intent(in) :: center
-          logical, intent(in), optional :: mask
-          real(xdp) :: res(merge(size(x, 1), size(x, 2), mask=1<dim), merge(size(x, 2), size(x, 3), mask=2<dim), merge(size(x, 3),&
-              & size(x, 4), mask=3<dim))
-        end function moment_scalar_4_rxdp_rxdp
         module function moment_scalar_2_rqp_rqp(x, order, dim, center, mask) result(res)
           real(qp), intent(in) :: x(:,:)
           integer, intent(in) :: order
@@ -4323,31 +3648,6 @@ module stdlib_stats
           complex(dp) :: res(merge(size(x, 1), size(x, 2), mask=1<dim), merge(size(x, 2), size(x, 3), mask=2<dim), merge(size(x,&
               & 3), size(x, 4), mask=3<dim))
         end function moment_scalar_4_cdp_cdp
-        module function moment_scalar_2_cxdp_cxdp(x, order, dim, center, mask) result(res)
-          complex(xdp), intent(in) :: x(:,:)
-          integer, intent(in) :: order
-          integer, intent(in) :: dim
-          complex(xdp), intent(in) :: center
-          logical, intent(in), optional :: mask
-          complex(xdp) :: res(merge(size(x, 1), size(x, 2), mask=1<dim))
-        end function moment_scalar_2_cxdp_cxdp
-        module function moment_scalar_3_cxdp_cxdp(x, order, dim, center, mask) result(res)
-          complex(xdp), intent(in) :: x(:,:,:)
-          integer, intent(in) :: order
-          integer, intent(in) :: dim
-          complex(xdp), intent(in) :: center
-          logical, intent(in), optional :: mask
-          complex(xdp) :: res(merge(size(x, 1), size(x, 2), mask=1<dim), merge(size(x, 2), size(x, 3), mask=2<dim))
-        end function moment_scalar_3_cxdp_cxdp
-        module function moment_scalar_4_cxdp_cxdp(x, order, dim, center, mask) result(res)
-          complex(xdp), intent(in) :: x(:,:,:,:)
-          integer, intent(in) :: order
-          integer, intent(in) :: dim
-          complex(xdp), intent(in) :: center
-          logical, intent(in), optional :: mask
-          complex(xdp) :: res(merge(size(x, 1), size(x, 2), mask=1<dim), merge(size(x, 2), size(x, 3), mask=2<dim), merge(size(x,&
-              & 3), size(x, 4), mask=3<dim))
-        end function moment_scalar_4_cxdp_cxdp
         module function moment_scalar_2_cqp_cqp(x, order, dim, center, mask) result(res)
           complex(qp), intent(in) :: x(:,:)
           integer, intent(in) :: order
@@ -4444,41 +3744,6 @@ module stdlib_stats
           real(dp) :: res(merge(size(x, 1), size(x, 2), mask=1<dim), merge(size(x, 2), size(x, 3), mask=2<dim), merge(size(x, 3),&
               & size(x, 4), mask=3<dim))
         end function moment_4_rdp_rdp
-        module function moment_1_rxdp_rxdp(x, order, dim, center, mask) result(res)
-          real(xdp), intent(in) :: x(:)
-          integer, intent(in) :: order
-          integer, intent(in) :: dim
-          real(xdp), intent(in), optional :: center
-          logical, intent(in), optional :: mask
-          real(xdp) :: res
-        end function moment_1_rxdp_rxdp
-        module function moment_2_rxdp_rxdp(x, order, dim, center, mask) result(res)
-          real(xdp), intent(in) :: x(:,:)
-          integer, intent(in) :: order
-          integer, intent(in) :: dim
-          real(xdp), intent(in), optional :: center(merge(size(x, 1), size(x, 2), mask=1<dim))
-          logical, intent(in), optional :: mask
-          real(xdp) :: res(merge(size(x, 1), size(x, 2), mask=1<dim))
-        end function moment_2_rxdp_rxdp
-        module function moment_3_rxdp_rxdp(x, order, dim, center, mask) result(res)
-          real(xdp), intent(in) :: x(:,:,:)
-          integer, intent(in) :: order
-          integer, intent(in) :: dim
-          real(xdp), intent(in), optional :: center(merge(size(x, 1), size(x, 2), mask=1<dim), merge(size(x, 2), size(x, 3),&
-              & mask=2<dim))
-          logical, intent(in), optional :: mask
-          real(xdp) :: res(merge(size(x, 1), size(x, 2), mask=1<dim), merge(size(x, 2), size(x, 3), mask=2<dim))
-        end function moment_3_rxdp_rxdp
-        module function moment_4_rxdp_rxdp(x, order, dim, center, mask) result(res)
-          real(xdp), intent(in) :: x(:,:,:,:)
-          integer, intent(in) :: order
-          integer, intent(in) :: dim
-          real(xdp), intent(in), optional :: center(merge(size(x, 1), size(x, 2), mask=1<dim), merge(size(x, 2), size(x, 3),&
-              & mask=2<dim), merge(size(x, 3), size(x, 4), mask=3<dim))
-          logical, intent(in), optional :: mask
-          real(xdp) :: res(merge(size(x, 1), size(x, 2), mask=1<dim), merge(size(x, 2), size(x, 3), mask=2<dim), merge(size(x, 3),&
-              & size(x, 4), mask=3<dim))
-        end function moment_4_rxdp_rxdp
         module function moment_1_rqp_rqp(x, order, dim, center, mask) result(res)
           real(qp), intent(in) :: x(:)
           integer, intent(in) :: order
@@ -4584,41 +3849,6 @@ module stdlib_stats
           complex(dp) :: res(merge(size(x, 1), size(x, 2), mask=1<dim), merge(size(x, 2), size(x, 3), mask=2<dim), merge(size(x,&
               & 3), size(x, 4), mask=3<dim))
         end function moment_4_cdp_cdp
-        module function moment_1_cxdp_cxdp(x, order, dim, center, mask) result(res)
-          complex(xdp), intent(in) :: x(:)
-          integer, intent(in) :: order
-          integer, intent(in) :: dim
-          complex(xdp), intent(in), optional :: center
-          logical, intent(in), optional :: mask
-          complex(xdp) :: res
-        end function moment_1_cxdp_cxdp
-        module function moment_2_cxdp_cxdp(x, order, dim, center, mask) result(res)
-          complex(xdp), intent(in) :: x(:,:)
-          integer, intent(in) :: order
-          integer, intent(in) :: dim
-          complex(xdp), intent(in), optional :: center(merge(size(x, 1), size(x, 2), mask=1<dim))
-          logical, intent(in), optional :: mask
-          complex(xdp) :: res(merge(size(x, 1), size(x, 2), mask=1<dim))
-        end function moment_2_cxdp_cxdp
-        module function moment_3_cxdp_cxdp(x, order, dim, center, mask) result(res)
-          complex(xdp), intent(in) :: x(:,:,:)
-          integer, intent(in) :: order
-          integer, intent(in) :: dim
-          complex(xdp), intent(in), optional :: center(merge(size(x, 1), size(x, 2), mask=1<dim), merge(size(x, 2), size(x, 3),&
-              & mask=2<dim))
-          logical, intent(in), optional :: mask
-          complex(xdp) :: res(merge(size(x, 1), size(x, 2), mask=1<dim), merge(size(x, 2), size(x, 3), mask=2<dim))
-        end function moment_3_cxdp_cxdp
-        module function moment_4_cxdp_cxdp(x, order, dim, center, mask) result(res)
-          complex(xdp), intent(in) :: x(:,:,:,:)
-          integer, intent(in) :: order
-          integer, intent(in) :: dim
-          complex(xdp), intent(in), optional :: center(merge(size(x, 1), size(x, 2), mask=1<dim), merge(size(x, 2), size(x, 3),&
-              & mask=2<dim), merge(size(x, 3), size(x, 4), mask=3<dim))
-          logical, intent(in), optional :: mask
-          complex(xdp) :: res(merge(size(x, 1), size(x, 2), mask=1<dim), merge(size(x, 2), size(x, 3), mask=2<dim), merge(size(x,&
-              & 3), size(x, 4), mask=3<dim))
-        end function moment_4_cxdp_cxdp
         module function moment_1_cqp_cqp(x, order, dim, center, mask) result(res)
           complex(qp), intent(in) :: x(:)
           integer, intent(in) :: order
@@ -4953,34 +4183,6 @@ module stdlib_stats
           logical, intent(in) :: mask(:,:,:,:)
           real(dp) :: res
         end function moment_mask_all_4_rdp_rdp
-        module function moment_mask_all_1_rxdp_rxdp(x, order, center, mask) result(res)
-          real(xdp), intent(in) :: x(:)
-          integer, intent(in) :: order
-          real(xdp), intent(in), optional :: center
-          logical, intent(in) :: mask(:)
-          real(xdp) :: res
-        end function moment_mask_all_1_rxdp_rxdp
-        module function moment_mask_all_2_rxdp_rxdp(x, order, center, mask) result(res)
-          real(xdp), intent(in) :: x(:,:)
-          integer, intent(in) :: order
-          real(xdp), intent(in), optional :: center
-          logical, intent(in) :: mask(:,:)
-          real(xdp) :: res
-        end function moment_mask_all_2_rxdp_rxdp
-        module function moment_mask_all_3_rxdp_rxdp(x, order, center, mask) result(res)
-          real(xdp), intent(in) :: x(:,:,:)
-          integer, intent(in) :: order
-          real(xdp), intent(in), optional :: center
-          logical, intent(in) :: mask(:,:,:)
-          real(xdp) :: res
-        end function moment_mask_all_3_rxdp_rxdp
-        module function moment_mask_all_4_rxdp_rxdp(x, order, center, mask) result(res)
-          real(xdp), intent(in) :: x(:,:,:,:)
-          integer, intent(in) :: order
-          real(xdp), intent(in), optional :: center
-          logical, intent(in) :: mask(:,:,:,:)
-          real(xdp) :: res
-        end function moment_mask_all_4_rxdp_rxdp
         module function moment_mask_all_1_rqp_rqp(x, order, center, mask) result(res)
           real(qp), intent(in) :: x(:)
           integer, intent(in) :: order
@@ -5065,34 +4267,6 @@ module stdlib_stats
           logical, intent(in) :: mask(:,:,:,:)
           complex(dp) :: res
         end function moment_mask_all_4_cdp_cdp
-        module function moment_mask_all_1_cxdp_cxdp(x, order, center, mask) result(res)
-          complex(xdp), intent(in) :: x(:)
-          integer, intent(in) :: order
-          complex(xdp), intent(in), optional :: center
-          logical, intent(in) :: mask(:)
-          complex(xdp) :: res
-        end function moment_mask_all_1_cxdp_cxdp
-        module function moment_mask_all_2_cxdp_cxdp(x, order, center, mask) result(res)
-          complex(xdp), intent(in) :: x(:,:)
-          integer, intent(in) :: order
-          complex(xdp), intent(in), optional :: center
-          logical, intent(in) :: mask(:,:)
-          complex(xdp) :: res
-        end function moment_mask_all_2_cxdp_cxdp
-        module function moment_mask_all_3_cxdp_cxdp(x, order, center, mask) result(res)
-          complex(xdp), intent(in) :: x(:,:,:)
-          integer, intent(in) :: order
-          complex(xdp), intent(in), optional :: center
-          logical, intent(in) :: mask(:,:,:)
-          complex(xdp) :: res
-        end function moment_mask_all_3_cxdp_cxdp
-        module function moment_mask_all_4_cxdp_cxdp(x, order, center, mask) result(res)
-          complex(xdp), intent(in) :: x(:,:,:,:)
-          integer, intent(in) :: order
-          complex(xdp), intent(in), optional :: center
-          logical, intent(in) :: mask(:,:,:,:)
-          complex(xdp) :: res
-        end function moment_mask_all_4_cxdp_cxdp
         module function moment_mask_all_1_cqp_cqp(x, order, center, mask) result(res)
           complex(qp), intent(in) :: x(:)
           integer, intent(in) :: order
@@ -5285,31 +4459,6 @@ module stdlib_stats
           real(dp) :: res(merge(size(x, 1), size(x, 2), mask=1<dim), merge(size(x, 2), size(x, 3), mask=2<dim), merge(size(x, 3),&
               & size(x, 4), mask=3<dim))
         end function moment_mask_scalar_4_rdp_rdp
-        module function moment_mask_scalar_2_rxdp_rxdp(x, order, dim, center, mask) result(res)
-          real(xdp), intent(in) :: x(:,:)
-          integer, intent(in) :: order
-          integer, intent(in) :: dim
-          real(xdp), intent(in) :: center
-          logical, intent(in) :: mask(:,:)
-          real(xdp) :: res(merge(size(x, 1), size(x, 2), mask=1<dim))
-        end function moment_mask_scalar_2_rxdp_rxdp
-        module function moment_mask_scalar_3_rxdp_rxdp(x, order, dim, center, mask) result(res)
-          real(xdp), intent(in) :: x(:,:,:)
-          integer, intent(in) :: order
-          integer, intent(in) :: dim
-          real(xdp), intent(in) :: center
-          logical, intent(in) :: mask(:,:,:)
-          real(xdp) :: res(merge(size(x, 1), size(x, 2), mask=1<dim), merge(size(x, 2), size(x, 3), mask=2<dim))
-        end function moment_mask_scalar_3_rxdp_rxdp
-        module function moment_mask_scalar_4_rxdp_rxdp(x, order, dim, center, mask) result(res)
-          real(xdp), intent(in) :: x(:,:,:,:)
-          integer, intent(in) :: order
-          integer, intent(in) :: dim
-          real(xdp), intent(in) :: center
-          logical, intent(in) :: mask(:,:,:,:)
-          real(xdp) :: res(merge(size(x, 1), size(x, 2), mask=1<dim), merge(size(x, 2), size(x, 3), mask=2<dim), merge(size(x, 3),&
-              & size(x, 4), mask=3<dim))
-        end function moment_mask_scalar_4_rxdp_rxdp
         module function moment_mask_scalar_2_rqp_rqp(x, order, dim, center, mask) result(res)
           real(qp), intent(in) :: x(:,:)
           integer, intent(in) :: order
@@ -5385,31 +4534,6 @@ module stdlib_stats
           complex(dp) :: res(merge(size(x, 1), size(x, 2), mask=1<dim), merge(size(x, 2), size(x, 3), mask=2<dim), merge(size(x,&
               & 3), size(x, 4), mask=3<dim))
         end function moment_mask_scalar_4_cdp_cdp
-        module function moment_mask_scalar_2_cxdp_cxdp(x, order, dim, center, mask) result(res)
-          complex(xdp), intent(in) :: x(:,:)
-          integer, intent(in) :: order
-          integer, intent(in) :: dim
-          complex(xdp), intent(in) :: center
-          logical, intent(in) :: mask(:,:)
-          complex(xdp) :: res(merge(size(x, 1), size(x, 2), mask=1<dim))
-        end function moment_mask_scalar_2_cxdp_cxdp
-        module function moment_mask_scalar_3_cxdp_cxdp(x, order, dim, center, mask) result(res)
-          complex(xdp), intent(in) :: x(:,:,:)
-          integer, intent(in) :: order
-          integer, intent(in) :: dim
-          complex(xdp), intent(in) :: center
-          logical, intent(in) :: mask(:,:,:)
-          complex(xdp) :: res(merge(size(x, 1), size(x, 2), mask=1<dim), merge(size(x, 2), size(x, 3), mask=2<dim))
-        end function moment_mask_scalar_3_cxdp_cxdp
-        module function moment_mask_scalar_4_cxdp_cxdp(x, order, dim, center, mask) result(res)
-          complex(xdp), intent(in) :: x(:,:,:,:)
-          integer, intent(in) :: order
-          integer, intent(in) :: dim
-          complex(xdp), intent(in) :: center
-          logical, intent(in) :: mask(:,:,:,:)
-          complex(xdp) :: res(merge(size(x, 1), size(x, 2), mask=1<dim), merge(size(x, 2), size(x, 3), mask=2<dim), merge(size(x,&
-              & 3), size(x, 4), mask=3<dim))
-        end function moment_mask_scalar_4_cxdp_cxdp
         module function moment_mask_scalar_2_cqp_cqp(x, order, dim, center, mask) result(res)
           complex(qp), intent(in) :: x(:,:)
           integer, intent(in) :: order
@@ -5506,41 +4630,6 @@ module stdlib_stats
           real(dp) :: res(merge(size(x, 1), size(x, 2), mask=1<dim), merge(size(x, 2), size(x, 3), mask=2<dim), merge(size(x, 3),&
               & size(x, 4), mask=3<dim))
         end function moment_mask_4_rdp_rdp
-        module function moment_mask_1_rxdp_rxdp(x, order, dim, center, mask) result(res)
-          real(xdp), intent(in) :: x(:)
-          integer, intent(in) :: order
-          integer, intent(in) :: dim
-          real(xdp), intent(in), optional :: center
-          logical, intent(in) :: mask(:)
-          real(xdp) :: res
-        end function moment_mask_1_rxdp_rxdp
-        module function moment_mask_2_rxdp_rxdp(x, order, dim, center, mask) result(res)
-          real(xdp), intent(in) :: x(:,:)
-          integer, intent(in) :: order
-          integer, intent(in) :: dim
-          real(xdp), intent(in), optional :: center(merge(size(x, 1), size(x, 2), mask=1<dim))
-          logical, intent(in) :: mask(:,:)
-          real(xdp) :: res(merge(size(x, 1), size(x, 2), mask=1<dim))
-        end function moment_mask_2_rxdp_rxdp
-        module function moment_mask_3_rxdp_rxdp(x, order, dim, center, mask) result(res)
-          real(xdp), intent(in) :: x(:,:,:)
-          integer, intent(in) :: order
-          integer, intent(in) :: dim
-          real(xdp), intent(in), optional :: center(merge(size(x, 1), size(x, 2), mask=1<dim), merge(size(x, 2), size(x, 3),&
-              & mask=2<dim))
-          logical, intent(in) :: mask(:,:,:)
-          real(xdp) :: res(merge(size(x, 1), size(x, 2), mask=1<dim), merge(size(x, 2), size(x, 3), mask=2<dim))
-        end function moment_mask_3_rxdp_rxdp
-        module function moment_mask_4_rxdp_rxdp(x, order, dim, center, mask) result(res)
-          real(xdp), intent(in) :: x(:,:,:,:)
-          integer, intent(in) :: order
-          integer, intent(in) :: dim
-          real(xdp), intent(in), optional :: center(merge(size(x, 1), size(x, 2), mask=1<dim), merge(size(x, 2), size(x, 3),&
-              & mask=2<dim), merge(size(x, 3), size(x, 4), mask=3<dim))
-          logical, intent(in) :: mask(:,:,:,:)
-          real(xdp) :: res(merge(size(x, 1), size(x, 2), mask=1<dim), merge(size(x, 2), size(x, 3), mask=2<dim), merge(size(x, 3),&
-              & size(x, 4), mask=3<dim))
-        end function moment_mask_4_rxdp_rxdp
         module function moment_mask_1_rqp_rqp(x, order, dim, center, mask) result(res)
           real(qp), intent(in) :: x(:)
           integer, intent(in) :: order
@@ -5646,41 +4735,6 @@ module stdlib_stats
           complex(dp) :: res(merge(size(x, 1), size(x, 2), mask=1<dim), merge(size(x, 2), size(x, 3), mask=2<dim), merge(size(x,&
               & 3), size(x, 4), mask=3<dim))
         end function moment_mask_4_cdp_cdp
-        module function moment_mask_1_cxdp_cxdp(x, order, dim, center, mask) result(res)
-          complex(xdp), intent(in) :: x(:)
-          integer, intent(in) :: order
-          integer, intent(in) :: dim
-          complex(xdp), intent(in), optional :: center
-          logical, intent(in) :: mask(:)
-          complex(xdp) :: res
-        end function moment_mask_1_cxdp_cxdp
-        module function moment_mask_2_cxdp_cxdp(x, order, dim, center, mask) result(res)
-          complex(xdp), intent(in) :: x(:,:)
-          integer, intent(in) :: order
-          integer, intent(in) :: dim
-          complex(xdp), intent(in), optional :: center(merge(size(x, 1), size(x, 2), mask=1<dim))
-          logical, intent(in) :: mask(:,:)
-          complex(xdp) :: res(merge(size(x, 1), size(x, 2), mask=1<dim))
-        end function moment_mask_2_cxdp_cxdp
-        module function moment_mask_3_cxdp_cxdp(x, order, dim, center, mask) result(res)
-          complex(xdp), intent(in) :: x(:,:,:)
-          integer, intent(in) :: order
-          integer, intent(in) :: dim
-          complex(xdp), intent(in), optional :: center(merge(size(x, 1), size(x, 2), mask=1<dim), merge(size(x, 2), size(x, 3),&
-              & mask=2<dim))
-          logical, intent(in) :: mask(:,:,:)
-          complex(xdp) :: res(merge(size(x, 1), size(x, 2), mask=1<dim), merge(size(x, 2), size(x, 3), mask=2<dim))
-        end function moment_mask_3_cxdp_cxdp
-        module function moment_mask_4_cxdp_cxdp(x, order, dim, center, mask) result(res)
-          complex(xdp), intent(in) :: x(:,:,:,:)
-          integer, intent(in) :: order
-          integer, intent(in) :: dim
-          complex(xdp), intent(in), optional :: center(merge(size(x, 1), size(x, 2), mask=1<dim), merge(size(x, 2), size(x, 3),&
-              & mask=2<dim), merge(size(x, 3), size(x, 4), mask=3<dim))
-          logical, intent(in) :: mask(:,:,:,:)
-          complex(xdp) :: res(merge(size(x, 1), size(x, 2), mask=1<dim), merge(size(x, 2), size(x, 3), mask=2<dim), merge(size(x,&
-              & 3), size(x, 4), mask=3<dim))
-        end function moment_mask_4_cxdp_cxdp
         module function moment_mask_1_cqp_cqp(x, order, dim, center, mask) result(res)
           complex(qp), intent(in) :: x(:)
           integer, intent(in) :: order

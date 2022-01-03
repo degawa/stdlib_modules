@@ -111,58 +111,6 @@ contains
         res = sum(x) / real(size(x, kind = int64), dp)
 
       end function mean_all_4_rdp_rdp
-      module function mean_all_1_rxdp_rxdp (x, mask) result(res)
-        real(xdp), intent(in) :: x(:)
-        logical, intent(in), optional :: mask
-        real(xdp) :: res
-
-        if (.not.optval(mask, .true.)) then
-          res = ieee_value(1._xdp, ieee_quiet_nan)
-          return
-        end if
-
-        res = sum(x) / real(size(x, kind = int64), xdp)
-
-      end function mean_all_1_rxdp_rxdp
-      module function mean_all_2_rxdp_rxdp (x, mask) result(res)
-        real(xdp), intent(in) :: x(:,:)
-        logical, intent(in), optional :: mask
-        real(xdp) :: res
-
-        if (.not.optval(mask, .true.)) then
-          res = ieee_value(1._xdp, ieee_quiet_nan)
-          return
-        end if
-
-        res = sum(x) / real(size(x, kind = int64), xdp)
-
-      end function mean_all_2_rxdp_rxdp
-      module function mean_all_3_rxdp_rxdp (x, mask) result(res)
-        real(xdp), intent(in) :: x(:,:,:)
-        logical, intent(in), optional :: mask
-        real(xdp) :: res
-
-        if (.not.optval(mask, .true.)) then
-          res = ieee_value(1._xdp, ieee_quiet_nan)
-          return
-        end if
-
-        res = sum(x) / real(size(x, kind = int64), xdp)
-
-      end function mean_all_3_rxdp_rxdp
-      module function mean_all_4_rxdp_rxdp (x, mask) result(res)
-        real(xdp), intent(in) :: x(:,:,:,:)
-        logical, intent(in), optional :: mask
-        real(xdp) :: res
-
-        if (.not.optval(mask, .true.)) then
-          res = ieee_value(1._xdp, ieee_quiet_nan)
-          return
-        end if
-
-        res = sum(x) / real(size(x, kind = int64), xdp)
-
-      end function mean_all_4_rxdp_rxdp
       module function mean_all_1_rqp_rqp (x, mask) result(res)
         real(qp), intent(in) :: x(:)
         logical, intent(in), optional :: mask
@@ -319,58 +267,6 @@ contains
         res = sum(x) / real(size(x, kind = int64), dp)
 
       end function mean_all_4_cdp_cdp
-      module function mean_all_1_cxdp_cxdp (x, mask) result(res)
-        complex(xdp), intent(in) :: x(:)
-        logical, intent(in), optional :: mask
-        complex(xdp) :: res
-
-        if (.not.optval(mask, .true.)) then
-          res = ieee_value(1._xdp, ieee_quiet_nan)
-          return
-        end if
-
-        res = sum(x) / real(size(x, kind = int64), xdp)
-
-      end function mean_all_1_cxdp_cxdp
-      module function mean_all_2_cxdp_cxdp (x, mask) result(res)
-        complex(xdp), intent(in) :: x(:,:)
-        logical, intent(in), optional :: mask
-        complex(xdp) :: res
-
-        if (.not.optval(mask, .true.)) then
-          res = ieee_value(1._xdp, ieee_quiet_nan)
-          return
-        end if
-
-        res = sum(x) / real(size(x, kind = int64), xdp)
-
-      end function mean_all_2_cxdp_cxdp
-      module function mean_all_3_cxdp_cxdp (x, mask) result(res)
-        complex(xdp), intent(in) :: x(:,:,:)
-        logical, intent(in), optional :: mask
-        complex(xdp) :: res
-
-        if (.not.optval(mask, .true.)) then
-          res = ieee_value(1._xdp, ieee_quiet_nan)
-          return
-        end if
-
-        res = sum(x) / real(size(x, kind = int64), xdp)
-
-      end function mean_all_3_cxdp_cxdp
-      module function mean_all_4_cxdp_cxdp (x, mask) result(res)
-        complex(xdp), intent(in) :: x(:,:,:,:)
-        logical, intent(in), optional :: mask
-        complex(xdp) :: res
-
-        if (.not.optval(mask, .true.)) then
-          res = ieee_value(1._xdp, ieee_quiet_nan)
-          return
-        end if
-
-        res = sum(x) / real(size(x, kind = int64), xdp)
-
-      end function mean_all_4_cxdp_cxdp
       module function mean_all_1_cqp_cqp (x, mask) result(res)
         complex(qp), intent(in) :: x(:)
         logical, intent(in), optional :: mask
@@ -780,79 +676,6 @@ contains
         end if
 
       end function mean_4_rdp_rdp
-      module function mean_1_rxdp_rxdp(x, dim, mask) result(res)
-        real(xdp), intent(in) :: x(:)
-        integer, intent(in) :: dim
-        logical, intent(in), optional :: mask
-        real(xdp) :: res
-
-        if (.not.optval(mask, .true.)) then
-          res = ieee_value(1._xdp, ieee_quiet_nan)
-          return
-        end if
-
-        if (dim >= 1 .and. dim <= 1) then
-          res = sum(x, dim) / real(size(x, dim), xdp)
-        else
-          call error_stop("ERROR (mean): wrong dimension")
-        end if
-
-      end function mean_1_rxdp_rxdp
-      module function mean_2_rxdp_rxdp(x, dim, mask) result(res)
-        real(xdp), intent(in) :: x(:,:)
-        integer, intent(in) :: dim
-        logical, intent(in), optional :: mask
-        real(xdp) :: res(merge(size(x, 1), size(x, 2), mask=1<dim))
-
-        if (.not.optval(mask, .true.)) then
-          res = ieee_value(1._xdp, ieee_quiet_nan)
-          return
-        end if
-
-        if (dim >= 1 .and. dim <= 2) then
-          res = sum(x, dim) / real(size(x, dim), xdp)
-        else
-          call error_stop("ERROR (mean): wrong dimension")
-        end if
-
-      end function mean_2_rxdp_rxdp
-      module function mean_3_rxdp_rxdp(x, dim, mask) result(res)
-        real(xdp), intent(in) :: x(:,:,:)
-        integer, intent(in) :: dim
-        logical, intent(in), optional :: mask
-        real(xdp) :: res(merge(size(x, 1), size(x, 2), mask=1<dim), merge(size(x, 2), size(x, 3), mask=2<dim))
-
-        if (.not.optval(mask, .true.)) then
-          res = ieee_value(1._xdp, ieee_quiet_nan)
-          return
-        end if
-
-        if (dim >= 1 .and. dim <= 3) then
-          res = sum(x, dim) / real(size(x, dim), xdp)
-        else
-          call error_stop("ERROR (mean): wrong dimension")
-        end if
-
-      end function mean_3_rxdp_rxdp
-      module function mean_4_rxdp_rxdp(x, dim, mask) result(res)
-        real(xdp), intent(in) :: x(:,:,:,:)
-        integer, intent(in) :: dim
-        logical, intent(in), optional :: mask
-        real(xdp) :: res(merge(size(x, 1), size(x, 2), mask=1<dim), merge(size(x, 2), size(x, 3), mask=2<dim), merge(size(x, 3),&
-            & size(x, 4), mask=3<dim))
-
-        if (.not.optval(mask, .true.)) then
-          res = ieee_value(1._xdp, ieee_quiet_nan)
-          return
-        end if
-
-        if (dim >= 1 .and. dim <= 4) then
-          res = sum(x, dim) / real(size(x, dim), xdp)
-        else
-          call error_stop("ERROR (mean): wrong dimension")
-        end if
-
-      end function mean_4_rxdp_rxdp
       module function mean_1_rqp_rqp(x, dim, mask) result(res)
         real(qp), intent(in) :: x(:)
         integer, intent(in) :: dim
@@ -1072,79 +895,6 @@ contains
         end if
 
       end function mean_4_cdp_cdp
-      module function mean_1_cxdp_cxdp(x, dim, mask) result(res)
-        complex(xdp), intent(in) :: x(:)
-        integer, intent(in) :: dim
-        logical, intent(in), optional :: mask
-        complex(xdp) :: res
-
-        if (.not.optval(mask, .true.)) then
-          res = ieee_value(1._xdp, ieee_quiet_nan)
-          return
-        end if
-
-        if (dim >= 1 .and. dim <= 1) then
-          res = sum(x, dim) / real(size(x, dim), xdp)
-        else
-          call error_stop("ERROR (mean): wrong dimension")
-        end if
-
-      end function mean_1_cxdp_cxdp
-      module function mean_2_cxdp_cxdp(x, dim, mask) result(res)
-        complex(xdp), intent(in) :: x(:,:)
-        integer, intent(in) :: dim
-        logical, intent(in), optional :: mask
-        complex(xdp) :: res(merge(size(x, 1), size(x, 2), mask=1<dim))
-
-        if (.not.optval(mask, .true.)) then
-          res = ieee_value(1._xdp, ieee_quiet_nan)
-          return
-        end if
-
-        if (dim >= 1 .and. dim <= 2) then
-          res = sum(x, dim) / real(size(x, dim), xdp)
-        else
-          call error_stop("ERROR (mean): wrong dimension")
-        end if
-
-      end function mean_2_cxdp_cxdp
-      module function mean_3_cxdp_cxdp(x, dim, mask) result(res)
-        complex(xdp), intent(in) :: x(:,:,:)
-        integer, intent(in) :: dim
-        logical, intent(in), optional :: mask
-        complex(xdp) :: res(merge(size(x, 1), size(x, 2), mask=1<dim), merge(size(x, 2), size(x, 3), mask=2<dim))
-
-        if (.not.optval(mask, .true.)) then
-          res = ieee_value(1._xdp, ieee_quiet_nan)
-          return
-        end if
-
-        if (dim >= 1 .and. dim <= 3) then
-          res = sum(x, dim) / real(size(x, dim), xdp)
-        else
-          call error_stop("ERROR (mean): wrong dimension")
-        end if
-
-      end function mean_3_cxdp_cxdp
-      module function mean_4_cxdp_cxdp(x, dim, mask) result(res)
-        complex(xdp), intent(in) :: x(:,:,:,:)
-        integer, intent(in) :: dim
-        logical, intent(in), optional :: mask
-        complex(xdp) :: res(merge(size(x, 1), size(x, 2), mask=1<dim), merge(size(x, 2), size(x, 3), mask=2<dim), merge(size(x,&
-            & 3), size(x, 4), mask=3<dim))
-
-        if (.not.optval(mask, .true.)) then
-          res = ieee_value(1._xdp, ieee_quiet_nan)
-          return
-        end if
-
-        if (dim >= 1 .and. dim <= 4) then
-          res = sum(x, dim) / real(size(x, dim), xdp)
-        else
-          call error_stop("ERROR (mean): wrong dimension")
-        end if
-
-      end function mean_4_cxdp_cxdp
       module function mean_1_cqp_cqp(x, dim, mask) result(res)
         complex(qp), intent(in) :: x(:)
         integer, intent(in) :: dim
@@ -1577,38 +1327,6 @@ contains
         res = sum(x, mask) / real(count(mask, kind = int64), dp)
 
       end function mean_mask_all_4_rdp_rdp
-      module function mean_mask_all_1_rxdp_rxdp(x, mask) result(res)
-        real(xdp), intent(in) :: x(:)
-        logical, intent(in) :: mask(:)
-        real(xdp) :: res
-
-        res = sum(x, mask) / real(count(mask, kind = int64), xdp)
-
-      end function mean_mask_all_1_rxdp_rxdp
-      module function mean_mask_all_2_rxdp_rxdp(x, mask) result(res)
-        real(xdp), intent(in) :: x(:,:)
-        logical, intent(in) :: mask(:,:)
-        real(xdp) :: res
-
-        res = sum(x, mask) / real(count(mask, kind = int64), xdp)
-
-      end function mean_mask_all_2_rxdp_rxdp
-      module function mean_mask_all_3_rxdp_rxdp(x, mask) result(res)
-        real(xdp), intent(in) :: x(:,:,:)
-        logical, intent(in) :: mask(:,:,:)
-        real(xdp) :: res
-
-        res = sum(x, mask) / real(count(mask, kind = int64), xdp)
-
-      end function mean_mask_all_3_rxdp_rxdp
-      module function mean_mask_all_4_rxdp_rxdp(x, mask) result(res)
-        real(xdp), intent(in) :: x(:,:,:,:)
-        logical, intent(in) :: mask(:,:,:,:)
-        real(xdp) :: res
-
-        res = sum(x, mask) / real(count(mask, kind = int64), xdp)
-
-      end function mean_mask_all_4_rxdp_rxdp
       module function mean_mask_all_1_rqp_rqp(x, mask) result(res)
         real(qp), intent(in) :: x(:)
         logical, intent(in) :: mask(:)
@@ -1705,38 +1423,6 @@ contains
         res = sum(x, mask) / real(count(mask, kind = int64), dp)
 
       end function mean_mask_all_4_cdp_cdp
-      module function mean_mask_all_1_cxdp_cxdp(x, mask) result(res)
-        complex(xdp), intent(in) :: x(:)
-        logical, intent(in) :: mask(:)
-        complex(xdp) :: res
-
-        res = sum(x, mask) / real(count(mask, kind = int64), xdp)
-
-      end function mean_mask_all_1_cxdp_cxdp
-      module function mean_mask_all_2_cxdp_cxdp(x, mask) result(res)
-        complex(xdp), intent(in) :: x(:,:)
-        logical, intent(in) :: mask(:,:)
-        complex(xdp) :: res
-
-        res = sum(x, mask) / real(count(mask, kind = int64), xdp)
-
-      end function mean_mask_all_2_cxdp_cxdp
-      module function mean_mask_all_3_cxdp_cxdp(x, mask) result(res)
-        complex(xdp), intent(in) :: x(:,:,:)
-        logical, intent(in) :: mask(:,:,:)
-        complex(xdp) :: res
-
-        res = sum(x, mask) / real(count(mask, kind = int64), xdp)
-
-      end function mean_mask_all_3_cxdp_cxdp
-      module function mean_mask_all_4_cxdp_cxdp(x, mask) result(res)
-        complex(xdp), intent(in) :: x(:,:,:,:)
-        logical, intent(in) :: mask(:,:,:,:)
-        complex(xdp) :: res
-
-        res = sum(x, mask) / real(count(mask, kind = int64), xdp)
-
-      end function mean_mask_all_4_cxdp_cxdp
       module function mean_mask_all_1_cqp_cqp(x, mask) result(res)
         complex(qp), intent(in) :: x(:)
         logical, intent(in) :: mask(:)
@@ -2006,59 +1692,6 @@ contains
         end if
 
       end function mean_mask_4_rdp_rdp
-      module function  mean_mask_1_rxdp_rxdp(x, dim, mask) result(res)
-        real(xdp), intent(in) :: x(:)
-        integer, intent(in) :: dim
-        logical, intent(in) :: mask(:)
-        real(xdp) :: res
-
-        if (dim >= 1 .and. dim <= 1) then
-          res = sum(x, dim, mask) / real(count(mask, dim), xdp)
-        else
-          call error_stop("ERROR (mean): wrong dimension")
-        end if
-
-      end function mean_mask_1_rxdp_rxdp
-      module function  mean_mask_2_rxdp_rxdp(x, dim, mask) result(res)
-        real(xdp), intent(in) :: x(:,:)
-        integer, intent(in) :: dim
-        logical, intent(in) :: mask(:,:)
-        real(xdp) :: res(merge(size(x, 1), size(x, 2), mask=1<dim))
-
-        if (dim >= 1 .and. dim <= 2) then
-          res = sum(x, dim, mask) / real(count(mask, dim), xdp)
-        else
-          call error_stop("ERROR (mean): wrong dimension")
-        end if
-
-      end function mean_mask_2_rxdp_rxdp
-      module function  mean_mask_3_rxdp_rxdp(x, dim, mask) result(res)
-        real(xdp), intent(in) :: x(:,:,:)
-        integer, intent(in) :: dim
-        logical, intent(in) :: mask(:,:,:)
-        real(xdp) :: res(merge(size(x, 1), size(x, 2), mask=1<dim), merge(size(x, 2), size(x, 3), mask=2<dim))
-
-        if (dim >= 1 .and. dim <= 3) then
-          res = sum(x, dim, mask) / real(count(mask, dim), xdp)
-        else
-          call error_stop("ERROR (mean): wrong dimension")
-        end if
-
-      end function mean_mask_3_rxdp_rxdp
-      module function  mean_mask_4_rxdp_rxdp(x, dim, mask) result(res)
-        real(xdp), intent(in) :: x(:,:,:,:)
-        integer, intent(in) :: dim
-        logical, intent(in) :: mask(:,:,:,:)
-        real(xdp) :: res(merge(size(x, 1), size(x, 2), mask=1<dim), merge(size(x, 2), size(x, 3), mask=2<dim), merge(size(x, 3),&
-            & size(x, 4), mask=3<dim))
-
-        if (dim >= 1 .and. dim <= 4) then
-          res = sum(x, dim, mask) / real(count(mask, dim), xdp)
-        else
-          call error_stop("ERROR (mean): wrong dimension")
-        end if
-
-      end function mean_mask_4_rxdp_rxdp
       module function  mean_mask_1_rqp_rqp(x, dim, mask) result(res)
         real(qp), intent(in) :: x(:)
         integer, intent(in) :: dim
@@ -2218,59 +1851,6 @@ contains
         end if
 
       end function mean_mask_4_cdp_cdp
-      module function  mean_mask_1_cxdp_cxdp(x, dim, mask) result(res)
-        complex(xdp), intent(in) :: x(:)
-        integer, intent(in) :: dim
-        logical, intent(in) :: mask(:)
-        complex(xdp) :: res
-
-        if (dim >= 1 .and. dim <= 1) then
-          res = sum(x, dim, mask) / real(count(mask, dim), xdp)
-        else
-          call error_stop("ERROR (mean): wrong dimension")
-        end if
-
-      end function mean_mask_1_cxdp_cxdp
-      module function  mean_mask_2_cxdp_cxdp(x, dim, mask) result(res)
-        complex(xdp), intent(in) :: x(:,:)
-        integer, intent(in) :: dim
-        logical, intent(in) :: mask(:,:)
-        complex(xdp) :: res(merge(size(x, 1), size(x, 2), mask=1<dim))
-
-        if (dim >= 1 .and. dim <= 2) then
-          res = sum(x, dim, mask) / real(count(mask, dim), xdp)
-        else
-          call error_stop("ERROR (mean): wrong dimension")
-        end if
-
-      end function mean_mask_2_cxdp_cxdp
-      module function  mean_mask_3_cxdp_cxdp(x, dim, mask) result(res)
-        complex(xdp), intent(in) :: x(:,:,:)
-        integer, intent(in) :: dim
-        logical, intent(in) :: mask(:,:,:)
-        complex(xdp) :: res(merge(size(x, 1), size(x, 2), mask=1<dim), merge(size(x, 2), size(x, 3), mask=2<dim))
-
-        if (dim >= 1 .and. dim <= 3) then
-          res = sum(x, dim, mask) / real(count(mask, dim), xdp)
-        else
-          call error_stop("ERROR (mean): wrong dimension")
-        end if
-
-      end function mean_mask_3_cxdp_cxdp
-      module function  mean_mask_4_cxdp_cxdp(x, dim, mask) result(res)
-        complex(xdp), intent(in) :: x(:,:,:,:)
-        integer, intent(in) :: dim
-        logical, intent(in) :: mask(:,:,:,:)
-        complex(xdp) :: res(merge(size(x, 1), size(x, 2), mask=1<dim), merge(size(x, 2), size(x, 3), mask=2<dim), merge(size(x,&
-            & 3), size(x, 4), mask=3<dim))
-
-        if (dim >= 1 .and. dim <= 4) then
-          res = sum(x, dim, mask) / real(count(mask, dim), xdp)
-        else
-          call error_stop("ERROR (mean): wrong dimension")
-        end if
-
-      end function mean_mask_4_cxdp_cxdp
       module function  mean_mask_1_cqp_cqp(x, dim, mask) result(res)
         complex(qp), intent(in) :: x(:)
         integer, intent(in) :: dim
