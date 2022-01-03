@@ -30,11 +30,6 @@ module stdlib_strings
             character(len=*), intent(in), optional :: format
             character(len=:), allocatable :: string
         end function to_string_r_dp
-        pure module function to_string_r_xdp(value, format) result(string)
-            real(xdp), intent(in) :: value
-            character(len=*), intent(in), optional :: format
-            character(len=:), allocatable :: string
-        end function to_string_r_xdp
         pure module function to_string_r_qp(value, format) result(string)
             real(qp), intent(in) :: value
             character(len=*), intent(in), optional :: format
@@ -50,11 +45,6 @@ module stdlib_strings
             character(len=*), intent(in), optional :: format
             character(len=:), allocatable :: string
         end function to_string_c_dp
-        pure module function to_string_c_xdp(value, format) result(string)
-            complex(xdp), intent(in) :: value
-            character(len=*), intent(in), optional :: format
-            character(len=:), allocatable :: string
-        end function to_string_c_xdp
         pure module function to_string_c_qp(value, format) result(string)
             complex(qp), intent(in) :: value
             character(len=*), intent(in), optional :: format
