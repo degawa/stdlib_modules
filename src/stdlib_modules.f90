@@ -3,7 +3,8 @@ module stdlib_modules
     use :: stdlib_ascii
     use :: stdlib_bitsets
     use :: stdlib_error
-    use :: stdlib_hash
+    use :: stdlib_hash_32bit
+    use :: stdlib_hash_64bit
     use :: stdlib_io
     use :: stdlib_kinds
     use :: stdlib_linalg
