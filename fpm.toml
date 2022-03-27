@@ -1,6 +1,6 @@
 name = "stdlib_version"
-version = "0.1.0"
+version = "0.2.0"
 license = "MIT"
 author = "Tomohiro Degawa"
 maintainer = "@degawa/stdlib_modules"
-copyright = "2021 Tomohiro Degawa"
+copyright = "2021-2022 Tomohiro Degawa"
