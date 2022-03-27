@@ -6,7 +6,7 @@ This repository aims to provide each module of [the Fortran standard library](ht
 When the stdlib is added as a dependent project of the fpm projects, even if the project size is small, the whole projects' build time will increase due to the stdlib build. As a solution to this very personal frustration, I separate each module of stdlib as an individual fpm project.
 
 The fpm is a game-changer for Fortran. It is convenient to use fpm for handling small-scale stand-alone applications, but fpm shows its actual value when collaborating with other fpm projects.
-The stdlib provides many essential features lacking in Fortran and significantly improves Fortran's convenience.
+Also, the stdlib provides many essential features lacking in Fortran and significantly improves Fortran's convenience.
 
 We can get dependent fpm projects from online git repositories such as GitHub by adding one line to fpm configuration files.
 I love this advantage and always get stdlib from GitHub. However, due to building stdlib, I frustrate the long building time of projects that are even small-scale but require a lot of trial and error.
@@ -18,7 +18,8 @@ This repository may provide a solution for using some modules of stdlib.
 ## Caution
 - This repository is not related to the fortran-lang community.
 - The contents of the master repository are not particularly meaningful. See branches.
-- This repository aims for trial use and does not follow the version up of stdlib.
+- This repository aims for trial use and may not follow the stdlib upgrades.
+- `stdlib_strings` and `stdlib_string_type` refer to each other, but fpm can build each module without problems.
 
 ## Contents
 This repository has an individual fpm project that contains each module of stdlib and is committed in the corresponding branch.
