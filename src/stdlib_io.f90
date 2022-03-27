@@ -19,17 +19,32 @@ module stdlib_io
   ! Private API that is exposed so that we can test it in tests
   public :: parse_mode
 
-  ! Format strings with edit descriptors for each type and kind
+  !> Version: experimental
+  !>
+  !> Format strings with edit descriptors for each type and kind
+  !> ([Specification](../page/specs/stdlib_io.html))
   character(*), parameter :: &
-    FMT_INT = '(*(i0,1x))', &
-    FMT_REAL_SP = '(*(es15.8e2,1x))', &
-    FMT_REAL_DP = '(*(es24.16e3,1x))', &
-    FMT_REAL_XDP = '(*(es26.18e3,1x))', &
-    FMT_REAL_QP = '(*(es44.35e4,1x))', &
-    FMT_COMPLEX_SP = '(*(es15.8e2,1x,es15.8e2))', &
-    FMT_COMPLEX_DP = '(*(es24.16e3,1x,es24.16e3))', &
-    FMT_COMPLEX_XDP = '(*(es26.18e3,1x,es26.18e3))', &
-    FMT_COMPLEX_QP = '(*(es44.35e4,1x,es44.35e4))'
+    !> Format string for integers
+    FMT_INT = '(i0)', &
+    !> Format string for single precision real numbers
+    FMT_REAL_SP = '(es15.8e2)', &
+    !> Format string for souble precision real numbers
+    FMT_REAL_DP = '(es24.16e3)', &
+    !> Format string for extended double precision real numbers
+    FMT_REAL_XDP = '(es26.18e3)', &
+    !> Format string for quadruple precision real numbers
+    FMT_REAL_QP = '(es44.35e4)', &
+    !> Format string for single precision complex numbers
+    FMT_COMPLEX_SP = '(es15.8e2,1x,es15.8e2)', &
+    !> Format string for double precision complex numbers
+    FMT_COMPLEX_DP = '(es24.16e3,1x,es24.16e3)', &
+    !> Format string for extended double precision complex numbers
+    FMT_COMPLEX_XDP = '(es26.18e3,1x,es26.18e3)', &
+    !> Format string for quadruple precision complex numbers
+    FMT_COMPLEX_QP = '(es44.35e4,1x,es44.35e4)'
+
+  public :: FMT_INT, FMT_REAL_SP, FMT_REAL_DP, FMT_REAL_XDP, FMT_REAL_QP
+  public :: FMT_COMPLEX_SP, FMT_COMPLEX_DP, FMT_COMPLEX_XDP, FMT_COMPLEX_QP
 
   !> Version: experimental
   !>
@@ -119,7 +134,7 @@ contains
 
       allocate(d(nrow, ncol))
       do i = 1, nrow
-          read(s, FMT_REAL_sp) d(i, :)
+          read(s, "(*"//FMT_REAL_sp(1:len(FMT_REAL_sp)-1)//",1x))") d(i, :)
       end do
       close(s)
 
@@ -166,7 +181,7 @@ contains
 
       allocate(d(nrow, ncol))
       do i = 1, nrow
-          read(s, FMT_REAL_dp) d(i, :)
+          read(s, "(*"//FMT_REAL_dp(1:len(FMT_REAL_dp)-1)//",1x))") d(i, :)
       end do
       close(s)
 
@@ -213,7 +228,7 @@ contains
 
       allocate(d(nrow, ncol))
       do i = 1, nrow
-          read(s, FMT_REAL_qp) d(i, :)
+          read(s, "(*"//FMT_REAL_qp(1:len(FMT_REAL_qp)-1)//",1x))") d(i, :)
       end do
       close(s)
 
@@ -449,7 +464,7 @@ contains
 
       allocate(d(nrow, ncol))
       do i = 1, nrow
-          read(s, FMT_COMPLEX_sp) d(i, :)
+          read(s, "(*"//FMT_COMPLEX_sp(1:len(FMT_COMPLEX_sp)-1)//",1x))") d(i, :)
       end do
       close(s)
 
@@ -497,7 +512,7 @@ contains
 
       allocate(d(nrow, ncol))
       do i = 1, nrow
-          read(s, FMT_COMPLEX_dp) d(i, :)
+          read(s, "(*"//FMT_COMPLEX_dp(1:len(FMT_COMPLEX_dp)-1)//",1x))") d(i, :)
       end do
       close(s)
 
@@ -545,7 +560,7 @@ contains
 
       allocate(d(nrow, ncol))
       do i = 1, nrow
-          read(s, FMT_COMPLEX_qp) d(i, :)
+          read(s, "(*"//FMT_COMPLEX_qp(1:len(FMT_COMPLEX_qp)-1)//",1x))") d(i, :)
       end do
       close(s)
 
@@ -575,7 +590,7 @@ contains
       integer :: s, i
       s = open(filename, "w")
       do i = 1, size(d, 1)
-          write(s, FMT_REAL_sp) d(i, :)
+          write(s, "(*"//FMT_REAL_sp(1:len(FMT_REAL_sp)-1)//",1x))") d(i, :)
       end do
       close(s)
     end subroutine savetxt_rsp
@@ -602,7 +617,7 @@ contains
       integer :: s, i
       s = open(filename, "w")
       do i = 1, size(d, 1)
-          write(s, FMT_REAL_dp) d(i, :)
+          write(s, "(*"//FMT_REAL_dp(1:len(FMT_REAL_dp)-1)//",1x))") d(i, :)
       end do
       close(s)
     end subroutine savetxt_rdp
@@ -629,7 +644,7 @@ contains
       integer :: s, i
       s = open(filename, "w")
       do i = 1, size(d, 1)
-          write(s, FMT_REAL_qp) d(i, :)
+          write(s, "(*"//FMT_REAL_qp(1:len(FMT_REAL_qp)-1)//",1x))") d(i, :)
       end do
       close(s)
     end subroutine savetxt_rqp
@@ -656,7 +671,7 @@ contains
       integer :: s, i
       s = open(filename, "w")
       do i = 1, size(d, 1)
-          write(s, FMT_INT) d(i, :)
+          write(s, "(*"//FMT_INT(1:len(FMT_INT)-1)//",1x))") d(i, :)
       end do
       close(s)
     end subroutine savetxt_iint8
@@ -683,7 +698,7 @@ contains
       integer :: s, i
       s = open(filename, "w")
       do i = 1, size(d, 1)
-          write(s, FMT_INT) d(i, :)
+          write(s, "(*"//FMT_INT(1:len(FMT_INT)-1)//",1x))") d(i, :)
       end do
       close(s)
     end subroutine savetxt_iint16
@@ -710,7 +725,7 @@ contains
       integer :: s, i
       s = open(filename, "w")
       do i = 1, size(d, 1)
-          write(s, FMT_INT) d(i, :)
+          write(s, "(*"//FMT_INT(1:len(FMT_INT)-1)//",1x))") d(i, :)
       end do
       close(s)
     end subroutine savetxt_iint32
@@ -737,7 +752,7 @@ contains
       integer :: s, i
       s = open(filename, "w")
       do i = 1, size(d, 1)
-          write(s, FMT_INT) d(i, :)
+          write(s, "(*"//FMT_INT(1:len(FMT_INT)-1)//",1x))") d(i, :)
       end do
       close(s)
     end subroutine savetxt_iint64
@@ -764,7 +779,7 @@ contains
       integer :: s, i
       s = open(filename, "w")
       do i = 1, size(d, 1)
-          write(s, FMT_COMPLEX_sp) d(i, :)
+          write(s, "(*"//FMT_COMPLEX_sp(1:len(FMT_COMPLEX_sp)-1)//",1x))") d(i, :)
       end do
       close(s)
     end subroutine savetxt_csp
@@ -791,7 +806,7 @@ contains
       integer :: s, i
       s = open(filename, "w")
       do i = 1, size(d, 1)
-          write(s, FMT_COMPLEX_dp) d(i, :)
+          write(s, "(*"//FMT_COMPLEX_dp(1:len(FMT_COMPLEX_dp)-1)//",1x))") d(i, :)
       end do
       close(s)
     end subroutine savetxt_cdp
@@ -818,7 +833,7 @@ contains
       integer :: s, i
       s = open(filename, "w")
       do i = 1, size(d, 1)
-          write(s, FMT_COMPLEX_qp) d(i, :)
+          write(s, "(*"//FMT_COMPLEX_qp(1:len(FMT_COMPLEX_qp)-1)//",1x))") d(i, :)
       end do
       close(s)
     end subroutine savetxt_cqp
