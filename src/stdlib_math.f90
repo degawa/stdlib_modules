@@ -9,7 +9,7 @@ module stdlib_math
     public :: EULERS_NUMBER_SP, EULERS_NUMBER_DP
     public :: EULERS_NUMBER_QP
     public :: DEFAULT_LINSPACE_LENGTH, DEFAULT_LOGSPACE_BASE, DEFAULT_LOGSPACE_LENGTH
-    public :: arange, arg, argd, argpi, is_close, all_close
+    public :: arange, arg, argd, argpi, is_close, all_close, diff
 
     integer, parameter :: DEFAULT_LINSPACE_LENGTH = 100
     integer, parameter :: DEFAULT_LOGSPACE_LENGTH = 50
@@ -561,7 +561,7 @@ module stdlib_math
     !>
     !> `arange` creates a one-dimensional `array` of the `integer/real` type 
     !>  with fixed-spaced values of given spacing, within a given interval.
-    !> ([Specification](../page/specs/stdlib_math.html#arange))
+    !> ([Specification](../page/specs/stdlib_math.html#arange-function))
     interface arange
         pure module function arange_r_sp(start, end, step) result(result)
             real(sp), intent(in) :: start
@@ -603,7 +603,7 @@ module stdlib_math
     !> Version: experimental
     !>
     !> `arg` computes the phase angle in the interval (-π,π].
-    !> ([Specification](../page/specs/stdlib_math.html#arg))
+    !> ([Specification](../page/specs/stdlib_math.html#arg-function))
     interface arg
         procedure :: arg_sp
         procedure :: arg_dp
@@ -613,7 +613,7 @@ module stdlib_math
     !> Version: experimental
     !>
     !> `argd` computes the phase angle of degree version in the interval (-180.0,180.0].
-    !> ([Specification](../page/specs/stdlib_math.html#argd))
+    !> ([Specification](../page/specs/stdlib_math.html#argd-function))
     interface argd
         procedure :: argd_sp
         procedure :: argd_dp
@@ -623,7 +623,7 @@ module stdlib_math
     !> Version: experimental
     !>
     !> `argpi` computes the phase angle of circular version in the interval (-1.0,1.0].
-    !> ([Specification](../page/specs/stdlib_math.html#argpi))
+    !> ([Specification](../page/specs/stdlib_math.html#argpi-function))
     interface argpi
         procedure :: argpi_sp
         procedure :: argpi_dp
@@ -631,7 +631,7 @@ module stdlib_math
     end interface argpi
     
     !> Returns a boolean scalar/array where two scalar/arrays are element-wise equal within a tolerance.
-    !> ([Specification](../page/specs/stdlib_math.html#is_close))
+    !> ([Specification](../page/specs/stdlib_math.html#is_close-function))
     interface is_close
         elemental module logical function is_close_rsp(a, b, rel_tol, abs_tol, equal_nan) result(close)
             real(sp), intent(in) :: a, b
@@ -668,7 +668,7 @@ module stdlib_math
     !> Version: experimental
     !>
     !> Returns a boolean scalar where two arrays are element-wise equal within a tolerance.
-    !> ([Specification](../page/specs/stdlib_math.html#all_close))
+    !> ([Specification](../page/specs/stdlib_math.html#all_close-function))
     interface all_close
         logical pure module function all_close_1_rsp(a, b, rel_tol, abs_tol, equal_nan) result(close)
             real(sp), intent(in) :: a(:), b(:)
@@ -791,6 +791,97 @@ module stdlib_math
             logical, intent(in), optional :: equal_nan
         end function all_close_4_cqp
     end interface all_close
+    
+    !> Version: experimental
+    !>
+    !> Computes differences between adjacent elements of an array.
+    !> ([Specification](../page/specs/stdlib_math.html#diff-function))
+    interface diff
+        pure module function diff_1_sp(x, n, prepend, append) result(y)
+            real(sp), intent(in) :: x(:)
+            integer, intent(in), optional :: n
+            real(sp), intent(in), optional :: prepend(:), append(:)
+            real(sp), allocatable :: y(:)
+        end function diff_1_sp
+        pure module function diff_2_sp(X, n, dim, prepend, append) result(y)
+            real(sp), intent(in) :: x(:, :)
+            integer, intent(in), optional :: n, dim
+            real(sp), intent(in), optional :: prepend(:, :), append(:, :)
+            real(sp), allocatable :: y(:, :)
+        end function diff_2_sp
+        pure module function diff_1_dp(x, n, prepend, append) result(y)
+            real(dp), intent(in) :: x(:)
+            integer, intent(in), optional :: n
+            real(dp), intent(in), optional :: prepend(:), append(:)
+            real(dp), allocatable :: y(:)
+        end function diff_1_dp
+        pure module function diff_2_dp(X, n, dim, prepend, append) result(y)
+            real(dp), intent(in) :: x(:, :)
+            integer, intent(in), optional :: n, dim
+            real(dp), intent(in), optional :: prepend(:, :), append(:, :)
+            real(dp), allocatable :: y(:, :)
+        end function diff_2_dp
+        pure module function diff_1_qp(x, n, prepend, append) result(y)
+            real(qp), intent(in) :: x(:)
+            integer, intent(in), optional :: n
+            real(qp), intent(in), optional :: prepend(:), append(:)
+            real(qp), allocatable :: y(:)
+        end function diff_1_qp
+        pure module function diff_2_qp(X, n, dim, prepend, append) result(y)
+            real(qp), intent(in) :: x(:, :)
+            integer, intent(in), optional :: n, dim
+            real(qp), intent(in), optional :: prepend(:, :), append(:, :)
+            real(qp), allocatable :: y(:, :)
+        end function diff_2_qp
+        pure module function diff_1_int8(x, n, prepend, append) result(y)
+            integer(int8), intent(in) :: x(:)
+            integer, intent(in), optional :: n
+            integer(int8), intent(in), optional :: prepend(:), append(:)
+            integer(int8), allocatable :: y(:)
+        end function diff_1_int8
+        pure module function diff_2_int8(X, n, dim, prepend, append) result(y)
+            integer(int8), intent(in) :: x(:, :)
+            integer, intent(in), optional :: n, dim
+            integer(int8), intent(in), optional :: prepend(:, :), append(:, :)
+            integer(int8), allocatable :: y(:, :)
+        end function diff_2_int8
+        pure module function diff_1_int16(x, n, prepend, append) result(y)
+            integer(int16), intent(in) :: x(:)
+            integer, intent(in), optional :: n
+            integer(int16), intent(in), optional :: prepend(:), append(:)
+            integer(int16), allocatable :: y(:)
+        end function diff_1_int16
+        pure module function diff_2_int16(X, n, dim, prepend, append) result(y)
+            integer(int16), intent(in) :: x(:, :)
+            integer, intent(in), optional :: n, dim
+            integer(int16), intent(in), optional :: prepend(:, :), append(:, :)
+            integer(int16), allocatable :: y(:, :)
+        end function diff_2_int16
+        pure module function diff_1_int32(x, n, prepend, append) result(y)
+            integer(int32), intent(in) :: x(:)
+            integer, intent(in), optional :: n
+            integer(int32), intent(in), optional :: prepend(:), append(:)
+            integer(int32), allocatable :: y(:)
+        end function diff_1_int32
+        pure module function diff_2_int32(X, n, dim, prepend, append) result(y)
+            integer(int32), intent(in) :: x(:, :)
+            integer, intent(in), optional :: n, dim
+            integer(int32), intent(in), optional :: prepend(:, :), append(:, :)
+            integer(int32), allocatable :: y(:, :)
+        end function diff_2_int32
+        pure module function diff_1_int64(x, n, prepend, append) result(y)
+            integer(int64), intent(in) :: x(:)
+            integer, intent(in), optional :: n
+            integer(int64), intent(in), optional :: prepend(:), append(:)
+            integer(int64), allocatable :: y(:)
+        end function diff_1_int64
+        pure module function diff_2_int64(X, n, dim, prepend, append) result(y)
+            integer(int64), intent(in) :: x(:, :)
+            integer, intent(in), optional :: n, dim
+            integer(int64), intent(in), optional :: prepend(:, :), append(:, :)
+            integer(int64), allocatable :: y(:, :)
+        end function diff_2_int64
+    end interface diff
 
 contains
 
@@ -870,8 +961,8 @@ contains
         complex(sp), intent(in) :: z
         real(sp) :: result
 
-        result = merge(0.0_sp, atan2(z%im, z%re), z == (0.0_sp, 0.0_sp)) &
-                 *180.0_sp/PI_sp
+        result = merge(0.0_sp, atan2(z%im, z%re)*180.0_sp/PI_sp, &
+                 z == (0.0_sp, 0.0_sp))
 
     end function argd_sp
 
@@ -879,8 +970,9 @@ contains
         complex(sp), intent(in) :: z
         real(sp) :: result
 
-        result = merge(0.0_sp, atan2(z%im, z%re), z == (0.0_sp, 0.0_sp)) &
-                 /PI_sp
+        result = merge(0.0_sp, atan2(z%im, z%re)/PI_sp, &
+                 z == (0.0_sp, 0.0_sp))
+                 
 
     end function argpi_sp
     elemental function arg_dp(z) result(result) 
@@ -895,8 +987,8 @@ contains
         complex(dp), intent(in) :: z
         real(dp) :: result
 
-        result = merge(0.0_dp, atan2(z%im, z%re), z == (0.0_dp, 0.0_dp)) &
-                 *180.0_dp/PI_dp
+        result = merge(0.0_dp, atan2(z%im, z%re)*180.0_dp/PI_dp, &
+                 z == (0.0_dp, 0.0_dp))
 
     end function argd_dp
 
@@ -904,8 +996,9 @@ contains
         complex(dp), intent(in) :: z
         real(dp) :: result
 
-        result = merge(0.0_dp, atan2(z%im, z%re), z == (0.0_dp, 0.0_dp)) &
-                 /PI_dp
+        result = merge(0.0_dp, atan2(z%im, z%re)/PI_dp, &
+                 z == (0.0_dp, 0.0_dp))
+                 
 
     end function argpi_dp
     elemental function arg_qp(z) result(result) 
@@ -920,8 +1013,8 @@ contains
         complex(qp), intent(in) :: z
         real(qp) :: result
 
-        result = merge(0.0_qp, atan2(z%im, z%re), z == (0.0_qp, 0.0_qp)) &
-                 *180.0_qp/PI_qp
+        result = merge(0.0_qp, atan2(z%im, z%re)*180.0_qp/PI_qp, &
+                 z == (0.0_qp, 0.0_qp))
 
     end function argd_qp
 
@@ -929,8 +1022,9 @@ contains
         complex(qp), intent(in) :: z
         real(qp) :: result
 
-        result = merge(0.0_qp, atan2(z%im, z%re), z == (0.0_qp, 0.0_qp)) &
-                 /PI_qp
+        result = merge(0.0_qp, atan2(z%im, z%re)/PI_qp, &
+                 z == (0.0_qp, 0.0_qp))
+                 
 
     end function argpi_qp
 
