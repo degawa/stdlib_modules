@@ -18,7 +18,7 @@ module stdlib_kinds
   integer, parameter :: xdp = -1
 
   !> Quadruple precision real numbers
-  integer, parameter :: qp = selected_real_kind(33)
+  integer, parameter :: qp = -1
 
   !> Default logical kind parameter
   integer, parameter :: lk = kind(.true.)
