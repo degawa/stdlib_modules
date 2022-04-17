@@ -77,42 +77,6 @@ contains
         close = all(is_close(a, b, rel_tol, abs_tol, equal_nan))
 
     end function all_close_4_rdp
-    logical pure module function all_close_1_rqp(a, b, rel_tol, abs_tol, equal_nan) result(close)
-
-        real(qp), intent(in) :: a(:), b(:)
-        real(qp), intent(in), optional :: rel_tol, abs_tol
-        logical, intent(in), optional :: equal_nan
-
-        close = all(is_close(a, b, rel_tol, abs_tol, equal_nan))
-
-    end function all_close_1_rqp
-    logical pure module function all_close_2_rqp(a, b, rel_tol, abs_tol, equal_nan) result(close)
-
-        real(qp), intent(in) :: a(:,:), b(:,:)
-        real(qp), intent(in), optional :: rel_tol, abs_tol
-        logical, intent(in), optional :: equal_nan
-
-        close = all(is_close(a, b, rel_tol, abs_tol, equal_nan))
-
-    end function all_close_2_rqp
-    logical pure module function all_close_3_rqp(a, b, rel_tol, abs_tol, equal_nan) result(close)
-
-        real(qp), intent(in) :: a(:,:,:), b(:,:,:)
-        real(qp), intent(in), optional :: rel_tol, abs_tol
-        logical, intent(in), optional :: equal_nan
-
-        close = all(is_close(a, b, rel_tol, abs_tol, equal_nan))
-
-    end function all_close_3_rqp
-    logical pure module function all_close_4_rqp(a, b, rel_tol, abs_tol, equal_nan) result(close)
-
-        real(qp), intent(in) :: a(:,:,:,:), b(:,:,:,:)
-        real(qp), intent(in), optional :: rel_tol, abs_tol
-        logical, intent(in), optional :: equal_nan
-
-        close = all(is_close(a, b, rel_tol, abs_tol, equal_nan))
-
-    end function all_close_4_rqp
     logical pure module function all_close_1_csp(a, b, rel_tol, abs_tol, equal_nan) result(close)
 
         complex(sp), intent(in) :: a(:), b(:)
@@ -185,41 +149,5 @@ contains
         close = all(is_close(a, b, rel_tol, abs_tol, equal_nan))
 
     end function all_close_4_cdp
-    logical pure module function all_close_1_cqp(a, b, rel_tol, abs_tol, equal_nan) result(close)
-
-        complex(qp), intent(in) :: a(:), b(:)
-        real(qp), intent(in), optional :: rel_tol, abs_tol
-        logical, intent(in), optional :: equal_nan
-
-        close = all(is_close(a, b, rel_tol, abs_tol, equal_nan))
-
-    end function all_close_1_cqp
-    logical pure module function all_close_2_cqp(a, b, rel_tol, abs_tol, equal_nan) result(close)
-
-        complex(qp), intent(in) :: a(:,:), b(:,:)
-        real(qp), intent(in), optional :: rel_tol, abs_tol
-        logical, intent(in), optional :: equal_nan
-
-        close = all(is_close(a, b, rel_tol, abs_tol, equal_nan))
-
-    end function all_close_2_cqp
-    logical pure module function all_close_3_cqp(a, b, rel_tol, abs_tol, equal_nan) result(close)
-
-        complex(qp), intent(in) :: a(:,:,:), b(:,:,:)
-        real(qp), intent(in), optional :: rel_tol, abs_tol
-        logical, intent(in), optional :: equal_nan
-
-        close = all(is_close(a, b, rel_tol, abs_tol, equal_nan))
-
-    end function all_close_3_cqp
-    logical pure module function all_close_4_cqp(a, b, rel_tol, abs_tol, equal_nan) result(close)
-
-        complex(qp), intent(in) :: a(:,:,:,:), b(:,:,:,:)
-        real(qp), intent(in), optional :: rel_tol, abs_tol
-        logical, intent(in), optional :: equal_nan
-
-        close = all(is_close(a, b, rel_tol, abs_tol, equal_nan))
-
-    end function all_close_4_cqp
 
 end submodule stdlib_math_all_close
