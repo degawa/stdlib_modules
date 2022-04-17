@@ -37,10 +37,6 @@ module stdlib_linalg
         real(dp), intent(in) :: v(:)
         real(dp) :: res(size(v),size(v))
       end function diag_rdp
-      module function diag_rqp(v) result(res)
-        real(qp), intent(in) :: v(:)
-        real(qp) :: res(size(v),size(v))
-      end function diag_rqp
       module function diag_csp(v) result(res)
         complex(sp), intent(in) :: v(:)
         complex(sp) :: res(size(v),size(v))
@@ -49,10 +45,6 @@ module stdlib_linalg
         complex(dp), intent(in) :: v(:)
         complex(dp) :: res(size(v),size(v))
       end function diag_cdp
-      module function diag_cqp(v) result(res)
-        complex(qp), intent(in) :: v(:)
-        complex(qp) :: res(size(v),size(v))
-      end function diag_cqp
       module function diag_iint8(v) result(res)
         integer(int8), intent(in) :: v(:)
         integer(int8) :: res(size(v),size(v))
@@ -79,11 +71,6 @@ module stdlib_linalg
         integer, intent(in) :: k
         real(dp) :: res(size(v)+abs(k),size(v)+abs(k))
       end function diag_rdp_k
-      module function diag_rqp_k(v,k) result(res)
-        real(qp), intent(in) :: v(:)
-        integer, intent(in) :: k
-        real(qp) :: res(size(v)+abs(k),size(v)+abs(k))
-      end function diag_rqp_k
       module function diag_csp_k(v,k) result(res)
         complex(sp), intent(in) :: v(:)
         integer, intent(in) :: k
@@ -94,11 +81,6 @@ module stdlib_linalg
         integer, intent(in) :: k
         complex(dp) :: res(size(v)+abs(k),size(v)+abs(k))
       end function diag_cdp_k
-      module function diag_cqp_k(v,k) result(res)
-        complex(qp), intent(in) :: v(:)
-        integer, intent(in) :: k
-        complex(qp) :: res(size(v)+abs(k),size(v)+abs(k))
-      end function diag_cqp_k
       module function diag_iint8_k(v,k) result(res)
         integer(int8), intent(in) :: v(:)
         integer, intent(in) :: k
@@ -131,10 +113,6 @@ module stdlib_linalg
         real(dp), intent(in) :: A(:,:)
         real(dp) :: res(minval(shape(A)))
       end function diag_rdp_mat
-      module function diag_rqp_mat(A) result(res)
-        real(qp), intent(in) :: A(:,:)
-        real(qp) :: res(minval(shape(A)))
-      end function diag_rqp_mat
       module function diag_csp_mat(A) result(res)
         complex(sp), intent(in) :: A(:,:)
         complex(sp) :: res(minval(shape(A)))
@@ -143,10 +121,6 @@ module stdlib_linalg
         complex(dp), intent(in) :: A(:,:)
         complex(dp) :: res(minval(shape(A)))
       end function diag_cdp_mat
-      module function diag_cqp_mat(A) result(res)
-        complex(qp), intent(in) :: A(:,:)
-        complex(qp) :: res(minval(shape(A)))
-      end function diag_cqp_mat
       module function diag_iint8_mat(A) result(res)
         integer(int8), intent(in) :: A(:,:)
         integer(int8) :: res(minval(shape(A)))
@@ -173,11 +147,6 @@ module stdlib_linalg
         integer, intent(in) :: k
         real(dp) :: res(minval(shape(A))-abs(k))
       end function diag_rdp_mat_k
-      module function diag_rqp_mat_k(A,k) result(res)
-        real(qp), intent(in) :: A(:,:)
-        integer, intent(in) :: k
-        real(qp) :: res(minval(shape(A))-abs(k))
-      end function diag_rqp_mat_k
       module function diag_csp_mat_k(A,k) result(res)
         complex(sp), intent(in) :: A(:,:)
         integer, intent(in) :: k
@@ -188,11 +157,6 @@ module stdlib_linalg
         integer, intent(in) :: k
         complex(dp) :: res(minval(shape(A))-abs(k))
       end function diag_cdp_mat_k
-      module function diag_cqp_mat_k(A,k) result(res)
-        complex(qp), intent(in) :: A(:,:)
-        integer, intent(in) :: k
-        complex(qp) :: res(minval(shape(A))-abs(k))
-      end function diag_cqp_mat_k
       module function diag_iint8_mat_k(A,k) result(res)
         integer(int8), intent(in) :: A(:,:)
         integer, intent(in) :: k
@@ -225,10 +189,8 @@ module stdlib_linalg
     !! trace-trace-of-a-matrix))
       module procedure trace_rsp
       module procedure trace_rdp
-      module procedure trace_rqp
       module procedure trace_csp
       module procedure trace_cdp
-      module procedure trace_cqp
       module procedure trace_iint8
       module procedure trace_iint16
       module procedure trace_iint32
@@ -251,10 +213,6 @@ module stdlib_linalg
         real(dp), intent(in) :: u(:), v(:)
         real(dp) :: res(size(u),size(v))
       end function outer_product_rdp
-      pure module function outer_product_rqp(u, v) result(res)
-        real(qp), intent(in) :: u(:), v(:)
-        real(qp) :: res(size(u),size(v))
-      end function outer_product_rqp
       pure module function outer_product_csp(u, v) result(res)
         complex(sp), intent(in) :: u(:), v(:)
         complex(sp) :: res(size(u),size(v))
@@ -263,10 +221,6 @@ module stdlib_linalg
         complex(dp), intent(in) :: u(:), v(:)
         complex(dp) :: res(size(u),size(v))
       end function outer_product_cdp
-      pure module function outer_product_cqp(u, v) result(res)
-        complex(qp), intent(in) :: u(:), v(:)
-        complex(qp) :: res(size(u),size(v))
-      end function outer_product_cqp
       pure module function outer_product_iint8(u, v) result(res)
         integer(int8), intent(in) :: u(:), v(:)
         integer(int8) :: res(size(u),size(v))
@@ -295,10 +249,8 @@ module stdlib_linalg
     !! is_square-checks-if-a-matrix-is-square))
       module procedure is_square_rsp
       module procedure is_square_rdp
-      module procedure is_square_rqp
       module procedure is_square_csp
       module procedure is_square_cdp
-      module procedure is_square_cqp
       module procedure is_square_iint8
       module procedure is_square_iint16
       module procedure is_square_iint32
@@ -315,10 +267,8 @@ module stdlib_linalg
     !! is_diagonal-checks-if-a-matrix-is-diagonal))
       module procedure is_diagonal_rsp
       module procedure is_diagonal_rdp
-      module procedure is_diagonal_rqp
       module procedure is_diagonal_csp
       module procedure is_diagonal_cdp
-      module procedure is_diagonal_cqp
       module procedure is_diagonal_iint8
       module procedure is_diagonal_iint16
       module procedure is_diagonal_iint32
@@ -335,10 +285,8 @@ module stdlib_linalg
     !! is_symmetric-checks-if-a-matrix-is-symmetric))
       module procedure is_symmetric_rsp
       module procedure is_symmetric_rdp
-      module procedure is_symmetric_rqp
       module procedure is_symmetric_csp
       module procedure is_symmetric_cdp
-      module procedure is_symmetric_cqp
       module procedure is_symmetric_iint8
       module procedure is_symmetric_iint16
       module procedure is_symmetric_iint32
@@ -355,10 +303,8 @@ module stdlib_linalg
     !! is_skew_symmetric-checks-if-a-matrix-is-skew-symmetric))
       module procedure is_skew_symmetric_rsp
       module procedure is_skew_symmetric_rdp
-      module procedure is_skew_symmetric_rqp
       module procedure is_skew_symmetric_csp
       module procedure is_skew_symmetric_cdp
-      module procedure is_skew_symmetric_cqp
       module procedure is_skew_symmetric_iint8
       module procedure is_skew_symmetric_iint16
       module procedure is_skew_symmetric_iint32
@@ -375,10 +321,8 @@ module stdlib_linalg
     !! is_hermitian-checks-if-a-matrix-is-hermitian))
       module procedure is_hermitian_rsp
       module procedure is_hermitian_rdp
-      module procedure is_hermitian_rqp
       module procedure is_hermitian_csp
       module procedure is_hermitian_cdp
-      module procedure is_hermitian_cqp
       module procedure is_hermitian_iint8
       module procedure is_hermitian_iint16
       module procedure is_hermitian_iint32
@@ -395,10 +339,8 @@ module stdlib_linalg
     !! is_triangular-checks-if-a-matrix-is-triangular))
       module procedure is_triangular_rsp
       module procedure is_triangular_rdp
-      module procedure is_triangular_rqp
       module procedure is_triangular_csp
       module procedure is_triangular_cdp
-      module procedure is_triangular_cqp
       module procedure is_triangular_iint8
       module procedure is_triangular_iint16
       module procedure is_triangular_iint32
@@ -415,10 +357,8 @@ module stdlib_linalg
     !! is_hessenberg-checks-if-a-matrix-is-hessenberg))
       module procedure is_Hessenberg_rsp
       module procedure is_Hessenberg_rdp
-      module procedure is_Hessenberg_rqp
       module procedure is_Hessenberg_csp
       module procedure is_Hessenberg_cdp
-      module procedure is_Hessenberg_cqp
       module procedure is_Hessenberg_iint8
       module procedure is_Hessenberg_iint16
       module procedure is_Hessenberg_iint32
@@ -469,15 +409,6 @@ contains
           res = res + A(i,i)
         end do
       end function trace_rdp
-      function trace_rqp(A) result(res)
-        real(qp), intent(in) :: A(:,:)
-        real(qp) :: res
-        integer :: i
-        res = 0
-        do i = 1, minval(shape(A))
-          res = res + A(i,i)
-        end do
-      end function trace_rqp
       function trace_csp(A) result(res)
         complex(sp), intent(in) :: A(:,:)
         complex(sp) :: res
@@ -496,15 +427,6 @@ contains
           res = res + A(i,i)
         end do
       end function trace_cdp
-      function trace_cqp(A) result(res)
-        complex(qp), intent(in) :: A(:,:)
-        complex(qp) :: res
-        integer :: i
-        res = 0
-        do i = 1, minval(shape(A))
-          res = res + A(i,i)
-        end do
-      end function trace_cqp
       function trace_iint8(A) result(res)
         integer(int8), intent(in) :: A(:,:)
         integer(int8) :: res
@@ -553,11 +475,6 @@ contains
         logical :: res
         res = (size(A,1) == size(A,2))
       end function is_square_rdp
-      pure function is_square_rqp(A) result(res)
-        real(qp), intent(in) :: A(:,:)
-        logical :: res
-        res = (size(A,1) == size(A,2))
-      end function is_square_rqp
       pure function is_square_csp(A) result(res)
         complex(sp), intent(in) :: A(:,:)
         logical :: res
@@ -568,11 +485,6 @@ contains
         logical :: res
         res = (size(A,1) == size(A,2))
       end function is_square_cdp
-      pure function is_square_cqp(A) result(res)
-        complex(qp), intent(in) :: A(:,:)
-        logical :: res
-        res = (size(A,1) == size(A,2))
-      end function is_square_cqp
       pure function is_square_iint8(A) result(res)
         integer(int8), intent(in) :: A(:,:)
         logical :: res
@@ -643,30 +555,6 @@ contains
         end do
         res = .true. !otherwise A is diagonal
       end function is_diagonal_rdp
-      pure function is_diagonal_rqp(A) result(res)
-        real(qp), intent(in) :: A(:,:)
-        logical :: res
-        real(qp), parameter :: zero = 0 !zero of relevant type
-        integer :: m, n, o, i, j
-        m = size(A,1)
-        n = size(A,2)
-        do j = 1, n !loop over all columns
-            o = min(j-1,m) !index of row above diagonal (or last row)
-            do i = 1, o !loop over rows above diagonal
-                if (A(i,j) /= zero) then
-                  res = .false.
-                  return
-                end if
-            end do
-            do i = o+2, m !loop over rows below diagonal
-                if (A(i,j) /= zero) then
-                  res = .false.
-                  return
-                end if
-            end do
-        end do
-        res = .true. !otherwise A is diagonal
-      end function is_diagonal_rqp
       pure function is_diagonal_csp(A) result(res)
         complex(sp), intent(in) :: A(:,:)
         logical :: res
@@ -715,30 +603,6 @@ contains
         end do
         res = .true. !otherwise A is diagonal
       end function is_diagonal_cdp
-      pure function is_diagonal_cqp(A) result(res)
-        complex(qp), intent(in) :: A(:,:)
-        logical :: res
-        complex(qp), parameter :: zero = 0 !zero of relevant type
-        integer :: m, n, o, i, j
-        m = size(A,1)
-        n = size(A,2)
-        do j = 1, n !loop over all columns
-            o = min(j-1,m) !index of row above diagonal (or last row)
-            do i = 1, o !loop over rows above diagonal
-                if (A(i,j) /= zero) then
-                  res = .false.
-                  return
-                end if
-            end do
-            do i = o+2, m !loop over rows below diagonal
-                if (A(i,j) /= zero) then
-                  res = .false.
-                  return
-                end if
-            end do
-        end do
-        res = .true. !otherwise A is diagonal
-      end function is_diagonal_cqp
       pure function is_diagonal_iint8(A) result(res)
         integer(int8), intent(in) :: A(:,:)
         logical :: res
@@ -875,25 +739,6 @@ contains
         end do
         res = .true. !otherwise A is symmetric
       end function is_symmetric_rdp
-      pure function is_symmetric_rqp(A) result(res)
-        real(qp), intent(in) :: A(:,:)
-        logical :: res
-        integer :: n, i, j
-        if (.not. is_square(A)) then
-           res = .false.
-           return !nonsquare matrices cannot be symmetric
-        end if
-        n = size(A,1) !symmetric dimension of A
-        do j = 1, n !loop over all columns
-            do i = 1, j-1 !loop over all rows above diagonal
-                if (A(i,j) /= A(j,i)) then
-                  res = .false.
-                  return
-                end if
-            end do
-        end do
-        res = .true. !otherwise A is symmetric
-      end function is_symmetric_rqp
       pure function is_symmetric_csp(A) result(res)
         complex(sp), intent(in) :: A(:,:)
         logical :: res
@@ -932,25 +777,6 @@ contains
         end do
         res = .true. !otherwise A is symmetric
       end function is_symmetric_cdp
-      pure function is_symmetric_cqp(A) result(res)
-        complex(qp), intent(in) :: A(:,:)
-        logical :: res
-        integer :: n, i, j
-        if (.not. is_square(A)) then
-           res = .false.
-           return !nonsquare matrices cannot be symmetric
-        end if
-        n = size(A,1) !symmetric dimension of A
-        do j = 1, n !loop over all columns
-            do i = 1, j-1 !loop over all rows above diagonal
-                if (A(i,j) /= A(j,i)) then
-                  res = .false.
-                  return
-                end if
-            end do
-        end do
-        res = .true. !otherwise A is symmetric
-      end function is_symmetric_cqp
       pure function is_symmetric_iint8(A) result(res)
         integer(int8), intent(in) :: A(:,:)
         logical :: res
@@ -1067,25 +893,6 @@ contains
         end do
         res = .true. !otherwise A is skew-symmetric
       end function is_skew_symmetric_rdp
-      pure function is_skew_symmetric_rqp(A) result(res)
-        real(qp), intent(in) :: A(:,:)
-        logical :: res
-        integer :: n, i, j
-        if (.not. is_square(A)) then
-           res = .false.
-           return !nonsquare matrices cannot be skew-symmetric
-        end if
-        n = size(A,1) !symmetric dimension of A
-        do j = 1, n !loop over all columns
-            do i = 1, j !loop over all rows above diagonal (and diagonal)
-                if (A(i,j) /= -A(j,i)) then
-                  res = .false.
-                  return
-                end if
-            end do
-        end do
-        res = .true. !otherwise A is skew-symmetric
-      end function is_skew_symmetric_rqp
       pure function is_skew_symmetric_csp(A) result(res)
         complex(sp), intent(in) :: A(:,:)
         logical :: res
@@ -1124,25 +931,6 @@ contains
         end do
         res = .true. !otherwise A is skew-symmetric
       end function is_skew_symmetric_cdp
-      pure function is_skew_symmetric_cqp(A) result(res)
-        complex(qp), intent(in) :: A(:,:)
-        logical :: res
-        integer :: n, i, j
-        if (.not. is_square(A)) then
-           res = .false.
-           return !nonsquare matrices cannot be skew-symmetric
-        end if
-        n = size(A,1) !symmetric dimension of A
-        do j = 1, n !loop over all columns
-            do i = 1, j !loop over all rows above diagonal (and diagonal)
-                if (A(i,j) /= -A(j,i)) then
-                  res = .false.
-                  return
-                end if
-            end do
-        end do
-        res = .true. !otherwise A is skew-symmetric
-      end function is_skew_symmetric_cqp
       pure function is_skew_symmetric_iint8(A) result(res)
         integer(int8), intent(in) :: A(:,:)
         logical :: res
@@ -1231,11 +1019,6 @@ contains
         logical :: res
         res = is_symmetric(A) !symmetry and Hermiticity are equivalent for real matrices
       end function is_hermitian_rdp
-      pure function is_hermitian_rqp(A) result(res)
-        real(qp), intent(in) :: A(:,:)
-        logical :: res
-        res = is_symmetric(A) !symmetry and Hermiticity are equivalent for real matrices
-      end function is_hermitian_rqp
       pure function is_hermitian_iint8(A) result(res)
         integer(int8), intent(in) :: A(:,:)
         logical :: res
@@ -1294,25 +1077,6 @@ contains
         end do
         res = .true. !otherwise A is Hermitian
       end function is_hermitian_cdp
-      pure function is_hermitian_cqp(A) result(res)
-        complex(qp), intent(in) :: A(:,:)
-        logical :: res
-        integer :: n, i, j
-        if (.not. is_square(A)) then
-           res = .false.
-           return !nonsquare matrices cannot be Hermitian
-        end if
-        n = size(A,1) !symmetric dimension of A
-        do j = 1, n !loop over all columns
-            do i = 1, j !loop over all rows above diagonal (and diagonal)
-                if (A(i,j) /= conjg(A(j,i))) then
-                  res = .false.
-                  return
-                end if
-            end do
-        end do
-        res = .true. !otherwise A is Hermitian
-      end function is_hermitian_cqp
 
 
       function is_triangular_rsp(A,uplo) result(res)
@@ -1383,40 +1147,6 @@ contains
      
         res = .true. !otherwise A is triangular of the requested type
       end function is_triangular_rdp
-      function is_triangular_rqp(A,uplo) result(res)
-        real(qp), intent(in) :: A(:,:)
-        character, intent(in) :: uplo
-        logical :: res
-        real(qp), parameter :: zero = 0 !zero of relevant type
-        integer :: m, n, o, i, j
-        m = size(A,1)
-        n = size(A,2)
-        if ((uplo == 'u') .or. (uplo == 'U')) then !check for upper triangularity
-          do j = 1, n !loop over all columns
-              o = min(j-1,m) !index of row above diagonal (or last row)
-              do i = o+2, m !loop over rows below diagonal
-                  if (A(i,j) /= zero) then
-                    res = .false.
-                    return
-                  end if
-              end do
-          end do
-        else if ((uplo == 'l') .or. (uplo == 'L')) then !check for lower triangularity
-          do j=1,n !loop over all columns
-              o = min(j-1,m) !index of row above diagonal (or last row)
-              do i=1,o !loop over rows above diagonal
-                  if (A(i,j) /= zero) then
-                    res = .false.
-                    return
-                  end if
-              end do
-           end do
-        else
-           call error_stop("ERROR (is_triangular): second argument must be one of {'u','U','l','L'}")
-        end if
-     
-        res = .true. !otherwise A is triangular of the requested type
-      end function is_triangular_rqp
       function is_triangular_csp(A,uplo) result(res)
         complex(sp), intent(in) :: A(:,:)
         character, intent(in) :: uplo
@@ -1485,40 +1215,6 @@ contains
      
         res = .true. !otherwise A is triangular of the requested type
       end function is_triangular_cdp
-      function is_triangular_cqp(A,uplo) result(res)
-        complex(qp), intent(in) :: A(:,:)
-        character, intent(in) :: uplo
-        logical :: res
-        complex(qp), parameter :: zero = 0 !zero of relevant type
-        integer :: m, n, o, i, j
-        m = size(A,1)
-        n = size(A,2)
-        if ((uplo == 'u') .or. (uplo == 'U')) then !check for upper triangularity
-          do j = 1, n !loop over all columns
-              o = min(j-1,m) !index of row above diagonal (or last row)
-              do i = o+2, m !loop over rows below diagonal
-                  if (A(i,j) /= zero) then
-                    res = .false.
-                    return
-                  end if
-              end do
-          end do
-        else if ((uplo == 'l') .or. (uplo == 'L')) then !check for lower triangularity
-          do j=1,n !loop over all columns
-              o = min(j-1,m) !index of row above diagonal (or last row)
-              do i=1,o !loop over rows above diagonal
-                  if (A(i,j) /= zero) then
-                    res = .false.
-                    return
-                  end if
-              end do
-           end do
-        else
-           call error_stop("ERROR (is_triangular): second argument must be one of {'u','U','l','L'}")
-        end if
-     
-        res = .true. !otherwise A is triangular of the requested type
-      end function is_triangular_cqp
       function is_triangular_iint8(A,uplo) result(res)
         integer(int8), intent(in) :: A(:,:)
         character, intent(in) :: uplo
@@ -1723,39 +1419,6 @@ contains
         end if
         res = .true. !otherwise A is Hessenberg of the requested type
       end function is_hessenberg_rdp
-      function is_hessenberg_rqp(A,uplo) result(res)
-        real(qp), intent(in) :: A(:,:)
-        character, intent(in) :: uplo
-        logical :: res
-        real(qp), parameter :: zero = 0 !zero of relevant type
-        integer :: m, n, o, i, j
-        m = size(A,1)
-        n = size(A,2)
-        if ((uplo == 'u') .or. (uplo == 'U')) then !check for upper Hessenberg
-          do j = 1, n !loop over all columns
-              o = min(j-2,m) !index of row two above diagonal (or last row)
-              do i = o+4, m !loop over rows two or more below main diagonal
-                  if (A(i,j) /= zero) then
-                    res = .false.
-                    return
-                  end if
-              end do
-          end do
-        else if ((uplo == 'l') .or. (uplo == 'L')) then !check for lower Hessenberg
-          do j = 1, n !loop over all columns
-              o = min(j-2,m) !index of row two above diagonal (or last row)
-              do i = 1, o !loop over rows one or more above main diagonal
-                  if (A(i,j) /= zero) then
-                    res = .false.
-                    return
-                  end if
-              end do
-           end do
-        else
-           call error_stop("ERROR (is_hessenberg): second argument must be one of {'u','U','l','L'}")
-        end if
-        res = .true. !otherwise A is Hessenberg of the requested type
-      end function is_hessenberg_rqp
       function is_hessenberg_csp(A,uplo) result(res)
         complex(sp), intent(in) :: A(:,:)
         character, intent(in) :: uplo
@@ -1822,39 +1485,6 @@ contains
         end if
         res = .true. !otherwise A is Hessenberg of the requested type
       end function is_hessenberg_cdp
-      function is_hessenberg_cqp(A,uplo) result(res)
-        complex(qp), intent(in) :: A(:,:)
-        character, intent(in) :: uplo
-        logical :: res
-        complex(qp), parameter :: zero = 0 !zero of relevant type
-        integer :: m, n, o, i, j
-        m = size(A,1)
-        n = size(A,2)
-        if ((uplo == 'u') .or. (uplo == 'U')) then !check for upper Hessenberg
-          do j = 1, n !loop over all columns
-              o = min(j-2,m) !index of row two above diagonal (or last row)
-              do i = o+4, m !loop over rows two or more below main diagonal
-                  if (A(i,j) /= zero) then
-                    res = .false.
-                    return
-                  end if
-              end do
-          end do
-        else if ((uplo == 'l') .or. (uplo == 'L')) then !check for lower Hessenberg
-          do j = 1, n !loop over all columns
-              o = min(j-2,m) !index of row two above diagonal (or last row)
-              do i = 1, o !loop over rows one or more above main diagonal
-                  if (A(i,j) /= zero) then
-                    res = .false.
-                    return
-                  end if
-              end do
-           end do
-        else
-           call error_stop("ERROR (is_hessenberg): second argument must be one of {'u','U','l','L'}")
-        end if
-        res = .true. !otherwise A is Hessenberg of the requested type
-      end function is_hessenberg_cqp
       function is_hessenberg_iint8(A,uplo) result(res)
         integer(int8), intent(in) :: A(:,:)
         character, intent(in) :: uplo
