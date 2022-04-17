@@ -29,8 +29,42 @@ Each project uses the sources generated during the build process using cmake. Th
 - compiler: grfortran(tdm64) 10.3.0
 - preprocessor: fypp 3.1
 - stdlib version: 0.2.0, commit hash ee4d105c2c978238bef08f92b08e5e07ad5fa2fd
-- build command: `cmake -B build -G "Unix Makefiles" -DCMAKE_Fortran_COMPILER=gfortran -DWITH_XDP=0`
+- build command: `cmake -B build -G "Unix Makefiles" -DCMAKE_Fortran_COMPILER=gfortran -DWITH_XDP=0 -DWITH_QP=0`
     - `-DCMAKE_MAXIMUM_RANK`is not specified. Default value `4` is chosen.
+    - Quad-precision floating-point number is disabled to maintain portability with compilers not supporting QP.
+
+### Original Fix
+#### integer overflow in stdlib_io_npy_save.fypp and stdlib_io_npy_save.fypp
+Related to [issue #647](https://github.com/fortran-lang/stdlib/issues/647), integer overflow (probably a bug) is fixed as follows:
+
+##### save
+```diff
+-        str = achar(mod(val, 2**8)) // &
+-            & achar(mod(val, 2**16) / 2**8) // &
+-            & achar(mod(val, 2**32) / 2**16) // &
+-            & achar(val / 2**32)
++        str = achar(mod(val, 256**1) / 256**0) // &
++            & achar(mod(val, 256**2) / 256**1) // &
++            & achar(mod(val, 256**3) / 256**2) // &
++            & achar(    val          / 256**3)
+```
+
+##### load
+```diff
+-            header_len = ichar(buf(1)) &
+-                &      + ichar(buf(2)) * 2**8 &
+-                &      + ichar(buf(3)) * 2**16 &
+-                &      + ichar(buf(4)) * 2**32
++            header_len = ichar(buf(1)) * 256**0 &
++                &      + ichar(buf(2)) * 256**1 &
++                &      + ichar(buf(3)) * 256**2 &
++                &      + ichar(buf(4)) * 256**3
+        else
+-            header_len = ichar(buf(1)) &
+-                &      + ichar(buf(2)) * 2**8
++            header_len = ichar(buf(1)) * 256**0 &
++                &      + ichar(buf(2)) * 256**1
+```
 
 ## 動機
 このリポジトリでは，Fortran stdlibの各モジュールを，独立したfpmプロジェクトとして提供することを目的としています．
@@ -56,8 +90,42 @@ stdlibの各モジュールを個別に含むfpmプロジェクトを作成し�
 - コンパイラ: grfortran(tdm64) 10.3.0
 - プリプロセッサ: fypp 3.1
 - stdlibのバージョン: 0.2.0, コミットハッシュ ee4d105c2c978238bef08f92b08e5e07ad5fa2fd
-- ビルドコマンド: `cmake -B build -G "Unix Makefiles" -DCMAKE_Fortran_COMPILER=gfortran -DWITH_XDP=0`
+- ビルドコマンド: `cmake -B build -G "Unix Makefiles" -DCMAKE_Fortran_COMPILER=gfortran -DWITH_XDP=0 -DWITH_QP=0`
     - `-DCMAKE_MAXIMUM_RANK`は指定していないので，標準値の`4`
+    - 4倍精度実数をサポートしないコンパイラとの可搬性を担保するために，QPを無効化
+
+### 独自の修正
+#### stdlib_io_npy_save.fyppおよびstdlib_io_npy_save.fyppで生じている整数オーバーフロー
+[issue #647](https://github.com/fortran-lang/stdlib/issues/647)で報告した整数オーバーフロー（おそらく勘違いによるバグ）を下記のように修正．
+
+##### save
+```diff
+-        str = achar(mod(val, 2**8)) // &
+-            & achar(mod(val, 2**16) / 2**8) // &
+-            & achar(mod(val, 2**32) / 2**16) // &
+-            & achar(val / 2**32)
++        str = achar(mod(val, 256**1) / 256**0) // &
++            & achar(mod(val, 256**2) / 256**1) // &
++            & achar(mod(val, 256**3) / 256**2) // &
++            & achar(    val          / 256**3)
+```
+
+##### load
+```diff
+-            header_len = ichar(buf(1)) &
+-                &      + ichar(buf(2)) * 2**8 &
+-                &      + ichar(buf(3)) * 2**16 &
+-                &      + ichar(buf(4)) * 2**32
++            header_len = ichar(buf(1)) * 256**0 &
++                &      + ichar(buf(2)) * 256**1 &
++                &      + ichar(buf(3)) * 256**2 &
++                &      + ichar(buf(4)) * 256**3
+        else
+-            header_len = ichar(buf(1)) &
+-                &      + ichar(buf(2)) * 2**8
++            header_len = ichar(buf(1)) * 256**0 &
++                &      + ichar(buf(2)) * 256**1
+```
 
 ### array
 - モジュール: `stdlib_array`
