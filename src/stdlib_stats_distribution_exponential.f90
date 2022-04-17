@@ -28,17 +28,13 @@ module stdlib_stats_distribution_exponential
 
         module procedure rvs_exp_rsp       !1 dummy variable
         module procedure rvs_exp_rdp       !1 dummy variable
-        module procedure rvs_exp_rqp       !1 dummy variable
         module procedure rvs_exp_csp       !1 dummy variable
         module procedure rvs_exp_cdp       !1 dummy variable
-        module procedure rvs_exp_cqp       !1 dummy variable
 
         module procedure rvs_exp_array_rsp !2 dummy variables
         module procedure rvs_exp_array_rdp !2 dummy variables
-        module procedure rvs_exp_array_rqp !2 dummy variables
         module procedure rvs_exp_array_csp !2 dummy variables
         module procedure rvs_exp_array_cdp !2 dummy variables
-        module procedure rvs_exp_array_cqp !2 dummy variables
     end interface rvs_exp
 
 
@@ -52,10 +48,8 @@ module stdlib_stats_distribution_exponential
     !!
         module procedure pdf_exp_rsp
         module procedure pdf_exp_rdp
-        module procedure pdf_exp_rqp
         module procedure pdf_exp_csp
         module procedure pdf_exp_cdp
-        module procedure pdf_exp_cqp
     end interface pdf_exp
 
 
@@ -69,10 +63,8 @@ module stdlib_stats_distribution_exponential
     !!
         module procedure cdf_exp_rsp
         module procedure cdf_exp_rdp
-        module procedure cdf_exp_rqp
         module procedure cdf_exp_csp
         module procedure cdf_exp_cdp
-        module procedure cdf_exp_cqp
     end interface cdf_exp
 
 
@@ -191,41 +183,6 @@ contains
        endif
     end function rvs_exp_0_rdp
 
-    function rvs_exp_0_rqp( ) result(res)
-    !
-    ! Standard exponential random variate (lambda=1)
-    !
-        real(qp) :: res, x
-        real(qp), parameter :: r = 7.69711747013104972_qp
-        integer :: jz, iz
-
-        if(.not. zig_exp_initialized ) call zigset
-        iz = 0
-        jz = dist_rand(1_int32)                !32bit random integer
-        iz = iand( jz, 255 )                   !random integer in [0, 255]
-        if( abs( jz ) < ke(iz) ) then
-            res = abs(jz) * we(iz)
-        else
-            L1: do
-                if( iz == 0 ) then
-                    res = r - log( uni(1.0_qp) )
-                    exit L1
-                end if
-                x = abs( jz ) * we(iz)
-                if(fe(iz) + uni(1.0_qp) * (fe(iz-1) - fe(iz)) < exp(-x)) then
-                    res = x
-                    exit L1
-                end if
-                jz = dist_rand(1_int32)
-                iz = iand( jz, 255 )
-                if( abs( jz ) < ke(iz) ) then
-                    res = abs( jz ) * we(iz)
-                    exit L1
-                end if
-           end do L1
-       endif
-    end function rvs_exp_0_rqp
-
 
 
 
@@ -258,20 +215,6 @@ contains
         res = res / lambda
     end function rvs_exp_rdp
 
-    function rvs_exp_rqp(lambda) result(res)
-    !
-    ! Exponential distributed random variate
-    !
-        real(qp), intent(in) :: lambda
-        real(qp) :: res
-
-
-        if(lambda <= 0.0_qp) call error_stop("Error(rvs_exp): Exponen"   &
-            //"tial distribution lambda parameter must be greater than zero")
-        res = rvs_exp_0_rqp(  )
-        res = res / lambda
-    end function rvs_exp_rqp
-
 
 
 
@@ -295,16 +238,6 @@ contains
         ti = rvs_exp_rdp(lambda % im)
         res = cmplx(tr, ti, kind=dp)
     end function rvs_exp_cdp
-
-    function rvs_exp_cqp(lambda) result(res)
-        complex(qp), intent(in) :: lambda
-        complex(qp) :: res
-        real(qp) :: tr, ti
-
-        tr = rvs_exp_rqp(lambda % re)
-        ti = rvs_exp_rqp(lambda % im)
-        res = cmplx(tr, ti, kind=qp)
-    end function rvs_exp_cqp
 
 
 
@@ -390,46 +323,6 @@ contains
         end do
     end function rvs_exp_array_rdp
 
-    function rvs_exp_array_rqp(lambda, array_size) result(res)
-        real(qp), intent(in) :: lambda
-        integer, intent(in) :: array_size
-        real(qp) :: res(array_size), x, re
-        real(qp), parameter :: r = 7.69711747013104972_qp
-        integer :: jz, iz, i
-
-        if(lambda <= 0.0_qp) call error_stop("Error(rvs_exp_array): Exp" &
-            //"onential distribution lambda parameter must be greater than zero")
-
-        if(.not. zig_exp_initialized) call zigset
-        do i = 1, array_size
-            iz = 0
-            jz = dist_rand(1_int32)
-            iz = iand( jz, 255 )
-            if( abs( jz ) < ke(iz) ) then
-                re = abs(jz) * we(iz)
-            else
-                L1: do
-                    if( iz == 0 ) then
-                        re = r - log( uni(1.0_qp) )
-                        exit L1
-                    end if
-                    x = abs( jz ) * we(iz)
-                    if(fe(iz) + uni(1.0_qp)*(fe(iz-1)-fe(iz)) < exp(-x)) then
-                        re = x
-                        exit L1
-                    end if
-                    jz = dist_rand(1_int32)
-                    iz = iand( jz, 255 )
-                    if( abs( jz ) < ke(iz) ) then
-                        re = abs( jz ) * we(iz)
-                        exit L1
-                    end if
-               end do L1
-            endif
-            res(i) = re / lambda
-        end do
-    end function rvs_exp_array_rqp
-
 
 
 
@@ -461,20 +354,6 @@ contains
             res(i) = cmplx(tr, ti, kind=dp)
         end do
     end function rvs_exp_array_cdp
-
-    function rvs_exp_array_cqp(lambda, array_size) result(res)
-        complex(qp), intent(in) :: lambda
-        integer, intent(in) :: array_size
-        complex(qp) :: res(array_size)
-        integer :: i
-        real(qp) :: tr, ti
-
-        do i = 1, array_size
-            tr = rvs_exp_rqp(lambda % re)
-            ti = rvs_exp_rqp(lambda % im)
-            res(i) = cmplx(tr, ti, kind=qp)
-        end do
-    end function rvs_exp_array_cqp
 
 
 
@@ -508,20 +387,6 @@ contains
         res = exp(- x * lambda) * lambda
     end function pdf_exp_rdp
 
-    impure elemental function pdf_exp_rqp(x, lambda) result(res)
-    !
-    ! Exponential Distribution Probability Density Function
-    !
-        real(qp), intent(in) :: x, lambda
-        real(qp) :: res
-
-        if(lambda <= 0.0_qp) call error_stop("Error(pdf_exp): Expon"     &
-            //"ential distribution lambda parameter must be greater than zero")
-        if(x < 0.0_qp) call error_stop("Error(pdf_exp): Exponential"     &
-            //" distribution variate x must be non-negative")
-        res = exp(- x * lambda) * lambda
-    end function pdf_exp_rqp
-
 
 
 
@@ -541,14 +406,6 @@ contains
         res = pdf_exp_rdp(x % re, lambda % re)
         res = res * pdf_exp_rdp(x % im, lambda % im)
     end function pdf_exp_cdp
-
-    impure elemental function pdf_exp_cqp(x, lambda) result(res)
-        complex(qp), intent(in) :: x, lambda
-        real(qp) :: res
-
-        res = pdf_exp_rqp(x % re, lambda % re)
-        res = res * pdf_exp_rqp(x % im, lambda % im)
-    end function pdf_exp_cqp
 
 
 
@@ -582,20 +439,6 @@ contains
         res = 1.0_dp - exp(- x * lambda)
     end function cdf_exp_rdp
 
-    impure elemental function cdf_exp_rqp(x, lambda) result(res)
-    !
-    ! Exponential Distribution Cumulative Distribution Function
-    !
-        real(qp), intent(in) :: x, lambda
-        real(qp) :: res
-
-        if(lambda <= 0.0_qp) call error_stop("Error(cdf_exp): Expon"     &
-            //"ential distribution lambda parameter must be greater than zero")
-        if(x < 0.0_qp) call error_stop("Error(cdf_exp): Exponential"     &
-            //" distribution variate x must be non-negative")
-        res = 1.0_qp - exp(- x * lambda)
-    end function cdf_exp_rqp
-
 
 
 
@@ -615,14 +458,6 @@ contains
         res = cdf_exp_rdp(x % re, lambda % re)
         res = res * cdf_exp_rdp(x % im, lambda % im)
     end function cdf_exp_cdp
-
-    impure elemental function cdf_exp_cqp(x, lambda) result(res)
-        complex(qp), intent(in) :: x, lambda
-        real(qp) :: res
-
-        res = cdf_exp_rqp(x % re, lambda % re)
-        res = res * cdf_exp_rqp(x % im, lambda % im)
-    end function cdf_exp_cqp
 
 
 end module stdlib_stats_distribution_exponential
