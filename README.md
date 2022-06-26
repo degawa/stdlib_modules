@@ -34,37 +34,8 @@ Each project uses the sources generated during the build process using cmake. Th
     - Quad-precision floating-point number is disabled to maintain portability with compilers not supporting QP.
 
 ### Original Fix
-#### integer overflow in stdlib_io_npy_save.fypp and stdlib_io_npy_save.fypp
-Related to [issue #647](https://github.com/fortran-lang/stdlib/issues/647), integer overflow (probably a bug) is fixed as follows:
-
-##### save
-```diff
--        str = achar(mod(val, 2**8)) // &
--            & achar(mod(val, 2**16) / 2**8) // &
--            & achar(mod(val, 2**32) / 2**16) // &
--            & achar(val / 2**32)
-+        str = achar(mod(val, 256**1) / 256**0) // &
-+            & achar(mod(val, 256**2) / 256**1) // &
-+            & achar(mod(val, 256**3) / 256**2) // &
-+            & achar(    val          / 256**3)
-```
-
-##### load
-```diff
--            header_len = ichar(buf(1)) &
--                &      + ichar(buf(2)) * 2**8 &
--                &      + ichar(buf(3)) * 2**16 &
--                &      + ichar(buf(4)) * 2**32
-+            header_len = ichar(buf(1)) * 256**0 &
-+                &      + ichar(buf(2)) * 256**1 &
-+                &      + ichar(buf(3)) * 256**2 &
-+                &      + ichar(buf(4)) * 256**3
-        else
--            header_len = ichar(buf(1)) &
--                &      + ichar(buf(2)) * 2**8
-+            header_len = ichar(buf(1)) * 256**0 &
-+                &      + ichar(buf(2)) * 256**1
-```
+#### moved final subroutines for user-defined types defined in stdlib_hashmaps from submodules to the module.
+NAG Fortran cannot compile stdlib_hashmaps. According to the error message, the compiler fails to interpret final subroutines, defined in submodules, for user-defined types defined in stdlib_hashmaps.f90. To solve this, the final subroutines and subroutines called in those are moved to stdlib_hashmaps.f90.
 
 ## 動機
 このリポジトリでは，Fortran stdlibの各モジュールを，独立したfpmプロジェクトとして提供することを目的としています．
@@ -95,37 +66,8 @@ stdlibの各モジュールを個別に含むfpmプロジェクトを作成し�
     - 4倍精度実数をサポートしないコンパイラとの可搬性を担保するために，QPを無効化
 
 ### 独自の修正
-#### stdlib_io_npy_save.fyppおよびstdlib_io_npy_save.fyppで生じている整数オーバーフロー
-[issue #647](https://github.com/fortran-lang/stdlib/issues/647)で報告した整数オーバーフロー（おそらく勘違いによるバグ）を下記のように修正．
-
-##### save
-```diff
--        str = achar(mod(val, 2**8)) // &
--            & achar(mod(val, 2**16) / 2**8) // &
--            & achar(mod(val, 2**32) / 2**16) // &
--            & achar(val / 2**32)
-+        str = achar(mod(val, 256**1) / 256**0) // &
-+            & achar(mod(val, 256**2) / 256**1) // &
-+            & achar(mod(val, 256**3) / 256**2) // &
-+            & achar(    val          / 256**3)
-```
-
-##### load
-```diff
--            header_len = ichar(buf(1)) &
--                &      + ichar(buf(2)) * 2**8 &
--                &      + ichar(buf(3)) * 2**16 &
--                &      + ichar(buf(4)) * 2**32
-+            header_len = ichar(buf(1)) * 256**0 &
-+                &      + ichar(buf(2)) * 256**1 &
-+                &      + ichar(buf(3)) * 256**2 &
-+                &      + ichar(buf(4)) * 256**3
-        else
--            header_len = ichar(buf(1)) &
--                &      + ichar(buf(2)) * 2**8
-+            header_len = ichar(buf(1)) * 256**0 &
-+                &      + ichar(buf(2)) * 256**1
-```
+#### stdlib_hashmapsのモジュールサブルーチンの定義場所変更
+NAG Fortranでは，stdlib_hashmapsをコンパイルできない．エラーメッセージに基づくと，stdlib_hashmaps.f90内で定義されているユーザ定義派生型の後始末手続をsubmodule (stdlib_hashmaps_chaining.f90, stdlib_hashmaps_open.f90)に分離していることに関係して，コンパイラがそれをうまく解釈できていないと考えられる．そのため後始末手続およびそれらから呼ばれているモジュールサブルーチンを，stdlib_hashmaps.f90に移動している．
 
 ### array
 - モジュール: `stdlib_array`
@@ -180,6 +122,17 @@ stdlib_error = {git = "https://github.com/degawa/stdlib_modules", branch="stdlib
 ```toml
 [dependencies]
 stdlib_hash = {git = "https://github.com/degawa/stdlib_modules", branch="stdlib_hash-fpm"}
+```
+
+### hashmaps
+- モジュール: `stdlib_hashmaps`
+- ブランチ: stdlib_hashmaps-fpm
+- 依存ブランチ: stdlib_version-fpm, stdlib_kinds-fpm, stdlib_hash-fpm
+- 参照方法: `fpm.toml`に下記を追記する．
+
+```toml
+[dependencies]
+stdlib_hashmaps = {git = "https://github.com/degawa/stdlib_modules", branch="stdlib_hashmaps-fpm"}
 ```
 
 ### io
