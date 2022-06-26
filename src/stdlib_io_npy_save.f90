@@ -57,10 +57,10 @@ contains
         !> String of bytes
         character(len=4) :: str
 
-        str = achar(mod(val, 256**1) / 256**0) // &
+        str = achar(mod(val, 256**1)) // &
             & achar(mod(val, 256**2) / 256**1) // &
             & achar(mod(val, 256**3) / 256**2) // &
-            & achar(    val          / 256**3)
+            & achar(val / 256**3)
     end function to_bytes_i4
 
 
