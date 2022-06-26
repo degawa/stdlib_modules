@@ -11,6 +11,7 @@ stdlib_ascii = {git = "https://github.com/degawa/stdlib_modules", branch="stdlib
 stdlib_bitsets = {git = "https://github.com/degawa/stdlib_modules", branch="stdlib_bitsets-fpm"}
 stdlib_error = {git = "https://github.com/degawa/stdlib_modules", branch="stdlib_error-fpm"}
 stdlib_hash = {git = "https://github.com/degawa/stdlib_modules", branch="stdlib_hash-fpm"}
+stdlib_hashmaps = {git = "https://github.com/degawa/stdlib_modules", branch="stdlib_hashmaps-fpm"}
 stdlib_io = {git = "https://github.com/degawa/stdlib_modules", branch="stdlib_io-fpm"}
 stdlib_kinds = {git = "https://github.com/degawa/stdlib_modules", branch="stdlib_kinds-fpm"}
 stdlib_linalg = {git = "https://github.com/degawa/stdlib_modules", branch="stdlib_linalg-fpm"}
